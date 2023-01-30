@@ -1,4 +1,4 @@
-# Boilerplate link - https://electron-react-boilerplate.js.org/docs/installation
+# Link - https://electron-react-boilerplate.js.org/docs/installation
 
 <div align="center">
 
