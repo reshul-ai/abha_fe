@@ -1,0 +1,34 @@
+.nservices-submenu {
+  width: 14rem;
+  position: absolute;
+  top: 100%;
+  list-style: none;
+  text-align: start;
+  right: 0;
+  background: #fff;
+  padding: 0;
+  box-shadow: 0 0 6px 0 #00000047;
+  border-radius: 6px;
+}
+
+.nservices-submenu li {
+  
+  cursor: pointer;
+}
+
+/* .nservices-submenu li a:hover {
+   background: rgb(0, 175, 175); 
+} */
+
+.nservices-submenu.clicked {
+  display: none;
+}
+
+.nsubmenu-item {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: black !important;
+  padding: 0 0 0 0;
+}

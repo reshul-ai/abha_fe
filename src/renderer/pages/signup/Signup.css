@@ -1,0 +1,481 @@
+.App {
+  height: 100vh;
+  display: flex;
+  color: white;
+}
+
+.appAside {
+  width: 50%;
+  background-color: #6b5b95;
+}
+
+.appForm {
+  width: 50%;
+  background-color: #12130f;
+  padding: 25px 40px;
+  overflow: auto;
+}
+
+.pageSwitcher {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+
+.pageSwitcherItem {
+  background-color: #40434e;
+  color: #9da6b1;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.pageSwitcherItem-active {
+  background-color: #6b5b95;
+  color: white;
+}
+
+.pageSwitcherItem:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.pageSwitcherItem:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.formCenter {
+  margin-bottom: 100px;
+}
+
+.formTitle {
+  color: #707c8b;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+.formTitleLink {
+  color: #707c8b;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.7em;
+  margin: 0 10px;
+  padding-bottom: 5px;
+}
+
+.formTitleLink:first-child {
+  margin-left: 0;
+}
+
+.formTitleLink-active {
+  color: white;
+  border-bottom: 1px solid #6b5b95;
+}
+
+ 
+.formFieldLabel {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  color: white;
+}
+
+ 
+
+.formFieldInput::placeholder {
+  color: #616e7f;
+}
+
+
+.formFieldLink {
+  color: #66707d;
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 1.5px solid #6b5b95;
+  padding-bottom: 5px;
+}
+
+.formFieldCheckboxLabel {
+  color: #646f7d;
+  font-size: 0.9em;
+}
+
+.formFieldCheckbox {
+  position: relative;
+  top: 1.5px;
+}
+
+.formFieldTermsLink {
+  color: white;
+  border-bottom: 1px solid #6b5b95;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-left: 5px;
+}
+
+.header1 {
+  width: 281px;
+  height: 55px;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 55px;
+  /* identical to box height */
+
+
+  color: #FFFFFF;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+ 
+.header3 {
+  width: 134px;
+  height: 22px;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+
+
+  color: #E8E8E8;
+
+
+
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.forgot-password {
+  width: 129px;
+  height: 22px;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #E8E8E8;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  text-align: right;
+  padding-top: 10px;
+  margin: 160px;
+}
+
+.header4 {
+  width: 166px;
+  height: 22px;
+
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #E8E8E8;
+
+}
+
+.header5 {
+  width: 500px;
+  height: 180px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 40px;
+  text-align: center;
+
+
+  color: #FFFFFF;
+
+}
+
+.logoSize {
+  width: 151px;
+  height: 65px;
+  padding-left: 35%;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 65px;
+
+
+  color: #FFFFFF;
+
+}
+
+
+.login-form {
+  background: #000;
+}
+
+.login-left-content h5 {
+  font-size: 2rem;
+}
+ 
+ 
+
+.login-bg {
+  background-size: cover;
+  background-position: 100% 63%;
+}
+
+.login-app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10rem 0;
+}
+
+body{
+  font-family: 'Roboto Flex';
+}
+
+
+
+
+.login-left-content h5 {
+   
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 47px;
+  text-align: center;
+}
+
+.login-left-content {
+  padding: 0 10rem 0;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.login-left-content h2 {
+  margin-bottom: 80px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 55.7746px;
+  line-height: normal;
+  color: #FFFFFF;
+  /* height: 65px; */
+  display: flex;
+  line-height: normal;
+}
+.login-left-content h2 img {
+  width: 65px;
+  height: 65px;margin-right: 10px;
+}
+
+.login-bg {
+  background-size: cover;
+  background-position: 100% 63%;
+}
+
+.login-app {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10rem 0;
+}
+.header-welcome {
+  
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 55px;
+  /* identical to box height */
+  font-family: 'Nunito', sans-serif;
+
+  margin-bottom: 16px;
+  color: #FFFFFF;
+
+  
+  
+}
+ 
+.header2 {
+  font-family: 'Nunito', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  color: #FFFFFF;
+  margin-bottom: 74px;
+}
+.login-left-content {
+  padding: 0 96px 0;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.formFieldInput {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  border-bottom: 1px solid #445366;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  color: #E8E8E8;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.formField {
+  margin-bottom: 27px;
+}
+.formField {
+  margin-top: 21px;
+}
+
+
+.formFieldButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 14px;
+  gap: 8px;
+  width: 464px;
+  height: 48px;
+  background: #FFFFFF !important;
+  border-radius: 8px;
+  color: #000 !important;
+  flex: none;
+  order: 5;
+  align-self: stretch;
+  flex-grow: 0;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1B1C2D;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.formField label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #E8E8E8;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.login-rightt-content {
+  padding: 0 50px 0;
+   
+}
+
+
+
+@media(min-width:1701px){
+  .login-left-content.login-rightt-content h5 {
+    font-size: 53px !important;
+    line-height: normal !important;
+}
+}
+
+
+@media(max-width:1700px) and (min-width:1500px){
+  .login-left-content.login-rightt-content h5 {
+    font-size: 53px !important;
+ 
+    line-height: normal !important;
+}
+}
+
+
+
+@media(max-width:1450px) and (min-width:1366px){
+  .login-left-content.login-rightt-content h5 {
+    
+    font-size: 45px;
+     
+}
+}
+
+@media(max-width:1365px) and (min-width:1282px){
+  .login-left-content.login-rightt-content h5 {
+   
+    font-size: 38px !important;
+    line-height: normal !important;
+     
+}
+}
+
+@media(max-width:1281px) and (min-width:1200px){
+  .login-left-content.login-rightt-content h5 {
+    font-size: 40px !important;
+    line-height: normal !important;
+}
+.login-left-content.login-rightt-content {
+  padding: 0 51px 0 !important;
+}
+}
+
+@media(max-width:1199px) and (min-width:1025px){
+  .login-left-content.login-rightt-content h5 {
+   
+    font-size: 35px !important;
+    line-height: normal !important;
+     
+}
+}
+
+
+@media(max-width:1024px) and (min-width:992px){
+  .login-left-content.login-rightt-content h5 {
+   
+    font-size: 29px !important;
+    line-height: normal !important;
+     
+}
+}
+.header12 {
+  font-family: 'Nunito', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  color: #FFFFFF;
+  margin-bottom: 0;
+}
