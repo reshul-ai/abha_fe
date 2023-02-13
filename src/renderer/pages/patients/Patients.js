@@ -147,29 +147,35 @@ const Patient = () => {
                                                 <div className='row'>
                                                         <div>
                                                                 <Modal show={show} onHide={handleClose}>
-                                                                        <Modal.Header closeButton>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                                                         <Modal.Title>Add New Patient</Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body>
                                                                                 <div>
                                                                                         <Form />
                                                                                 </div>
-                                                                        </Modal.Body>
-                                                                        <Modal.Footer>
-                                                                        <Button variant="secondary" onClick={handleClose}>
+                                                                                <div className='row'>
+                                                <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
+                                            <Button variant="secondary" onClick={handleClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
                                                                                 Cancel
                                                                         </Button>
-                                                                        <Button variant="primary" onClick={handleBciShow}>
-                                                                                Add Patients
+                                                                        </div></div>
+                                                                        <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
+                                                                        <Button variant="primary" onClick={handleBciShow} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                        Add Patients
                                                                         </Button>
-                                                                        </Modal.Footer>
+                                           </div></div></div>
+                                                                        </Modal.Body>
+                                                                       
                                                                 </Modal>
                                                         </div>
                                                 </div>
                                                 <div className='row'>
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
-                                                                        <Modal.Header closeButton>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                                                         <Modal.Title>BCI Caliberation</Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body>
@@ -177,38 +183,43 @@ const Patient = () => {
                                                                                                 <Bci />
                                                                                         </div>
                                                                         </Modal.Body>
-                                                                        <Modal.Footer>
+                                                                        {/* <Modal.Footer>
                                                                         <Button variant="secondary" onClick={handleBciClose}>
                                                                                 Close
                                                                         </Button>
                                                                         <Button variant="primary" onClick={handleCCShow}>
                                                                                 Save Changes
                                                                         </Button>
-                                                                        </Modal.Footer>
+                                                                        </Modal.Footer> */}
                                                                 </Modal>
                                                         </div>
                                                 </div>
                                                 <div className='row'>
                                                         <div>
                                                                 <Modal show={showCC} onHide={handleCCClose}>
-                                                                        <Modal.Header closeButton>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                                                         <Modal.Title>Headset Contact Quality</Modal.Title>
                                                                         </Modal.Header>
                                                                                 <Modal.Body>
                                                                                                 <div>
                                                                                                         <HCQ />
                                                                                                 </div>
+                                                                                                <div className='row'>
+                                                <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
+                                            <Button variant="secondary" onClick={handleCCClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                            Show Plot Data
+                                                                        </Button>
+                                                                        </div></div>
+                                                                        <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
+                                                    <Link to="/trialmain">
+                                                                        <Button variant="primary" style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                        Continue
+                                                                        </Button></Link>
+                                           </div></div></div>
                                                                                 </Modal.Body>
-                                                                        <Modal.Footer>
-                                                                                <Button variant="secondary" onClick={handleCCClose}>
-                                                                                        Show Plot Data
-                                                                                </Button>
-                                                                                <Link to="/trialmain">
-                                                                                        <Button variant="primary">
-                                                                                                Continue
-                                                                                        </Button>
-                                                                                </Link>
-                                                                        </Modal.Footer>
+                                                                       
                                                                 </Modal>
                                                         </div>
                                                 </div>

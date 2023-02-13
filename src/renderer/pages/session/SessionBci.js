@@ -92,24 +92,29 @@ const SessionBci = () => {
                                     </div>  <div className='row'>
                                                         <div>
                                                                 <Modal show={showCC} onHide={handleCCClose}>
-                                                                        <Modal.Header closeButton>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                                                         <Modal.Title>Headset Contact Quality</Modal.Title>
                                                                         </Modal.Header>
                                                                                 <Modal.Body>
                                                                                                 <div>
                                                                                                         <SessionHCQ />
                                                                                                 </div>
+                                                                                                <div className='row'>
+                                                <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
+                                            <Button variant="secondary" onClick={handleCCClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                            Show Plot Data
+                                                                        </Button>
+                                                                        </div></div>
+                                                                        <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
+                                                    <Link to="/trialmain">
+                                                                        <Button variant="primary" style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                        Continue
+                                                                        </Button></Link>
+                                           </div></div></div>
                                                                                 </Modal.Body>
-                                                                        <Modal.Footer>
-                                                                                <Button variant="secondary" onClick={handleCCClose}>
-                                                                                        Show Plot Data
-                                                                                </Button>
-                                                                                <Link to="/trialmain">
-                                                                                        <Button variant="primary">
-                                                                                                Continue
-                                                                                        </Button>
-                                                                                </Link>
-                                                                        </Modal.Footer>
+                                                                       
                                                                 </Modal>
                                                         </div>
                                                 </div>

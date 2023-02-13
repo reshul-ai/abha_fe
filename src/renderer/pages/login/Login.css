@@ -248,9 +248,20 @@ sapn.border.border-success.col.text-center.p-1.rounded-2.text-success svg {
              
         }
         }
-
-
-        h2.accordion-header[variant="dark"] button.accordion-button {
+        .accordion-title {
+          padding: 8px 6px 8px;
           background: #000;
           color: #fff;
+          border-top-left-radius: 6px;
+          border-top-right-radius: 6px;
       }
+      .ddd{display: flex;
+        flex-direction: row;
+        align-items: center;
+        line-height: normal;}
+        .cont {
+          text-align: left;
+      }
+      .cont small{
+        display: block;
+    }

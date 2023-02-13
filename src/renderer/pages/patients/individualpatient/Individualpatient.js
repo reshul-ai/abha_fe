@@ -205,7 +205,7 @@ const Individualpatient = () => {
                                                 <div className='row'>
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
-                                                                        <Modal.Header closeButton>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                                                         <Modal.Title>BCI Caliberation</Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body>
@@ -213,14 +213,14 @@ const Individualpatient = () => {
                                                                                                 <Bci />
                                                                                         </div>
                                                                         </Modal.Body>
-                                                                        <Modal.Footer>
+                                                                       {/*  <Modal.Footer>
                                                                         <Button variant="secondary" onClick={handleBciClose}>
                                                                                 Close
                                                                         </Button>
                                                                         <Button variant="primary" onClick={handleBciClose}>
                                                                                 Save Changes
                                                                         </Button>
-                                                                        </Modal.Footer>
+                                                                        </Modal.Footer> */}
                                                                 </Modal>
                                                         </div>
                                                 </div>

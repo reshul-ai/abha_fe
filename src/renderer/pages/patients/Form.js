@@ -201,7 +201,7 @@ const Form = () => {
                                                         </div>
                                                     </div>
                                             </div>
-                                            <div className='row'>
+                                            {/* <div className='row'>
                                                     <div className='col'>
                                                         <button
                                                             type="submit"
@@ -210,7 +210,7 @@ const Form = () => {
                                                             Register
                                                         </button>
                                                     </div>
-                                            </div>
+                                            </div> */}
                                     </form>
                             </div>
         </>

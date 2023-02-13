@@ -1,5 +1,5 @@
 import react, {useState} from 'react';
-
+import Button from 'react-bootstrap/Button';
 
 const TakeAssessmentForm = () => {
 
@@ -122,16 +122,19 @@ const TakeAssessmentForm = () => {
     </div>
         }                                {
             show==='5' && <div className="form-outline text-start mb-4">
-         
+         <div className='row'>
             <label className="form-label" htmlFor="reading">
                 MAS Score
-            </label>
-            <input  type="text"
-                id="readings"
-                className="form-control form-control-sm"
-                value={reading}
-                onChange={(e) => setReading(e.target.value)}
-            />
+            </label></div>
+            <div className='row'>
+            <div className='col'>
+            <Button variant="secondary" style={{'width':'15%'}}>00</Button>{' '}
+            <Button variant="light" style={{'width':'15%'}}> 01 </Button>{' '}
+            <Button variant="light" style={{'width':'15%'}}> 02 </Button>{' '}
+            <Button variant="light" style={{'width':'15%'}}>03</Button>{' '}
+            <Button variant="light" style={{'width':'15%'}}>04</Button>{' '}
+            <Button variant="light" style={{'width':'15%'}}>05</Button>{' '}
+            </div></div>
     </div>
         }                                {
             show==='6' && <div className="form-outline text-start mb-4">

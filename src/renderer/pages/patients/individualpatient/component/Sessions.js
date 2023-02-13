@@ -27,7 +27,7 @@ const Patientsession = () => {
       
       const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(odd)': {
-          backgroundColor: theme.palette.action.hover,
+        /*   backgroundColor: theme.palette.action.hover, */
         },
         // hide last border
         '&:last-child td, &:last-child th': {
@@ -64,13 +64,13 @@ const Patientsession = () => {
                                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                                                 <TableHead>
                                                 <TableRow>
-                                                    <StyledTableCell align="right">Patient ID</StyledTableCell>
-                                                    <StyledTableCell align="right">Patient Name</StyledTableCell>
-                                                    <StyledTableCell align="right">Date Started</StyledTableCell>
-                                                    <StyledTableCell align="right">Age</StyledTableCell>
-                                                    <StyledTableCell align="right">Sessions</StyledTableCell>
-                                                    <StyledTableCell align="right">MI Accuracy</StyledTableCell>
-                                                    <StyledTableCell align="right">Contact Number</StyledTableCell>
+                                                    <StyledTableCell align="left">Patient ID</StyledTableCell>
+                                                    <StyledTableCell align="left">Patient Name</StyledTableCell>
+                                                    <StyledTableCell align="left">Date Started</StyledTableCell>
+                                                    <StyledTableCell align="left">Age</StyledTableCell>
+                                                    <StyledTableCell align="left">Sessions</StyledTableCell>
+                                                    <StyledTableCell align="left">MI Accuracy</StyledTableCell>
+                                                    <StyledTableCell align="left">Contact Number</StyledTableCell>
                                                 </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -79,13 +79,13 @@ const Patientsession = () => {
                                                             {/* <StyledTableCell component="th" scope="row">
                                                                 {row.name}
                                                             </StyledTableCell> */}
-                                                            <StyledTableCell align="right">{row.patient_id}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.patient_name}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.date_started}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.age}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.sessions}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.mi_accuracy}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.contact_number}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.patient_id}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.patient_name}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.date_started}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.age}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.sessions}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.mi_accuracy}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.contact_number}</StyledTableCell>
                                                     </StyledTableRow>
                                                 ))}
                                                 </TableBody>
@@ -100,13 +100,13 @@ const Patientsession = () => {
                                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                                                 <TableHead>
                                                 <TableRow>
-                                                    <StyledTableCell align="right">Patient ID</StyledTableCell>
-                                                    <StyledTableCell align="right">Patient Name</StyledTableCell>
-                                                    <StyledTableCell align="right">Date Started</StyledTableCell>
-                                                    <StyledTableCell align="right">Age</StyledTableCell>
-                                                    <StyledTableCell align="right">Sessions</StyledTableCell>
-                                                    <StyledTableCell align="right">MI Accuracy</StyledTableCell>
-                                                    <StyledTableCell align="right">Contact Number</StyledTableCell>
+                                                    <StyledTableCell align="left">Patient ID</StyledTableCell>
+                                                    <StyledTableCell align="left">Patient Name</StyledTableCell>
+                                                    <StyledTableCell align="left">Date Started</StyledTableCell>
+                                                    <StyledTableCell align="left">Age</StyledTableCell>
+                                                    <StyledTableCell align="left">Sessions</StyledTableCell>
+                                                    <StyledTableCell align="left">MI Accuracy</StyledTableCell>
+                                                    <StyledTableCell align="left">Contact Number</StyledTableCell>
                                                 </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -115,13 +115,13 @@ const Patientsession = () => {
                                                             {/* <StyledTableCell component="th" scope="row">
                                                                 {row.name}
                                                             </StyledTableCell> */}
-                                                            <StyledTableCell align="right">{row.patient_id}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.patient_name}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.date_started}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.age}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.sessions}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.mi_accuracy}</StyledTableCell>
-                                                            <StyledTableCell align="right">{row.contact_number}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.patient_id}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.patient_name}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.date_started}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.age}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.sessions}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.mi_accuracy}</StyledTableCell>
+                                                            <StyledTableCell align="left">{row.contact_number}</StyledTableCell>
                                                     </StyledTableRow>
                                                 ))}
                                                 </TableBody>

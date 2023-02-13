@@ -1,5 +1,5 @@
 import react, {useState} from 'react';
-
+import { Button, Modal } from "react-bootstrap";
 
 const AddNewSessionForm = () => {
 
@@ -92,8 +92,6 @@ const AddNewSessionForm = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                           
-                                           
                                     </form>
                             </div>
         </>

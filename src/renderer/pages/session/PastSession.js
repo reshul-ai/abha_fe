@@ -25,7 +25,7 @@ const Pastsession=()=>{
               
               const StyledTableRow = styled(TableRow)(({ theme }) => ({
                 '&:nth-of-type(odd)': {
-                  backgroundColor: theme.palette.action.hover,
+                  
                 },
                 // hide last border
                 '&:last-child td, &:last-child th': {
@@ -87,7 +87,7 @@ return(
                                     </div>  <div className='row'>
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
-                                                                        <Modal.Header closeButton>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                                                         <Modal.Title>Session-SES112</Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body><div >

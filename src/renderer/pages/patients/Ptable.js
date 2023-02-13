@@ -10,10 +10,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Patienttable = () =>{
-    
+  const navigate = useNavigate();
+    const callindivisualPt=(input)=>{
+      navigate('/individualpatients/'+input);
+     
+    }
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -28,7 +32,7 @@ const Patienttable = () =>{
       
       const StyledTableRow = styled(TableRow)(({ theme }) => ({
         '&:nth-of-type(odd)': {
-          backgroundColor: theme.palette.action.hover,
+          
         },
         // hide last border
         '&:last-child td, &:last-child th': {
@@ -56,13 +60,13 @@ const Patienttable = () =>{
                                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                                                 <TableHead>
                                                 <TableRow>
-                                                    <StyledTableCell align="right">Patient ID</StyledTableCell>
-                                                    <StyledTableCell align="right">Patient Name</StyledTableCell>
-                                                    <StyledTableCell align="right">Date Started</StyledTableCell>
-                                                    <StyledTableCell align="right">Age</StyledTableCell>
-                                                    <StyledTableCell align="right">Sessions</StyledTableCell>
-                                                    <StyledTableCell align="right">MI Accuracy</StyledTableCell>
-                                                    <StyledTableCell align="right">Contact Number</StyledTableCell>
+                                                    <StyledTableCell align="left">Patient ID</StyledTableCell>
+                                                    <StyledTableCell align="left">Patient Name</StyledTableCell>
+                                                    <StyledTableCell align="left">Date Started</StyledTableCell>
+                                                    <StyledTableCell align="left">Age</StyledTableCell>
+                                                    <StyledTableCell align="left">Sessions</StyledTableCell>
+                                                    <StyledTableCell align="left">MI Accuracy</StyledTableCell>
+                                                    <StyledTableCell align="left">Contact Number</StyledTableCell>
                                                 </TableRow>
                                                 </TableHead>
                                                 <TableBody>
@@ -76,13 +80,13 @@ const Patienttable = () =>{
                                                                 {/* <StyledTableCell component="th" scope="row">
                                                                     {row.name}
                                                                 </StyledTableCell> */}
-                                                                <StyledTableCell align="right"><Link to={`/individualpatients/${row.patient_id}`} style={{"color":"black","textDecoration":"none"}}>{row.patient_id} </Link></StyledTableCell>
-                                                                <StyledTableCell align="right"><Link to={`/individualpatients/${row.patient_id}`} style={{"color":"black","textDecoration":"none"}}>{row.patient_name}</Link></StyledTableCell>
-                                                                <StyledTableCell align="right"><Link to={`/individualpatients/${row.patient_id}`} style={{"color":"black","textDecoration":"none"}}>{row.date_started}</Link></StyledTableCell>
-                                                                <StyledTableCell align="right"><Link to={`/individualpatients/${row.patient_id}`} style={{"color":"black","textDecoration":"none"}}>{row.age}</Link></StyledTableCell>
-                                                                <StyledTableCell align="right"><Link to={`/individualpatients/${row.patient_id}`} style={{"color":"black","textDecoration":"none"}}>{row.sessions}</Link></StyledTableCell>
-                                                                <StyledTableCell align="right"><Link to={`/individualpatients/${row.patient_id}`} style={{"color":"black","textDecoration":"none"}}>{row.mi_accuracy}</Link></StyledTableCell>
-                                                                <StyledTableCell align="right"><Link to={`/individualpatients/${row.patient_id}`} style={{"color":"black","textDecoration":"none"}}>{row.contact_number}</Link></StyledTableCell>
+                                                                <StyledTableCell align="left" onClick={() => callindivisualPt(`${row.patient_id}`)} style={{"cursor": "pointer"}}>{row.patient_id}</StyledTableCell>
+                                                                <StyledTableCell align="left" onClick={() => callindivisualPt(`${row.patient_id}`)} style={{"cursor": "pointer"}}>{row.patient_name}</StyledTableCell>
+                                                                <StyledTableCell align="left" onClick={() => callindivisualPt(`${row.patient_id}`)} style={{"cursor": "pointer"}}>{row.date_started}</StyledTableCell>
+                                                                <StyledTableCell align="left" onClick={() => callindivisualPt(`${row.patient_id}`)} style={{"cursor": "pointer"}}>{row.age}</StyledTableCell>
+                                                                <StyledTableCell align="left" onClick={() => callindivisualPt(`${row.patient_id}`)} style={{"cursor": "pointer"}}>{row.sessions}</StyledTableCell>
+                                                                <StyledTableCell align="left" onClick={() => callindivisualPt(`${row.patient_id}`)} style={{"cursor": "pointer"}}>{row.mi_accuracy}</StyledTableCell>
+                                                                <StyledTableCell align="left" onClick={() => callindivisualPt(`${row.patient_id}`)} style={{"cursor": "pointer"}}>{row.contact_number}</StyledTableCell>
 
                                                                
                                                             </StyledTableRow>

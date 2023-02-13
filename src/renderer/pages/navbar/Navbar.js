@@ -33,7 +33,7 @@ const Navbarcommon=() =>{
         </div>
 
 
-        <div className="col">
+        <div className="col-2">
             <ul className="nav-items me-0">
               {navItems.map((item) => {
                 if (item.id === 1) {

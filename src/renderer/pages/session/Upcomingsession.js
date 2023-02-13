@@ -26,7 +26,7 @@ const Upcomingsession=()=>{
               
               const StyledTableRow = styled(TableRow)(({ theme }) => ({
                 '&:nth-of-type(odd)': {
-                  backgroundColor: theme.palette.action.hover,
+                 
                 },
                 // hide last border
                 '&:last-child td, &:last-child th': {
@@ -55,7 +55,7 @@ return(
    
   <div className='container-fluid'>
   <div className='row '>
-<div className='col'>
+<div className='col' style={{'padding-left':'0%','padding-right':'0%'}}>
                         <TableContainer component={Paper}>
                                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                                                 <TableHead>
@@ -94,7 +94,7 @@ return(
                                     </div>  <div className='row'>
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
-                                                                        <Modal.Header closeButton>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                                                         <Modal.Title>Upcomming Session-SES112</Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body><div >

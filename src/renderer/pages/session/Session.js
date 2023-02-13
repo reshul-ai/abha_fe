@@ -107,7 +107,7 @@ const Session = () => {
                         </div>
                         <div className='col-md-6 text-end'>
                             <button className='btn btn-success' onClick={handleShow} style={{ 'margin-inline': '5px' }}>Add New Session</button>
-                            <span   className='border border-success  text-center p-2 rounded-2' onClick={handleSetShowAssess} style={{ "cursor": "pointer" }}>Take Assessment</span>
+                            {/*  <span   className='border border-success  text-center p-2 rounded-2' onClick={handleSetShowAssess} style={{ "cursor": "pointer" }}>Take Assessment</span> */} 
                         </div>
                     </div>
                     <div className='row'>
@@ -120,44 +120,56 @@ const Session = () => {
                     <div className='row'>
                         <div>
                             <Modal show={show} onHide={handleClose}>
-                                <Modal.Header closeButton>
+                                <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                     <Modal.Title>Add New Session</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <div>
                                         <AddNewSessionForm />
                                     </div>
+                                    <div className='row'>
+                                                <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
+                                            <Button variant="secondary" onClick={handleClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                                                                Cancel
+                                                                        </Button>
+                                                                        </div></div>
+                                                                        <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
+                                                                        <Button variant="primary" onClick={handleClose} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                                Add Session
+                                                                        </Button>
+                                           </div></div></div>
                                 </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleClose}>
-                                        Cancel
-                                    </Button>
-                                    <Button variant="primary" onClick={handleClose}>
-                                        Add Session
-                                    </Button>
-                                </Modal.Footer>
+                               
                             </Modal>
                         </div>
                     </div>
                     <div className='row'>
                         <div>
                             <Modal show={showAssess} onHide={handleAssessClose}>
-                                <Modal.Header closeButton>
+                                <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
                                     <Modal.Title>Assessments</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <div>
                                         <TakeAssessmentForm />
                                     </div>
+                                    <div className='row'>
+                                                <div className='col'>
+                                                    <div className="form-outline text-start mb-4">
+                                            <Button variant="secondary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                                                                Cancel
+                                                                        </Button>
+                                                                        </div></div>
+                                                                        <div className='col'>
+                                                    <div className="form-outline text-start mb-4" >
+                                                                        <Button variant="primary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                        Save
+                                                                        </Button>
+                                           </div></div></div>
                                 </Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="secondary" onClick={handleAssessClose}>
-                                        Close
-                                    </Button>
-                                    <Button variant="primary" onClick={handleAssessClose}>
-                                        Save
-                                    </Button>
-                                </Modal.Footer>
+                               
                             </Modal>
                         </div>
                     </div>
