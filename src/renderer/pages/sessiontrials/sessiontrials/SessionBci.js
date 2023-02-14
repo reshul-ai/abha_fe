@@ -10,10 +10,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-// import SessionHCQ from './SessionHcq';
+import SessionHCQ from './SessionHcq';
 import { Button, Modal } from "react-bootstrap";
-
-const Bci = () => {
+const SessionBci = () => {
 
         const StyledTableCell = styled(TableCell)(({ theme }) => ({
             [`&.${tableCellClasses.head}`]: {
@@ -27,7 +26,7 @@ const Bci = () => {
         
         const StyledTableRow = styled(TableRow)(({ theme }) => ({
             '&:nth-of-type(odd)': {
-           /*  backgroundColor: theme.palette.action.hover, */
+            backgroundColor: theme.palette.action.hover,
             },
             // hide last border
             '&:last-child td, &:last-child th': {
@@ -36,18 +35,15 @@ const Bci = () => {
         }));
         
         function createData(paradigm_name, loops, duration, randomize, activities) {
-            return { paradigm_name, loops, duration, randomize, activities };;
+            return { paradigm_name, loops, duration, randomize, activities };
         }
-
+ 
         const rows = [
-            createData('Right Hand Movement',2,2, 'No', 1),
-            createData('Motor Imagery',2, 2, 'Yes', 2),
-            createData('Left Knee Motor Imagery',2,2, 'No', 3),
-            createData('Left Foot Movement',2,2, 'Yes', 3),
-            createData('Right Knee Motor Imagery',2,2, 'No', 2),
-            createData('Right Foot Movement',2,2, 'Yes', 1),
+            createData('Motor Imagery for left',2,2, 'No', 1),
+            createData('Motor Imagery for right',2, 2, 'Yes', 2),
+            createData('Motor Imagery for both',2,2, 'No', 3),
+            createData('Repetitive exerceises',2,2, 'Yes', 3),
         ];
-
 
         const [showCC, setShowCC] = useState(false);
         const handleCCClose = () => setShowCC(false);
@@ -56,9 +52,11 @@ const Bci = () => {
 
     return (
         <>
- 
 
- <TableContainer component={Paper}>
+<div className='container-fluid'>
+  <div className='row '>
+<div className='col'>
+            <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                         <TableRow>
@@ -88,11 +86,40 @@ const Bci = () => {
                         </TableBody>
                     </Table>
             </TableContainer>
-
-
+            </div>
+                                    </div>  <div className='row'>
+                                                        <div>
+                                                                <Modal show={showCC} onHide={handleCCClose}>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
+                                                                        <Modal.Title>Headset Contact Quality</Modal.Title>
+                                                                        </Modal.Header>
+                                                                                <Modal.Body>
+                                                                                                <div>
+                                                                                                        <SessionHCQ />
+                                                                                                </div>
+                                                                                                <div className='row'>
+                                                <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
+                                            <Button variant="secondary" onClick={handleCCClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                            Show Plot Data
+                                                                        </Button>
+                                                                        </div></div>
+                                                                        <div className='col'>
+                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
+                                                    <Link to="/trialmain">
+                                                                        <Button variant="primary" style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                        Continue
+                                                                        </Button></Link>
+                                           </div></div></div>
+                                                                                </Modal.Body>
+                                                                       
+                                                                </Modal>
+                                                        </div>
+                                                </div>
+                                                </div> 
         </>
     );
 }
 
 
-export default Bci;
+export default SessionBci;

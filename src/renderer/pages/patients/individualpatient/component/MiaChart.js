@@ -10,62 +10,50 @@ import {
 
 const data = [
   {
-    name: "JAN",
-    Patients: 4
+    name: "SESSION 1",
+    MI_Accuracy: 5
   },
   {
-    name: "FEB",
-    Patients: 3
+    name: "SESSION 2",
+    MI_Accuracy: 10
   },
   {
-    name: "MAR",
-    Patients: 2
+    name: "SESSION 3",
+    MI_Accuracy: 15
   },
   {
-    name: "APR",
-    Patients: 6
+    name: "SESSION 4",
+    MI_Accuracy: 25
   },
   {
-    name: "MAY",
-    Patients: 8
+    name: "SESSION 5",
+    MI_Accuracy: 20
   },
   {
-    name: "JUN",
-    Patients: 7
+    name: "SESSION 6",
+    MI_Accuracy: 30
   },
   {
-    name: "JUL",
-    Patients: 9
+    name: "SESSION 7",
+    MI_Accuracy: 35
   },
   {
-    name: "AUG",
-    Patients: 11
+    name: "SESSION 8",
+    MI_Accuracy: 30
   },
   {
-    name: "SEP",
-    Patients: 13
-  },
-  {
-    name: "OCT",
-    Patients: 10
-  },
-  {
-    name: "NOV",
-    Patients: 21
-  },
-  {
-    name: "DEC",
-    Patients: 20
+    name: "SESSION 9",
+    MI_Accuracy: 40
   }
 ];
 
-const UpperChart=()=> {
+const MIAChart=()=> {
   return (
     <AreaChart
                width={1000}
                height={300}
                data={data}
-               margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+               margin={{ top: 10, right: 50, left: 0, bottom: 0 }}>
             <defs>
                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#265B97" stopOpacity={0.8} />
@@ -74,13 +62,13 @@ const UpperChart=()=> {
                
             </defs>
             <XAxis dataKey="name" />
-            <YAxis label={{ value: 'Patients', angle: -90, position: 'insideLeft' }}/>
+            <YAxis label={{ value: 'MOTOR IMAGERY ACCURACY', angle: -90, position: 'center' }}/>
             <YAxis />
            {/*  <CartesianGrid strokeDasharray="3 3" /> */}
             <Tooltip />
             <Area
                type="monotone"
-               dataKey="Patients"
+               dataKey="MI_Accuracy"
                stroke="#265B97"
                fillOpacity={1}
                fill="url(#colorUv)"/>
@@ -88,4 +76,4 @@ const UpperChart=()=> {
             </AreaChart>
   );
 };
-export default UpperChart;
+export default MIAChart;

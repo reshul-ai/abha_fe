@@ -1,6 +1,8 @@
 import react from 'react';
 import Plot from 'react-plotly.js';
-
+import MIAChart from'./MiaChart';
+import ARATChart from'./ARATChart';
+import GSSChart from'./GSSChart';
 const Patientdashboard = () => {
 
 
@@ -71,41 +73,38 @@ const Patientdashboard = () => {
         <>
 
                 <div className='container-fluid'>
-                        {/* <div className='row'>
-                                <div className='col'>
-                                            <h1>Welcome to Dashboard Page</h1>
-                                </div>
-                        </div> */}
-                        <div className='row'>
-                                <div className='col'>
-                                <Plot
-                                        data={[
-                                            trace1
-                                        ]}
-                                        layout={ { width:1020 ,height: 480, title: 'MI Accuracy vs Sessions' } }
-                                    />
-                                </div>
-                        </div>
-                        <div className='row'>
-                                <div className='col'>
-                                <Plot
-                                        data={[
-                                            trace2
-                                        ]}
-                                        layout={ { width: 1020, height: 480, title: 'ARAT Score Analytics' } }
-                                    />
-                                </div>
-                        </div>
-                        <div className='row'>
-                                <div className='col'>
-                                <Plot
-                                        data={[
-                                            trace3
-                                        ]}
-                                        layout={ { width: 1020, height: 480, title: 'GS Score vs Sessions' } }
-                                    />
-                                </div>
-                        </div>
+                <div className='row pt-4'>
+                                                <div className='col'>
+                                                        <div className='row'>
+                                                                <div className='col'>
+                                                                        <p>MI Accuracy vs Sessions</p>
+                                                                </div>
+                                                                
+                                                             </div>
+
+                                                        <MIAChart /></div></div>      
+                                                        <div className='row pt-4'>
+                                                <div className='col'>
+                                                        <div className='row'>
+                                                                <div className='col'>
+                                                                        <p>ARAT Score Analytics</p>
+                                                                </div>
+                                                                
+                                                             </div>
+
+                                                        <ARATChart /></div></div>  
+                                                        <div className='row pt-4'>
+                                                <div className='col'>
+                                                        <div className='row'>
+                                                                <div className='col'>
+                                                                        <p>GS Score vs Sessions</p>
+                                                                </div>
+                                                                
+                                                             </div>
+
+                                                        <GSSChart /></div></div>  
+                       
+                        
                 </div>
         
         </>

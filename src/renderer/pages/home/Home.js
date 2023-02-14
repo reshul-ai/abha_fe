@@ -17,7 +17,7 @@ import { BsChevronDown,BsChevronUp } from "react-icons/bs";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
 import { FaBars, FaHome, FaUserFriends, FaRegCalendarAlt } from "react-icons/fa";
 import { Outlet, Link } from "react-router-dom";
-
+import './home.css';
 const Home = () => {
 
         const { collapseSidebar } = useProSidebar();
@@ -46,7 +46,7 @@ const Home = () => {
         const [isHoverPatient, setIsHoverPatient] = useState(false);
         const [isHoverSession, setIsHoverSession] = useState(false);
         const [isHoverLogo, setIsHoverLogo] = useState(false);
-
+        const [activeTab, setActiveTab] = useState('home');
         const handleMouseEnterLogo = () => {
                 setIsHoverLogo(true);
         };
@@ -77,29 +77,51 @@ const Home = () => {
 
         return (
                 <div style={{ display: 'flex', height: '100vh' }}>
-                        <Sidebar backgroundColor='black'>
-                                <Menu>
-                                        <MenuItem
-                                                icon={<FaBars />}
-                                                onClick={() => {
-                                                        collapseSidebar();
-                                                }}
-
-                                                onMouseEnter={handleMouseEnterLogo}
-                                                onMouseLeave={handleMouseLeaveLogo}
-                                                style={{ color: isHoverLogo ? 'black' : 'white' }}
-                                        >
-                                                <div style={{ "color": isHoverLogo ? 'black' : 'white' }}>{" "}
-                                                        <img width={25} src={ba_logo}></img></div>
-                                        </MenuItem>
-                                        <MenuItem icon={<FaHome />} component={<Link to="/home" />} onMouseEnter={handleMouseEnterHome}
-                                                onMouseLeave={handleMouseLeaveHome} style={{ color: isHoverHome ? 'black' : 'white' }}> <div style={{ color: isHoverHome ? 'black' : 'white' }}>{" "} Home</div></MenuItem>
-                                        <MenuItem icon={<FaUserFriends />} component={<Link to="/patients" />} onMouseEnter={handleMouseEnterPatients}
-                                                onMouseLeave={handleMouseLeavePatients} style={{ color: isHoverPatient ? 'black' : 'white' }}> <div style={{ color: isHoverPatient ? 'black' : 'white' }} >{" "} Patients</div></MenuItem>
-                                        <MenuItem icon={<FaRegCalendarAlt />} component={<Link to="/session" />} onMouseEnter={handleMouseEnterSessions}
-                                                onMouseLeave={handleMouseLeaveSessions} style={{ color: isHoverSession ? 'black' : 'white' }}> <div style={{ color: isHoverSession ? 'black' : 'white' }}>{" "} Sessions</div></MenuItem>
-                                </Menu>
-                        </Sidebar>
+                       <Sidebar backgroundColor="black">
+        <Menu>
+          <MenuItem
+            icon={<FaBars />}
+            onClick={() => {
+              collapseSidebar();
+            }}
+            onMouseEnter={handleMouseEnterLogo}
+            onMouseLeave={handleMouseLeaveLogo}
+            style={{ color: isHoverLogo ? 'black' : 'white' }}
+          >
+            <div style={{ color: isHoverLogo ? 'black' : 'white' }}>
+              {' '}
+              <img width={25} src={ba_logo}></img>
+            </div>
+          </MenuItem>
+          <MenuItem
+            icon={<FaHome />}
+            component={<Link to="/home" />}
+            onClick={() => setActiveTab('home')}
+            className={`${activeTab === 'home' && 'home'} sidebar-tab`}
+          >
+            {' '}
+            <div> Home</div>
+          </MenuItem>
+          <MenuItem
+            icon={<FaUserFriends />}
+            component={<Link to="/patients" />}
+            onClick={() => setActiveTab('patients')}
+            className={`${activeTab === 'patients' && 'patients'} sidebar-tab`}
+          >
+            {' '}
+            <div> Patients</div>
+          </MenuItem>
+          <MenuItem
+            icon={<FaRegCalendarAlt />}
+            component={<Link to="/session" />}
+            onClick={() => setActiveTab('sessions')}
+            className={`${activeTab === 'sessions' && 'sessions'} sidebar-tab`}
+          >
+            {' '}
+            <div> Sessions</div>
+          </MenuItem>
+        </Menu>
+      </Sidebar>
                         <main style={{ "width": "100%" }}>
                                 <div className='container-fluid'>
                                         <div className='row' style={{ "zIndex": "1" }}>
@@ -134,7 +156,7 @@ const Home = () => {
                                                 </div>
 
                                         </div>
-                                        <div className="accordion">
+<div className="accordion">
   <div className="accordion-item">
     <div
       className="accordion-title"

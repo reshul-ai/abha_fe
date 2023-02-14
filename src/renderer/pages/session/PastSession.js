@@ -98,8 +98,9 @@ return(
                                                         </div>
                                                         <div className='col Assessments-label' style={{"borderRight": "2px solid grey"}}>
                                                                 <div className='row ps-3'>Patient</div>
-                                                                <div className='row Assessments-labelValue ps-3'>Patient 01</div>
+                                                                <div className='row Assessments-labelValue ps-3'><Link style={{'padding-left':'0%'}} to={`/individualpatients/1241`}>Patient 01 </Link></div>
                                                         </div>
+                                                        
                                                         <div className='col Assessments-label' style={{"borderRight": "2px solid grey"}}>
                                                                 <div className='row ps-3'>Start Time</div>
                                                                 <div className='row Assessments-labelValue ps-3'>4:00 PM</div>

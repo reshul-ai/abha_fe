@@ -5,9 +5,7 @@ import {
   Area,
   YAxis,
   XAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
+  Tooltip
   } from "recharts";
 
 const data = [
@@ -76,10 +74,10 @@ const LowerChart=()=> {
                
             </defs>
             <XAxis dataKey="name" />
+            <YAxis label={{ value: 'Patients', angle: -90, position: 'insideLeft' }}/>
             <YAxis />
-            <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
-            <Legend />
+            
             <Area
                type="monotone"
                dataKey="Patients"

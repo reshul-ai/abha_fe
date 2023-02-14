@@ -14,7 +14,8 @@ import { Button, Modal } from "react-bootstrap";
 import ba_logo from "../../login/BrainAlive.svg";
 // Modal imports
 import Bci from '../Bci';
-
+import AddNewSessionForm from '../../session/AddNewSessionForm';
+import TakeAssessmentForm from '../../session/TakeAssessmentForm';
 // get patient data
 import {Pdata} from './Pdata';
 import { useLocation } from 'react-router-dom'
@@ -45,9 +46,13 @@ const Individualpatient = () => {
     const [showBci, setShowBci] = useState(false);
     const handleBciClose = () => setShowBci(false);
     const handleBciShow = () => setShowBci(true);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
-
-
+    const [showAssess, setShowAssess] = useState(false);
+    const handleAssessClose = () => setShowAssess(false);
+    const handleSetShowAssess = () => setShowAssess(true);
     // Dashboard or Sessions
     const [isDashboard, setIsDashboard] = useState(true);
 
@@ -57,7 +62,7 @@ const Individualpatient = () => {
      const [isHoverPatient, setIsHoverPatient] = useState(false);
      const [isHoverSession, setIsHoverSession] = useState(false);
      const [isHoverLogo, setIsHoverLogo] = useState(false);
-
+     const [activeTab, setActiveTab] = useState('patient');
      const handleMouseEnterLogo = () => {
               setIsHoverLogo(true);
      };
@@ -90,29 +95,58 @@ const Individualpatient = () => {
 
             <div style={{ display: 'flex', height: '100vh' }}>
 
-                        <Sidebar backgroundColor='black'>
-                            <Menu>
-                                <MenuItem
-                                    icon={<FaBars />}
-                                    onClick={() => {
-                                    collapseSidebar();                                
-                                    }}
-                                    
-                                    onMouseEnter={handleMouseEnterLogo} 
-                                    onMouseLeave={handleMouseLeaveLogo}
-                                    style={{color:isHoverLogo ? 'black' : 'white'}}
-                                >
-                                    <div style={{"color":isHoverLogo ? 'black' : 'white'}}>{" "}
-                                    <img width={25} src={ba_logo}></img></div>
-                                </MenuItem>
-                                <MenuItem icon={<FaHome />} component={<Link to="/" />} onMouseEnter={handleMouseEnterHome} 
-                                    onMouseLeave={handleMouseLeaveHome} style={{color: isHoverHome ? 'black' : 'white'}}> <div style={{color: isHoverHome ? 'black' : 'white'}}>{" "} Home</div></MenuItem>
-                                <MenuItem icon={<FaUserFriends />} component={<Link to="/patients" />} onMouseEnter={handleMouseEnterPatients} 
-                                    onMouseLeave={handleMouseLeavePatients} style={{color: isHoverPatient ? 'black' : 'white'}}> <div style={{color: isHoverPatient ? 'black' : 'white'}} >{" "} Patients</div></MenuItem>
-                                <MenuItem icon={<FaRegCalendarAlt />} component={<Link to="/session" />} onMouseEnter={handleMouseEnterSessions} 
-                                    onMouseLeave={handleMouseLeaveSessions} style={{color: isHoverSession ? 'black' : 'white'}}> <div style={{color: isHoverSession ? 'black' : 'white'}}>{" "} Sessions</div></MenuItem>
-                            </Menu>
-                        </Sidebar>
+            <Sidebar backgroundColor="black">
+          <Menu>
+            <MenuItem
+              icon={<FaBars />}
+              onClick={() => {
+                collapseSidebar();
+              }}
+              onMouseEnter={handleMouseEnterLogo}
+              onMouseLeave={handleMouseLeaveLogo}
+              style={{ color: isHoverLogo ? 'black' : 'white' }}
+            >
+              <div style={{ color: isHoverLogo ? 'black' : 'white' }}>
+                {' '}
+                <img width={25} src={ba_logo}></img>
+              </div>
+            </MenuItem>
+            <MenuItem
+              icon={<FaHome />}
+              component={<Link to="/home" />}
+              onMouseEnter={handleMouseEnterHome}
+              onMouseLeave={handleMouseLeaveHome}
+              style={{ color: isHoverHome ? 'black' : 'white' }}
+            >
+              {' '}
+              <div style={{ color: isHoverHome ? 'black' : 'white' }}>
+                {' '}
+                Home
+              </div>
+            </MenuItem>
+            <MenuItem
+              icon={<FaUserFriends />}
+              component={<Link to="/patients" />}
+              onClick={() => setActiveTab('patient')}
+              className={`${activeTab === 'patient' && 'patients'} sidebar-tab`}
+            >
+              <div> Patients</div>
+            </MenuItem>
+            <MenuItem
+              icon={<FaRegCalendarAlt />}
+              component={<Link to="/session" />}
+              onMouseEnter={handleMouseEnterSessions}
+              onMouseLeave={handleMouseLeaveSessions}
+              style={{ color: isHoverSession ? 'black' : 'white' }}
+            >
+              {' '}
+              <div style={{ color: isHoverSession ? 'black' : 'white' }}>
+                {' '}
+                Sessions
+              </div>
+            </MenuItem>
+          </Menu>
+        </Sidebar>
 
                         <main style={{ "width": "100%" }}>
                         <div  style={{"zIndex":"1"}}>
@@ -147,10 +181,10 @@ const Individualpatient = () => {
                                                         </div>
                                                         <div className='col'>
                                                                 <div className='row pb-2'>
-                                                                <button className='btn btn-success'>Add New Session</button>
+                                                                <button className='btn btn-success' onClick={handleShow}>Add New Session</button>
                                                                 </div>
                                                                 <div className='row pb-2'>
-                                                                <button className='btn btn-outline-success'>Take Assessment</button>
+                                                                <button className='btn btn-outline-success' onClick={handleSetShowAssess}>Take Assessment</button>
                                                                 </div>
                                                                 <div className='row pb-2'>
                                                                 <button className='btn btn-outline-success' onClick={() => {handleBciShow()}}>Re-Caliberate BCI</button>
@@ -224,6 +258,63 @@ const Individualpatient = () => {
                                                                 </Modal>
                                                         </div>
                                                 </div>
+                                                <div className='row'>
+                                                <div>
+                                                        <Modal show={show} onHide={handleClose}>
+                                                                <Modal.Header closeButton style={{ 'border-color': '#FFFFFF' }}>
+                                                                        <Modal.Title>Add New Session</Modal.Title>
+                                                                </Modal.Header>
+                                                                <Modal.Body>
+                                                                        <div>
+                                                                                <AddNewSessionForm />
+                                                                        </div>
+                                                                        <div className='row'>
+                                                                                <div className='col'>
+                                                                                        <div className="form-outline text-start mb-4" style={{ 'padding-left': '6%' }}>
+                                                                                                <Button variant="secondary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#FFFFFF', 'color': '#006666', 'border-color': '#006666' }}>
+                                                                                                        Cancel
+                                                                                                </Button>
+                                                                                        </div></div>
+                                                                                <div className='col'>
+                                                                                        <div className="form-outline text-start mb-4" style={{ 'padding-right': '6%' }}>
+                                                                                                <Button variant="primary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#006666', 'color': '#FFFFFF', }}>
+                                                                                                        Add Session
+                                                                                                </Button>
+                                                                                        </div></div></div>
+
+                                                                </Modal.Body>
+
+                                                        </Modal>
+                                                </div>
+                                        </div>
+                                        <div className='row'>
+                        <div>
+                            <Modal show={showAssess} onHide={handleAssessClose} >
+                                <Modal.Header closeButton style={{'border-color':'#FFFFFF'}} >
+                                    <Modal.Title>Assessments</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <div>
+                                        <TakeAssessmentForm />
+                                    </div>
+                                    <div className='row'>
+                                                <div className='col'>
+                                                    <div className="form-outline text-start mb-4">
+                                            <Button variant="secondary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                                                                Cancel
+                                                                        </Button>
+                                                                        </div></div>
+                                                                        <div className='col'>
+                                                    <div className="form-outline text-start mb-4" >
+                                                                        <Button variant="primary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                        Save
+                                                                        </Button>
+                                           </div></div></div>
+                                </Modal.Body>
+                               
+                            </Modal>
+                        </div>
+                    </div>
                                         </div>
 
 

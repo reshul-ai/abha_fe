@@ -42,8 +42,7 @@ const Navbarcommon=() =>{
                       <li
                         key={item.id}
                         className={item.cName}
-                        onMouseEnter={() => setNotification(true)}
-                          onMouseLeave={() => setNotification(false)}  
+                        onClick={() => setNotification(!notification)} 
                       >
                         <Link to={item.path}>{item.title}</Link>
                         {notification && <NotifyDropdown />}
@@ -56,8 +55,7 @@ const Navbarcommon=() =>{
                         <li
                           key={item.id}
                           className={item.cName}
-                          onMouseEnter={() => setDropdown(true)}
-                          onMouseLeave={() => setDropdown(false)} 
+                          onClick={() => setDropdown(!dropdown)}
                         >
                           <Link to={item.path}>{item.title}</Link>
                           {dropdown && <Dropdown />}
@@ -70,8 +68,7 @@ const Navbarcommon=() =>{
                           <li
                             key={item.id}
                             className={item.cName}
-                            onMouseEnter={() => setUser(true)}
-                            onMouseLeave={() => setUser(false)}
+                            onClick={() => setUser(!user)}
                           >
                             <Link to={item.path}>{item.title}</Link>
                             {user && <Loggeduser />}

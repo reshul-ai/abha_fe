@@ -5,13 +5,13 @@
   list-style: none;
   text-align: start;
   right: 0;
-  padding: 0;
+  padding: 5px;
   background: #fff;
   box-shadow: 0 0 6px 0 #00000052;
   left: auto;border-radius: 6px;
 }
 .services-submenu li {
-  
+
   cursor: pointer;
 }
 
@@ -43,4 +43,12 @@
   right: 0;
   width: 16rem;
   top: 100%;
+}
+
+.notfication-icon{
+  width: 40px;
+  margin-right: 10px;
+}
+.notification-text{
+  font-weight: 600;
 }

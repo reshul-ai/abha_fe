@@ -95,7 +95,7 @@ return(
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title>Upcomming Session-SES112</Modal.Title>
+                                                                        <Modal.Title>Upcoming Session-SES112</Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body><div >
                                                                         <div className='row pt-3 pb-2 px-3'>
@@ -105,7 +105,7 @@ return(
                                                         </div>
                                                         <div className='col Assessments-label' style={{"borderRight": "2px solid grey"}}>
                                                                 <div className='row ps-3'>Patient</div>
-                                                                <div className='row Assessments-labelValue ps-3'>Patient 01</div>
+                                                                <div className='row Assessments-labelValue ps-3'><Link style={{'padding-left':'0%'}} to={`/individualpatients/1241`}>Patient 01</Link></div>
                                                         </div>
                                                         <div className='col Assessments-label' style={{"borderRight": "2px solid grey"}}>
                                                                 <div className='row ps-3'>Start Time</div>

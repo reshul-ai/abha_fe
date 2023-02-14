@@ -39,7 +39,7 @@ const TakeAssessmentForm = () => {
                                             
                                             <div className='row px-1'>
 
-                                                    <div className='col' style={{ "cursor": "pointer" }}>
+                                                    <div className='col' style={{ "cursor": "pointer","font-size":"110%" }}>
                                                         <span className={show==='1' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('1') }} 
                                                         style={{ 'border-bottom': show==='1' ? "2px solid black" : "none" }}>
                                                             GS</span>

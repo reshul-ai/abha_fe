@@ -25,7 +25,7 @@ const Sidebarcomponent = () =>{
                                 {" "}
                                 <img width={25} src={ba_logo}></img>
                             </MenuItem>
-                            <MenuItem icon={<FaHome />} component={<Link to="/" />}> {" "} Home</MenuItem>
+                            <MenuItem icon={<FaHome />} component={<Link to="/home" />}> {" "} Home</MenuItem>
                             <MenuItem icon={<FaUserFriends />} component={<Link to="/patients" />}> {" "} Patients</MenuItem>
                             <MenuItem icon={<FaRegCalendarAlt />} component={<Link to="/sessions" />}> {" "} Sessions</MenuItem>
                         </Menu>

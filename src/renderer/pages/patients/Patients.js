@@ -1,125 +1,157 @@
-import react,{useState} from 'react';
+import react, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // page component imports
 import Patienttable from './Ptable';
 import Rpatienttable from './Rptable';
 import Navbarcommon from '../navbar/Navbar';
-import ba_logo from "../login/BrainAlive.svg";
+import ba_logo from '../login/BrainAlive.svg';
 // imports for Modal
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal } from 'react-bootstrap';
 
-// Form in Modal 
+// Form in Modal
 import Form from './Form';
 import Bci from './Bci';
 import HCQ from './Hcq';
 
-
-
-import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
-import { FaBars, FaHome, FaUserFriends, FaRegCalendarAlt } from "react-icons/fa";
-
-
+import {
+  Sidebar,
+  Menu,
+  MenuItem,
+  SubMenu,
+  useProSidebar,
+} from 'react-pro-sidebar';
+import {
+  FaBars,
+  FaHome,
+  FaUserFriends,
+  FaRegCalendarAlt,
+} from 'react-icons/fa';
 
 const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-        },
-      };
-    
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
 const Patient = () => {
+  // Pop up
+  const { collapseSidebar } = useProSidebar();
 
-        // Pop up
-        const { collapseSidebar } = useProSidebar();
+  // Page component rendering
+  const [currentPatient, setCurrentPatient] = useState(true);
 
-        // Page component rendering
-                const [currentPatient, setCurrentPatient] = useState(true);
+  // Modal Add New Patient
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-        // Modal Add New Patient
-        const [show, setShow] = useState(false);
-        const handleClose = () => setShow(false);
-        const handleShow = () => setShow(true);
+  const [showBci, setShowBci] = useState(false);
+  const handleBciClose = () => setShowBci(false);
+  const handleBciShow = () => setShowBci(true);
 
+  const [showCC, setShowCC] = useState(false);
+  const handleCCClose = () => setShowCC(false);
+  const handleCCShow = () => setShowCC(true);
 
-        const [showBci, setShowBci] = useState(false);
-        const handleBciClose = () => setShowBci(false);
-        const handleBciShow = () => setShowBci(true);
+  // Sidebar CSS
 
+  const [isHoverHome, setIsHoverHome] = useState(false);
+  const [isHoverPatient, setIsHoverPatient] = useState(false);
+  const [isHoverSession, setIsHoverSession] = useState(false);
+  const [isHoverLogo, setIsHoverLogo] = useState(false);
+  const [activeTab, setActiveTab] = useState('patients');
 
-        const [showCC, setShowCC] = useState(false);
-        const handleCCClose = () => setShowCC(false);
-        const handleCCShow = () => setShowCC(true);
+  const handleMouseEnterLogo = () => {
+    setIsHoverLogo(true);
+  };
+  const handleMouseLeaveLogo = () => {
+    setIsHoverLogo(false);
+  };
+  const handleMouseEnterHome = () => {
+    setIsHoverHome(true);
+  };
+  const handleMouseLeaveHome = () => {
+    setIsHoverHome(false);
+  };
 
+  const handleMouseEnterPatients = () => {
+    setIsHoverPatient(true);
+  };
+  const handleMouseLeavePatients = () => {
+    setIsHoverPatient(false);
+  };
+  const handleMouseEnterSessions = () => {
+    setIsHoverSession(true);
+  };
+  const handleMouseLeaveSessions = () => {
+    setIsHoverSession(false);
+  };
 
-         // Sidebar CSS
-
-         const [isHoverHome, setIsHoverHome] = useState(false);
-         const [isHoverPatient, setIsHoverPatient] = useState(false);
-         const [isHoverSession, setIsHoverSession] = useState(false);
-         const [isHoverLogo, setIsHoverLogo] = useState(false);
- 
-         const handleMouseEnterLogo = () => {
-                  setIsHoverLogo(true);
-         };
-         const handleMouseLeaveLogo = () => {
-                 setIsHoverLogo(false);
-         };
-         const handleMouseEnterHome = () => {
-         setIsHoverHome(true);
-         };
-         const handleMouseLeaveHome = () => {
-         setIsHoverHome(false);
-         };
- 
-         const handleMouseEnterPatients = () => {
-                  setIsHoverPatient(true);
-         };
-         const handleMouseLeavePatients = () => {
-                 setIsHoverPatient(false);
-         };
-         const handleMouseEnterSessions = () => {
-                  setIsHoverSession(true);
-         };
-         const handleMouseLeaveSessions = () => {
-                 setIsHoverSession(false);
-         };
-
-       
-    return(
-        <>
-
-
-                <div style={{ display: 'flex', height: '100vh' }}>
-                        <Sidebar backgroundColor='black'>
-                            <Menu>
-                                <MenuItem
-                                    icon={<FaBars />}
-                                    onClick={() => {
-                                    collapseSidebar();                                
-                                    }}
-                                    
-                                    onMouseEnter={handleMouseEnterLogo} 
-                                    onMouseLeave={handleMouseLeaveLogo}
-                                    style={{color:isHoverLogo ? 'black' : 'white'}}
-                                >
-                                    <div style={{"color":isHoverLogo ? 'black' : 'white'}}>{" "}
-                                    <img width={25} src={ba_logo}></img></div>
-                                </MenuItem>
-                                <MenuItem icon={<FaHome />} component={<Link to="/home" />} onMouseEnter={handleMouseEnterHome} 
-                                    onMouseLeave={handleMouseLeaveHome} style={{color: isHoverHome ? 'black' : 'white'}}> <div style={{color: isHoverHome ? 'black' : 'white'}}>{" "} Home</div></MenuItem>
-                                <MenuItem icon={<FaUserFriends />} component={<Link to="/patients" />} onMouseEnter={handleMouseEnterPatients} 
-                                    onMouseLeave={handleMouseLeavePatients} style={{color: isHoverPatient ? 'black' : 'white'}}> <div style={{color: isHoverPatient ? 'black' : 'white'}} >{" "} Patients</div></MenuItem>
-                                <MenuItem icon={<FaRegCalendarAlt />} component={<Link to="/session" />} onMouseEnter={handleMouseEnterSessions} 
-                                    onMouseLeave={handleMouseLeaveSessions} style={{color: isHoverSession ? 'black' : 'white'}}> <div style={{color: isHoverSession ? 'black' : 'white'}}>{" "} Sessions</div></MenuItem>
-                            </Menu>
-                        </Sidebar>
-                        <main style={{"width":"100%"}}>
+  return (
+    <>
+      <div style={{ display: 'flex', height: '100vh' }}>
+        <Sidebar backgroundColor="black">
+          <Menu>
+            <MenuItem
+              icon={<FaBars />}
+              onClick={() => {
+                collapseSidebar();
+              }}
+              onMouseEnter={handleMouseEnterLogo}
+              onMouseLeave={handleMouseLeaveLogo}
+              style={{ color: isHoverLogo ? 'black' : 'white' }}
+            >
+              <div style={{ color: isHoverLogo ? 'black' : 'white' }}>
+                {' '}
+                <img width={25} src={ba_logo}></img>
+              </div>
+            </MenuItem>
+            <MenuItem
+              icon={<FaHome />}
+              component={<Link to="/home" />}
+              onMouseEnter={handleMouseEnterHome}
+              onMouseLeave={handleMouseLeaveHome}
+              style={{ color: isHoverHome ? 'black' : 'white' }}
+            >
+              {' '}
+              <div style={{ color: isHoverHome ? 'black' : 'white' }}>
+                {' '}
+                Home
+              </div>
+            </MenuItem>
+            <MenuItem
+              icon={<FaUserFriends />}
+              component={<Link to="/patients" />}
+              onClick={() => setActiveTab('patients')}
+              className={`${
+                activeTab === 'patients' && 'patients'
+              } sidebar-tab`}
+            >
+              {' '}
+              <div> Patients</div>
+            </MenuItem>
+            <MenuItem
+              icon={<FaRegCalendarAlt />}
+              component={<Link to="/session" />}
+              onMouseEnter={handleMouseEnterSessions}
+              onMouseLeave={handleMouseLeaveSessions}
+              style={{ color: isHoverSession ? 'black' : 'white' }}
+            >
+              {' '}
+              <div style={{ color: isHoverSession ? 'black' : 'white' }}>
+                {' '}
+                Sessions
+              </div>
+            </MenuItem>
+          </Menu>
+        </Sidebar>
+        <main style={{"width":"100%"}}>
                                         <div className='container-fluid'>
                                                 <div className='row'>
                                                                 <Navbarcommon />

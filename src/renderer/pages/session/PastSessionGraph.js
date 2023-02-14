@@ -13,7 +13,7 @@ import {
 const data = [
   {
     name: "Trial 1",
-    MI_Accuracy: 20
+    MI_Accuracy: 10
   },
   {
     name: "Trial 2",
@@ -21,7 +21,7 @@ const data = [
   },
   {
     name: "Trial 3",
-    MI_Accuracy: 30
+    MI_Accuracy: 20
   },
   {
     name: "Trial 4",
@@ -33,7 +33,7 @@ const data = [
   },
   {
     name: "Trial 6",
-    MI_Accuracy: 30
+    MI_Accuracy: 40
   },
   {
     name: "Trial 7",
@@ -45,14 +45,10 @@ const data = [
   },
   {
     name: "Trial 9",
-    MI_Accuracy: 40
+    MI_Accuracy: 50
   },
   {
     name: "Trial 10",
-    MI_Accuracy: 40
-  },
-  {
-    name: "Trial 11",
     MI_Accuracy: 50
   }
 ];
@@ -60,7 +56,7 @@ const data = [
 const PastSessionGraph=()=> {
   return (
     <AreaChart
-               width={750}
+               width={725}
                height={300}
                data={data}
                margin={{ top: 8, right: 20, left: 0, bottom: 0 }}>
@@ -72,10 +68,10 @@ const PastSessionGraph=()=> {
                
             </defs>
             <XAxis dataKey="name" />
+            <YAxis label={{ value: 'MOTOR IMAGERY ACCURACY', angle: -90, position: 'center' }}/>
             <YAxis />
-            <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
-           <Legend title=""/>
+           
             <Area
                type="monotone"
                dataKey="MI_Accuracy"

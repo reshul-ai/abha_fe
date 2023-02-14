@@ -31,7 +31,7 @@ const Session = () => {
     const [isHoverPatient, setIsHoverPatient] = useState(false);
     const [isHoverSession, setIsHoverSession] = useState(false);
     const [isHoverLogo, setIsHoverLogo] = useState(false);
-
+    const [activeTab, setActiveTab] = useState('sessions');
     const handleMouseEnterLogo = () => {
              setIsHoverLogo(true);
     };
@@ -65,30 +65,56 @@ const Session = () => {
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
 
-                        <Sidebar backgroundColor='black'>
-                            <Menu>
-                                <MenuItem
-                                    icon={<FaBars />}
-                                    onClick={() => {
-                                    collapseSidebar();                                
-                                    }}
-                                    
-                                    onMouseEnter={handleMouseEnterLogo} 
-                                    onMouseLeave={handleMouseLeaveLogo}
-                                    style={{color:isHoverLogo ? 'black' : 'white'}}
-                                >
-                                    <div style={{"color":isHoverLogo ? 'black' : 'white'}}>{" "}
-                                    <img width={25} src={ba_logo}></img></div>
-                                </MenuItem>
-                                <MenuItem icon={<FaHome />} component={<Link to="/home" />} onMouseEnter={handleMouseEnterHome} 
-                                    onMouseLeave={handleMouseLeaveHome} style={{color: isHoverHome ? 'black' : 'white'}}> <div style={{color: isHoverHome ? 'black' : 'white'}}>{" "} Home</div></MenuItem>
-                                <MenuItem icon={<FaUserFriends />} component={<Link to="/patients" />} onMouseEnter={handleMouseEnterPatients} 
-                                    onMouseLeave={handleMouseLeavePatients} style={{color: isHoverPatient ? 'black' : 'white'}}> <div style={{color: isHoverPatient ? 'black' : 'white'}} >{" "} Patients</div></MenuItem>
-                                <MenuItem icon={<FaRegCalendarAlt />} component={<Link to="/session" />} onMouseEnter={handleMouseEnterSessions} 
-                                    onMouseLeave={handleMouseLeaveSessions} style={{color: isHoverSession ? 'black' : 'white'}}> <div style={{color: isHoverSession ? 'black' : 'white'}}>{" "} Sessions</div></MenuItem>
-                            </Menu>
-                        </Sidebar>
+<Sidebar backgroundColor="black">
+        <Menu>
+          <MenuItem
+            icon={<FaBars />}
+            onClick={() => {
+              collapseSidebar();
+            }}
+            onMouseEnter={handleMouseEnterLogo}
+            onMouseLeave={handleMouseLeaveLogo}
+            style={{ color: isHoverLogo ? 'black' : 'white' }}
+          >
+            <div style={{ color: isHoverLogo ? 'black' : 'white' }}>
+              {' '}
+              <img width={25} src={ba_logo}></img>
+            </div>
+          </MenuItem>
+          <MenuItem
+            icon={<FaHome />}
+            component={<Link to="/home" />}
+            onMouseEnter={handleMouseEnterHome}
+            onMouseLeave={handleMouseLeaveHome}
+            style={{ color: isHoverHome ? 'black' : 'white' }}
+          >
+            {' '}
+            <div style={{ color: isHoverHome ? 'black' : 'white' }}> Home</div>
+          </MenuItem>
+          <MenuItem
+            icon={<FaUserFriends />}
+            component={<Link to="/patients" />}
+            onMouseEnter={handleMouseEnterPatients}
+            onMouseLeave={handleMouseLeavePatients}
+            style={{ color: isHoverPatient ? 'black' : 'white' }}
+          >
+            {' '}
+            <div style={{ color: isHoverPatient ? 'black' : 'white' }}>
+              {' '}
+              Patients
+            </div>
+          </MenuItem>
+          <MenuItem
+            icon={<FaRegCalendarAlt />}
+            component={<Link to="/session" />}
+            onClick={() => setActiveTab('sessions')}
+            className={`${activeTab === 'sessions' && 'sessions'} sidebar-tab`}
+          >
 
+            <div> Sessions</div>
+          </MenuItem>
+        </Menu>
+      </Sidebar>
 
             <main style={{ "width": "100%" }}>
                 <div className='container-fluid'>
