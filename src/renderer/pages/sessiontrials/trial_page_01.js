@@ -1,6 +1,7 @@
 import react from 'react';
 import { FaPlus } from "react-icons/fa";
-import brainAlive from "../QDIC/brainalive_contact_8.png"
+import brainAlive from "../../assets/brainalive_contact_8.png";
+import Brianimg from '../brianimg/brainimg';
 
 const TrialPage01 = () => {
     return (
@@ -11,7 +12,7 @@ const TrialPage01 = () => {
                     <div className='col'></div>
                     <div className='col'></div>
                     <div className='col text-end'>
-                            <img src={brainAlive} width="252px" />
+                            <Brianimg />
                     </div>
                 </div>
                     <div className='row align-items-center'>

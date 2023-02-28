@@ -73,38 +73,38 @@ const Patientdashboard = () => {
         <>
 
                 <div className='container-fluid'>
-                <div className='row pt-4'>
-                                                <div className='col'>
-                                                        <div className='row'>
+                                                        <div className='row pt-4' style={{"backgroundColor":"#FAFAFA","borderRadius":"16px"}}>
                                                                 <div className='col'>
-                                                                        <p>MI Accuracy vs Sessions</p>
-                                                                </div>
-                                                                
-                                                             </div>
+                                                                        <div className='row'>
+                                                                                <div className='col ps-5'>
+                                                                                        <h3>MI Accuracy vs Sessions</h3>
+                                                                                </div>
+                                                                        
+                                                                        </div>
 
-                                                        <MIAChart /></div></div>      
-                                                        <div className='row pt-4'>
-                                                <div className='col'>
-                                                        <div className='row'>
-                                                                <div className='col'>
-                                                                        <p>ARAT Score Analytics</p>
+                                                                        <MIAChart />
                                                                 </div>
-                                                                
+                                                        </div>      
+                                                        <div className='row pt-4 mt-4' style={{"backgroundColor":"#FAFAFA","borderRadius":"16px"}}>
+                                                                <div className='col'>
+                                                                        <div className='row'>
+                                                                                <div className='col ps-5'>
+                                                                                        <h3>ARAT Score Analytics</h3>
+                                                                                </div>
+                                                                                
                                                              </div>
 
                                                         <ARATChart /></div></div>  
-                                                        <div className='row pt-4'>
+                                                        <div className='row pt-4 mt-4' style={{"backgroundColor":"#FAFAFA","borderRadius":"16px"}}>
                                                 <div className='col'>
                                                         <div className='row'>
-                                                                <div className='col'>
-                                                                        <p>GS Score vs Sessions</p>
+                                                                <div className='col ps-5'>
+                                                                        <h3>GS Score vs Sessions</h3>
                                                                 </div>
                                                                 
                                                              </div>
 
-                                                        <GSSChart /></div></div>  
-                       
-                        
+                                                        <GSSChart /></div></div>
                 </div>
         
         </>

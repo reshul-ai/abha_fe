@@ -7,11 +7,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import SessionBci from './PastSessionBci';
+// import SessionBci from './SessionBci';
 import PastSessionGraph from './PastSessionGraph';
+
 import { Button, Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-const Pastsession=()=>{
+
+const Pastsessions=()=>{
+
         const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 [`&.${tableCellClasses.head}`]: {
                   backgroundColor: '#eaeaeb',
@@ -25,7 +28,7 @@ const Pastsession=()=>{
               
               const StyledTableRow = styled(TableRow)(({ theme }) => ({
                 '&:nth-of-type(odd)': {
-                  
+                 
                 },
                 // hide last border
                 '&:last-child td, &:last-child th': {
@@ -33,58 +36,67 @@ const Pastsession=()=>{
                 },
               }));
       
-      function createData(session_id, patient_name,mi_accuracy, date, paradigm_ran,start_time, duration) {
-        return { session_id, patient_name, mi_accuracy,date,paradigm_ran, start_time, duration };
+      function createData(session_id, mi_accuracy, date, start_time, end_time, duration) {
+        return { session_id, mi_accuracy, date, start_time, end_time, duration };
       }
       
       const rows = [
-        createData('SES112','Patient 01', '70%','19 Jan, 2023','2', '4:00 PM',  '60 Mins'),
-        createData('SES111','Patient 02', '70%','13 Jan, 2023', '3','2:30 PM',  '45 Mins'),
-        createData('SES096','Patient 03', '70%','12 Jan, 2023','5', '5:00 PM',  '60 Mins'),
+        createData('SES112','--', '14 Jan 2023','4:00 PM', '2:30 PM',  '60 Mins'),
+        createData('SES111','--', '14 Jan 2023','2:30 PM', '2:30 PM',  '45 Mins'),
+        createData('SES096','--', '14 Jan 2023','5:00 PM', '2:30 PM',  '60 Mins'),
        
       ];
       const [showBci, setShowBci] = useState(false);
       const handleBciClose = () => setShowBci(false);
       const handleBciShow = () => setShowBci(true);
+
+      const [SessionDtl, setSessionDtl] = useState('');
+
+    
 return(
-  <div className='container-fluid'>
-  <div className='row '>
-<div className='col m-0 p-0'>
-                  <TableContainer component={Paper}>
-                                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                                                <TableHead>
-                                              
-                                                <TableRow>
-                                                <StyledTableCell>Session ID</StyledTableCell>
-                                                    <StyledTableCell align="left">Patient</StyledTableCell>
-                                                    <StyledTableCell align="left">MI Accuracy</StyledTableCell>
-                                                    <StyledTableCell align="left">Date</StyledTableCell>
-                                                    <StyledTableCell align="left">Paradigm Ran</StyledTableCell>
-                                                    <StyledTableCell align="left">Start Time</StyledTableCell>
-                                                    <StyledTableCell align="left">Duration</StyledTableCell>
-                                                    
-                                                </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                {rows.map((row) => (
-                                                    <StyledTableRow key={row.name}>
-                                                            {/* <StyledTableCell component="th" scope="row">
-                                                                {row.name}
-                                                            </StyledTableCell> */}
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.session_id}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.patient_name}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.mi_accuracy}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.date}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.paradigm_ran}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.start_time}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.duration}</StyledTableCell>
-                                                           
-                                                    </StyledTableRow>
-                                                ))}
-                                                </TableBody>
-                                            </Table>
-                                    </TableContainer> </div> 
-                                    </div>  <div className='row'>
+   
+                        <div className='container-fluid'>
+                                <div className='row '>
+                                        <div className='col' style={{'padding-left':'0%','padding-right':'0%'}}>
+                                                        <TableContainer component={Paper}>
+                                                        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                                                                <TableHead>
+                                                        
+                                                                <TableRow>
+                                                                
+                                                                <StyledTableCell>Session ID</StyledTableCell>
+                                                                <StyledTableCell align="left">MI Accuracy</StyledTableCell>
+                                                                <StyledTableCell align="left">Date</StyledTableCell>
+                                                                <StyledTableCell align="left">Start Time</StyledTableCell>
+                                                                <StyledTableCell align="left">End Time</StyledTableCell>
+                                                                <StyledTableCell align="left">Duration</StyledTableCell>
+                                                                
+                                                                </TableRow>
+                                                                </TableHead>
+                                                                <TableBody>
+                                                                {rows.map((row) => (
+                                                                <StyledTableRow key={row.name}>
+                                                                        {/* <StyledTableCell component="th" scope="row">
+                                                                                {row.name}
+                                                                        </StyledTableCell> */}
+                                                                        <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.session_id}</StyledTableCell>
+                                                                        <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.mi_accuracy}</StyledTableCell>
+                                                                        
+                                                                        <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.date}</StyledTableCell>
+                                                                        <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.start_time}</StyledTableCell>
+                                                                        <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.end_time}</StyledTableCell>
+                                                                        <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.duration}</StyledTableCell>
+                                                                        
+                                                                </StyledTableRow>
+                                                                ))}
+                                                                </TableBody>
+                                                        </Table>
+                                                        </TableContainer>
+                                        </div>
+                                </div>  
+
+
+                                <div className='row'>
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
@@ -130,7 +142,7 @@ return(
                                                                                                 Paradigm 1  
                                                                                 </div>
                                                                         </div>              
-                                                                <PastSessionGraph />
+                                                                <PastSessionGraph /> 
                                                         </div>
                                                 </div>
                                                  <div className='row pt-3 pb-2 px-3'>
@@ -140,7 +152,7 @@ return(
                                                         </div></div>
                                                                         </div>
                                                                                         <div>
-                                                                                                <SessionBci />
+                                                                                                {/* <SessionBci /> */}
                                                                                         </div>
                                                                         </Modal.Body>
                                                                         <Modal.Footer>
@@ -153,7 +165,9 @@ return(
                                                                         </Modal.Footer>
                                                                 </Modal>
                                                         </div>
-                                                </div> </div>
+                                                </div> 
+                                
+                        </div>
 );
 };
-export default Pastsession;
+export default Pastsessions;

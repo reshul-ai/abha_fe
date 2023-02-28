@@ -111,23 +111,25 @@ const PastSessionBci = () => {
                         <StyledTableCell align="Left">
                           {row.mi_accuracy}
                         </StyledTableCell>
+                        
                       </StyledTableRow>
-
-                      <TableFooter>
-                        {open && (
-                          <>
-                            {openIndex === index && (
-                              <div className="feedback-div p-2 px-3">
-                                <p>Feedback</p>
-                                <p>
-                                  Feedback ny Therapist or Patients latest
-                                  conditions update or some other components.
-                                </p>
-                              </div>
+                      
+                        <div>
+                            {open && (
+                              <>
+                                {openIndex === index && (
+                                  <div className="feedback-div p-2 px-3">
+                                    <p>Feedback</p>
+                                    <p>
+                                      Feedback ny Therapist or Patients latest conditions update or some other components.
+                                    </p>
+                                  </div>
+                                )}
+                              </>
                             )}
-                          </>
-                        )}
-                      </TableFooter>
+                        </div>
+                   
+                      
                     </>
                   ))}
                 </TableBody>
@@ -139,7 +141,7 @@ const PastSessionBci = () => {
           <div>
             <Modal show={showCC} onHide={handleCCClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Headset Contact Quality</Modal.Title>
+                <Modal.Title><h5 className='pt-3 ps-2'>Headset Contact Quality</h5></Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div>
@@ -148,7 +150,7 @@ const PastSessionBci = () => {
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleCCClose}>
-                  Show Plot Data
+                  Plot Data
                 </Button>
                 <Link to="/trialmain">
                   <Button variant="primary">Continue</Button>

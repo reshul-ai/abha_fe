@@ -1,8 +1,8 @@
 import react, {useRef, useEffect, useState} from 'react';
-import brianImg from "../patients/QDIC/brainalive_contact_8.png";
- 
-const SessionHcq = () => {
+import brianImg from "../patients/QDIC/brainalive_contact_8.png"
 
+
+const SessionHcq = () => {
 
     const [dataset, setDataset] = useState({"contact_quality":{CH1:"grey",CH2:"grey",CH3:"grey",CH4:"grey",CH5:"grey",CH6:"grey",CH7:"grey",CH8:"grey"}})
 
@@ -104,12 +104,12 @@ const SessionHcq = () => {
       }, [draw11, draw12, draw21, draw22, draw23, draw31, draw32, draw33])
 
 
-
     return (
         <>
         
             <div className='container-fluid'>
-                <div className='row text-center'>
+
+                        <div className='row'>
                                     <div className='col text-center pt-3' style={brainImgStyle}>
                                             <div className='row' style={{"height":"33%"}}>
                                                     <div className='col'>
@@ -135,7 +135,15 @@ const SessionHcq = () => {
                                             </div>
                                         {/* <img src={brianImg} height="320" width="320" /> */}
                                     </div>
-                </div>
+                        </div>
+
+                        {/* <div className='row text-center'>
+                                <div className='col'>
+
+                                        <img src={brainAlive} height="382px" width="388px"/>
+
+                                </div>
+                        </div> */}
             </div>
         
         </>

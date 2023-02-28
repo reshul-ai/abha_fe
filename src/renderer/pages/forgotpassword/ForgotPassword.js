@@ -16,8 +16,8 @@ const ForgotPassword=()=>{
         <div className="row h-100 justify-content-center">
           <div className="col-md-6 login-bg" style={{ backgroundImage: `url(${image}` }}>
             <div className="text-center login-left-content h-100 d-flex justify-content-center">
-            <h2><img src={ba_logo}/>ABHA</h2>
-              <h5> Help Stroke Survivors regain function and improve strength, coordination and balance</h5>
+            <h2 style={{"fontWeight":"550"}}><img src={ba_logo}/>ABHA</h2>
+              <h5 style={{"fontWeight":"500","fontSize":"37px"}}> Help Stroke Survivors regain function and improve strength, coordination and balance</h5>
             </div>
           </div>
           <div className="col-md-6 login-form">
@@ -27,7 +27,7 @@ const ForgotPassword=()=>{
               
                 <div className="header12">Forgot Password?</div>
                 <div className="formField">
-
+                  
                   <input
                     type="email"
                     id="email"
@@ -35,6 +35,7 @@ const ForgotPassword=()=>{
                     placeholder="Registered Email"
                     name="email"
                     defaultValue=""
+                    style={{"fontSize":"1rem"}}
 
                   />
                 </div>

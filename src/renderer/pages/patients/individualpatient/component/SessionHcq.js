@@ -1,5 +1,5 @@
 import react, {useRef, useEffect, useState} from 'react';
-import brianImg from "../patients/QDIC/brainalive_contact_8.png";
+import brianImg from "../../QDIC/brainalive_contact_8.png"
  
 const SessionHcq = () => {
 

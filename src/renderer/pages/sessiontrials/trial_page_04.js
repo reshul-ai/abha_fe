@@ -1,9 +1,10 @@
 import react,{useState} from 'react';
 import { useEffect } from 'react';
-import brainAlive from "../QDIC/brainalive_contact_8.png";
+import brainAlive from "../../assets/brainalive_contact_8.png"
 import { Button, Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import SessionBci from './SessionBci';
+import Brianimg from '../brianimg/brainimg';
 
 const TrialPage04 = () => {
 
@@ -52,16 +53,16 @@ const TrialPage04 = () => {
             <div className='container-fluid'>
                         <div className='row'>
                                 <div className='col'></div>
-                                <div className='col text-center'><h3>Trial 04</h3></div>
-                                <div className='col text-end'><img src={brainAlive} width="252px" /></div>
+                                <div className='col text-center'></div>
+                                <div className='col text-end'><Brianimg /></div>
                         </div>
                         <div className='row'>
                                 <Modal show={show} onHide={handleClose} centered>
                                     <Modal.Header closeButton style={{ 'border-color': '#FFFFFF' }}>
-                                    <Modal.Title>Save Paradigm?</Modal.Title>
+                                    <Modal.Title><h5 className='pt-3 ps-2'>Save Paradigm?</h5></Modal.Title>
                                     </Modal.Header>
-                                    <Modal.Body>
-                                        <div className='row'>
+                                    <Modal.Body style={{"padding":0, "margin":0}}>
+                                        <div className='row ps-3 pe-3'>
                                                     <div className='col'>
                                                             <div className="form-outline text-start mb-4" style={{ 'padding-left': '6%' }}>
                                                                     <Link to="/trialmain">
@@ -75,7 +76,7 @@ const TrialPage04 = () => {
                                                     <div className='col'>
                                                             <div className="form-outline text-start mb-4" style={{ 'padding-right': '6%' }}>
                                                                     <Button variant="primary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#006666', 'color': '#FFFFFF', }}>
-                                                                        <small>End paradigm and Save Data</small>
+                                                                        <small>End paradigm & Save Data</small>
                                                                     </Button>
                                                             </div></div></div>
                                     </Modal.Body>
@@ -86,7 +87,7 @@ const TrialPage04 = () => {
                         <div className='row'>
                                 <Modal show={showEP} onHide={handleEPClose} centered >
                                     <Modal.Header closeButton style={{ 'border-color': '#FFFFFF' }} >
-                                    <Modal.Title>End Paradigm</Modal.Title>
+                                    <Modal.Title><h5 className='pt-3 ps-2'>End Paradigm</h5></Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
                                         <form onSubmit={handleSubmit}>
@@ -130,9 +131,9 @@ const TrialPage04 = () => {
                         <div className='row'>
                                 <Modal show={showSS} onHide={handleSSClose} centered >
                                     <Modal.Header closeButton style={{"borderColor":"#fff"}}>
-                                    <Modal.Title>Saved Successfully</Modal.Title>
+                                    <Modal.Title><h5 className='pt-3 ps-2'>Saved Successfully</h5></Modal.Title>
                                     </Modal.Header>
-                                    <Modal.Body>
+                                    <Modal.Body style={{"padding":0, "margin":0}}>
                                                 <div className='row'>
                                                         <div className='col'>
                                                                 <div className="form-outline text-start mb-4" style={{ 'padding-left': '6%' }}>
@@ -159,9 +160,9 @@ const TrialPage04 = () => {
                         <div className='row'>
                         <Modal size="lg" show={showRMP} onHide={handleRMPClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title>Upcomming Session-SES112</Modal.Title>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>Upcomming Session-SES112</h5></Modal.Title>
                                                                         </Modal.Header>
-                                                                        <Modal.Body><div >
+                                                                        <Modal.Body style={{"padding":0, "margin":0}}><div >
                                                                         <div className='row pt-3 pb-2 px-3'>
                                                         <div className='col Assessments-label' style={{"borderRight": "2px solid grey"}}>
                                                                 <div className='row'><div className='col'>Session ID</div></div>

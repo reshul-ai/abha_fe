@@ -10,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-// import SessionHCQ from './SessionHcq';
+import SessionHCQ from './SessionHcq';
 import { Button, Modal } from "react-bootstrap";
 
 const Bci = () => {
@@ -36,16 +36,15 @@ const Bci = () => {
         }));
         
         function createData(paradigm_name, loops, duration, randomize, activities) {
-            return { paradigm_name, loops, duration, randomize, activities };;
+            return { paradigm_name, loops, duration, randomize, activities };
         }
 
         const rows = [
-            createData('Right Hand Movement',2,2, 'No', 1),
-            createData('Motor Imagery',2, 2, 'Yes', 2),
-            createData('Left Knee Motor Imagery',2,2, 'No', 3),
-            createData('Left Foot Movement',2,2, 'Yes', 3),
-            createData('Right Knee Motor Imagery',2,2, 'No', 2),
-            createData('Right Foot Movement',2,2, 'Yes', 1),
+            createData('Motor Imagery for Left Hand',2,2, 'No', 1),
+            createData('Motor Imagery for Right Hand',2, 2, 'Yes', 2),
+            createData('Motor Imagery for Both Hands',2,2, 'No', 3),
+            createData('Repetitive Exercises',2,2, 'Yes', 3),
+            
         ];
 
 
@@ -56,11 +55,12 @@ const Bci = () => {
 
     return (
         <>
- 
 
- <TableContainer component={Paper}>
+        <div className='container-fluid'>
+            <div className='row'>
+            <TableContainer component={Paper} style={{"padding":0}}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                        <TableHead>
+                        <TableHead style={{"margin":0}}>
                         <TableRow>
                             <StyledTableCell align="Left">Paradigm Name</StyledTableCell>
                             <StyledTableCell align="Left">Loops</StyledTableCell>
@@ -82,12 +82,46 @@ const Bci = () => {
                                                 <StyledTableCell align="Left">{row.duration}</StyledTableCell>
                                                 <StyledTableCell align="Left">{row.randomize}</StyledTableCell>
                                                 <StyledTableCell align="Left">{row.activities}</StyledTableCell>
-                                                <StyledTableCell align="Left"><button className='btn btn-primary' onClick={handleCCShow}>Start</button></StyledTableCell>
+                                                <StyledTableCell align="Left"><button className='btn' style={{"backgroundColor":"#265B97","color":"white"}} onClick={handleCCShow}>Start</button></StyledTableCell>
                                         </StyledTableRow>
                                     ))}
                         </TableBody>
                     </Table>
             </TableContainer>
+            </div>
+            <div className='row'>
+                                                        <div>
+                                                                <Modal show={showCC} onHide={handleCCClose}>
+                                                                        <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>Headset Contact Quality</h5></Modal.Title>
+                                                                        </Modal.Header>
+                                                                                <Modal.Body>
+                                                                                                <div>
+                                                                                                        <SessionHCQ />
+                                                                                                </div>
+                                                                                                <div className='row pt-3'>
+                                                                                                <div className='col'>
+                                                                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
+                                                                                            <Button variant="secondary" onClick={handleCCClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                                                                            Plot Data
+                                                                                                                        </Button>
+                                                                                                                        </div></div>
+                                                                                                                        <div className='col'>
+                                                                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
+                                                                                                    <Link to="/trialmain">
+                                                                                                                        <Button variant="primary" style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                                                                        Continue
+                                                                                                                        </Button></Link>
+                                                                                        </div></div></div>
+                                                                                </Modal.Body>
+                                                                                                                    
+                                                                </Modal>
+                                                        </div>
+                                                </div>
+        </div>
+ 
+
+ 
 
 
         </>

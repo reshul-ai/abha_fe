@@ -1,4 +1,4 @@
-import react, {useState} from 'react';
+import react from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
@@ -18,12 +18,12 @@ const Saveparadigm = () => {
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Saved Successfully</Modal.Title>
+                <Modal.Title><h6>Saved Successfully</h6></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                 </Modal.Body>
                 <Modal.Footer>
-                <Link to="/trailmain">
+                <Link to="/tp01">
                 
                         <Button variant="secondary" onClick={handleClose}>
                             Re-run paradigm
@@ -32,7 +32,7 @@ const Saveparadigm = () => {
                 </Link>
                 <Link to="/endparadigm">
                         <Button variant="primary" onClick={handleClose}>
-                            End paradigm and Save Data
+                            End paradigm & Save Data
                         </Button>
                 </Link>
                 </Modal.Footer>

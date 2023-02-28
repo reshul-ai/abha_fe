@@ -1,7 +1,8 @@
 import react,{useState, useEffect} from 'react';
-import brainAlive from "../QDIC/brainalive_contact_8.png"
 import { Button, Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+
+import Brianimg from '../brianimg/brainimg';
 
 const TrialPage02 = () => {
 
@@ -31,46 +32,42 @@ const TrialPage02 = () => {
             <div className='container-fluid'>
                         <div className='row'>
                                 <div className='col'></div>
-                                <div className='col text-center'><h3>Caliberation Trial</h3></div>
-                                <div className='col text-end'><img src={brainAlive} width="252px" /></div>
+                                <div className='col text-center'><h3>Calibration Trial</h3></div>
+                                <div className='col text-end'> <Brianimg /> </div>
                         </div>
                         <div className='row'>
-
                                     <Modal show={show} onHide={handleClose} centered>
                                             <Modal.Header closeButton style={{"borderColor":"white"}} >
-                                                <Modal.Title>Finish Calibration?</Modal.Title>
+                                                <Modal.Title><h5 className='pt-3 ps-2'>Finish Calibration?</h5></Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body>
-                                                <div className='row'>
+                                            <Modal.Body style={{"padding":0, "margin":0}}>
+                                                <div className='row ps-3 pe-3'>
                                                             <div className='col'>
                                                                     <div className="form-outline text-start mb-4" style={{ 'padding-left': '6%' }}>
                                                                             
                                                                                     <Button variant="secondary" onClick={() => {window.location.reload()}} style={{ 'width': '100%', 'background-color': '#FFFFFF', 'color': '#006666', 'border-color': '#006666' }}>
-                                                                                        Restart Calibration
+                                                                                        Re-Calibrate
                                                                                     </Button>
                                                                         
                                                                     </div></div>
                                                             <div className='col'>
                                                                     <div className="form-outline text-start mb-4" style={{ 'padding-right': '6%' }}>
-                                                                        
                                                                                     <Button variant="primary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#006666', 'color': '#FFFFFF', }}>
                                                                                         Save Calibration Data
                                                                                     </Button>
-                                                                            
                                                                     </div></div>
                                                 </div>
                                             </Modal.Body>
                                     </Modal>
-
                         </div>
-                        <div className='row'>
+                        <div className='row'>  
 
                                     <Modal show={showSS} onHide={handleSSClose} centered>
                                             <Modal.Header closeButton style={{"borderColor":"white"}} >
-                                                <Modal.Title>Saved Successfully</Modal.Title>
+                                                <Modal.Title><h5 className='pt-3 ps-2'>Saved Successfully</h5></Modal.Title>
                                             </Modal.Header>
-                                            <Modal.Body>
-                                                    <div className='row'>
+                                            <Modal.Body style={{"padding":0, "margin":0}}>
+                                                    <div className='row ps-3 pe-3'>
                                                                 <div className='col'>
                                                                         <div className="form-outline text-start mb-4" style={{ 'padding-left': '6%' }}>
                                                                                         <Link to="/patients">

@@ -1,6 +1,6 @@
 import react,{useState} from 'react';
 import { useEffect } from 'react';
-import brainAlive from "../QDIC/brainalive_contact_8.png";
+import brainAlive from "../../assets/brainalive_contact_8.png"
 import { Button, Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const TrialPage04 = () => {
                                                     <div className='col'>
                                                             <div className="form-outline text-start mb-4" style={{ 'padding-right': '6%' }}>
                                                                     <Button variant="primary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#006666', 'color': '#FFFFFF', }}>
-                                                                        <small>End paradigm and Save Data</small>
+                                                                        <small>End paradigm & Save Data</small>
                                                                     </Button>
                                                             </div></div></div>
                                     </Modal.Body>
@@ -93,7 +93,7 @@ const TrialPage04 = () => {
                                                     <div className='col'>
                                                             <div className="form-outline text-start mb-4" style={{ 'padding-right': '6%' }}>
                                                                     <Button variant="primary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#006666', 'color': '#FFFFFF', }}>
-                                                                        <small>End paradigm and Save Data</small>
+                                                                        <small>End paradigm & Save Data</small>
                                                                     </Button>
                                                             </div></div></div>
                                     </Modal.Body>

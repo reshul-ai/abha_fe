@@ -1,5 +1,6 @@
 import react from 'react';
-import brainAlive from "../QDIC/brainalive_contact_8.png"
+import brainAlive from "../../assets/brainalive_contact_8.png";
+import Brianimg from '../brianimg/brainimg';
 
 const TrialPage02 = () => {
     return (
@@ -8,11 +9,11 @@ const TrialPage02 = () => {
             <div className='container-fluid'>
                         <div className='row'>
                                 <div className='col'></div>
-                                <div className='col text-center'><h3>Trial 02</h3></div>
-                                <div className='col text-end'><img src={brainAlive} width="252px" /></div>
+                                <div className='col text-center'></div>
+                                <div className='col text-end'><Brianimg /></div>
                         </div>
             </div>
-
+        
         </>
     );
 }

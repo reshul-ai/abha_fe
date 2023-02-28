@@ -24,11 +24,47 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let childWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
+});
+
+ipcMain.on('brian-image', async (event, arg) => {
+
+    const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
+    console.log("main",msgTemplate(arg));
+    // event.reply('brian-image', msgTemplate('wink'));
+
+    const RESOURCES_PATH = app.isPackaged
+    ? path.join(process.resourcesPath, 'assets')
+    : path.join(__dirname, '../../assets');
+
+  const getAssetPath = (...paths: string[]): string => {
+    return path.join(RESOURCES_PATH, ...paths);
+  };
+
+    childWindow = new BrowserWindow({
+      show: false,
+      width: 400,
+      height:450,
+      resizable: false,
+      autoHideMenuBar: true,
+      icon: getAssetPath('Ba_logo.png'),
+      alwaysOnTop:true,
+      webPreferences: {
+        nodeIntegration:true,
+        contextIsolation:false,
+        webSecurity:false,
+        devTools: false
+      }
+    });
+    childWindow.loadURL("http://localhost:1212/#/brainimgchild")
+
+    childWindow.show();
+
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -73,15 +109,18 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
-    icon: getAssetPath('icon.png'),
+    icon: getAssetPath('Ba_logo.png'),
+    autoHideMenuBar: true,
+    title: "ABHA",
     webPreferences: {
       preload: app.isPackaged
         ? path.join(__dirname, 'preload.js')
         : path.join(__dirname, '../../.erb/dll/preload.js'),
-    },
+        devTools: false
+    }
   });
-
   mainWindow.loadURL(resolveHtmlPath('index.html'));
+
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
@@ -94,9 +133,11 @@ const createWindow = async () => {
     }
   });
 
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();

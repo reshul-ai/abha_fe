@@ -1,4 +1,5 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+// import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 // import './App.css';
 
@@ -10,8 +11,12 @@ import Home from './pages/home/Home';
 import Patients from './pages/patients/Patients';
 import Session from './pages/session/Session';
 import Individualpatient from './pages/patients/individualpatient/Individualpatient';
-import Trailmain from './pages/patients/trials/Trialmain';
+// import Trailmain from './pages/patients/trials/Trialmain';
+import Trailmain from './pages/sessiontrials/Trialmain';
+import Trialmancalib from './pages/caliberationtrials/Trialmain';
 import Resetpassword from './pages/forgotpassword/ResetPassword';
+import Brianimg from './pages/brianimg/brainimg';
+import Brianimgchild from './pages/brianimg/brainimgchild';
 
 import { ProSidebarProvider } from 'react-pro-sidebar';
 
@@ -25,6 +30,7 @@ export default function App() {
           <Router>
           
             <Routes>
+ 
               <Route path="/home" element={<Home />} />
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
@@ -34,8 +40,14 @@ export default function App() {
               <Route path="/session" element={<Session />} />
               <Route path="/individualpatients/:id" element={<Individualpatient />} />
               <Route path="/trialmain" element={<Trailmain />} />
+              <Route path="/calibration" element={<Trialmancalib />} />
+              <Route path="/brainimg" element={<Brianimg />} />
+              <Route path="/brainimgchild" element={<Brianimgchild />} />
+               
             </Routes>
+
           </Router>
+
         </ProSidebarProvider>
     </>
     

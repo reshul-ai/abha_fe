@@ -53,11 +53,11 @@ const Patient = () => {
 
   const [showBci, setShowBci] = useState(false);
   const handleBciClose = () => setShowBci(false);
-  const handleBciShow = () => setShowBci(true);
+  const handleBciShow = () => { setShow(false);setShowBci(true);}
 
   const [showCC, setShowCC] = useState(false);
   const handleCCClose = () => setShowCC(false);
-  const handleCCShow = () => setShowCC(true);
+  const handleCCShow = () => {setShowBci(false);setShowCC(true);}
 
   // Sidebar CSS
 
@@ -96,7 +96,7 @@ const Patient = () => {
   return (
     <>
       <div style={{ display: 'flex', height: '100vh' }}>
-        <Sidebar backgroundColor="black">
+        <Sidebar backgroundColor="black" width='200px'>
           <Menu>
             <MenuItem
               icon={<FaBars />}
@@ -105,11 +105,11 @@ const Patient = () => {
               }}
               onMouseEnter={handleMouseEnterLogo}
               onMouseLeave={handleMouseLeaveLogo}
-              style={{ color: isHoverLogo ? 'black' : 'white' }}
+              style={{ color: 'white', backgroundColor:'black'}}
             >
               <div style={{ color: isHoverLogo ? 'black' : 'white' }}>
                 {' '}
-                <img width={25} src={ba_logo}></img>
+                <img width={35} src={ba_logo}></img>
               </div>
             </MenuItem>
             <MenuItem
@@ -143,7 +143,7 @@ const Patient = () => {
               onMouseLeave={handleMouseLeaveSessions}
               style={{ color: isHoverSession ? 'black' : 'white' }}
             >
-              {' '}
+                {' '}
               <div style={{ color: isHoverSession ? 'black' : 'white' }}>
                 {' '}
                 Sessions
@@ -151,28 +151,28 @@ const Patient = () => {
             </MenuItem>
           </Menu>
         </Sidebar>
-        <main style={{"width":"100%"}}>
+                          <main style={{"width":"100%"}}>
                                         <div className='container-fluid'>
                                                 <div className='row'>
                                                                 <Navbarcommon />
                                                 </div>
                                                 <div className='row pt-3 pb-3'>
                                                         <div className='col-md-6' style={{ "cursor": "pointer" }}>
-                                                                <span className='d-inline-block p-2 mr-3 text-bold' onClick={() => { setCurrentPatient(true) }} 
-                                                                style={{ 'border-bottom': currentPatient ? "4px solid black" : "none" }}>
-                                                                        <b>Patients</b></span>
+                                                                <span className='d-inline-block mr-3 text-bold' onClick={() => { setCurrentPatient(true) }} 
+                                                                style={{ 'border-bottom': currentPatient ?  "3px solid black" : "none" }}>
+                                                                        <p style={{"fontWeight": currentPatient ? "bold" : "normal","margin":0,"padding":4 }}>Patients</p></span>
 
-                                                                <span className='d-inline-block p-2 text-bold' onClick={() => { setCurrentPatient(false) }} 
-                                                                style={{ 'border-bottom': currentPatient ? "none" : "4px solid black" }}><b>Recovered Patients</b></span>
+                                                                <span className='d-inline-block text-bold ms-2' onClick={() => { setCurrentPatient(false) }} 
+                                                                style={{ 'border-bottom': currentPatient ? "none" :  "3px solid black" }}><p style={{"fontWeight": currentPatient ? "normal" : "bold", "margin":0,"padding":4 }}>Recovered Patients</p></span>
                                                         </div>
                                                         <div className='col text-end'>
-                                                                <button className='btn btn-success' onClick={handleShow}>Add New Patient</button>
+                                                                <button className='btn' style={{"backgroundColor":"#006666","color":"white"}} onClick={handleShow}>Add New Patient</button>
                                                         </div>
                                                 </div>
                                                 <div className='row'>
-                                                        <div className='col'>
+                                                        <div className='col ps-4 pe-4'>
                                                                 <div>
-                                                                        {currentPatient ? <Patienttable /> : <Rpatienttable /> }
+                                                                        { currentPatient ? <Patienttable /> : <Rpatienttable /> }
                                                                 </div>
                                                         </div>
                                                 </div>
@@ -180,25 +180,27 @@ const Patient = () => {
                                                         <div>
                                                                 <Modal show={show} onHide={handleClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title>Add New Patient</Modal.Title>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>Add New Patient</h5></Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body>
-                                                                                <div>
-                                                                                        <Form />
-                                                                                </div>
-                                                                                <div className='row'>
-                                                <div className='col'>
-                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
-                                            <Button variant="secondary" onClick={handleClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
-                                                                                Cancel
-                                                                        </Button>
-                                                                        </div></div>
-                                                                        <div className='col'>
-                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
-                                                                        <Button variant="primary" onClick={handleBciShow} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
-                                                                        Add Patients
-                                                                        </Button>
-                                           </div></div></div>
+                                                                                    <div>
+                                                                                            <Form />
+                                                                                    </div>
+                                                                                    <div className='row'>
+                                                                                    <div className='col'>
+                                                                                        <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
+                                                                                                            <Button variant="secondary" onClick={handleClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                                                                                                    Cancel
+                                                                                                            </Button>
+                                                                                                            </div></div>
+                                                                                                            <div className='col'>
+                                                                                        <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
+                                                                                                            <Button variant="primary" onClick={handleBciShow} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                                                            Add Patient
+                                                                                                            </Button>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      </div>
                                                                         </Modal.Body>
                                                                        
                                                                 </Modal>
@@ -206,9 +208,9 @@ const Patient = () => {
                                                 </div>
                                                 <div className='row'>
                                                         <div>
-                                                                <Modal size="lg" show={showBci} onHide={handleBciClose}>
+                                                                <Modal size="lg" show={showBci} onHide={handleBciClose} enforceFocus="true">
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title>BCI Caliberation</Modal.Title>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>BCI Calibration</h5></Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body>
                                                                                         <div>
@@ -230,17 +232,17 @@ const Patient = () => {
                                                         <div>
                                                                 <Modal show={showCC} onHide={handleCCClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title>Headset Contact Quality</Modal.Title>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>Headset Contact Quality</h5></Modal.Title>
                                                                         </Modal.Header>
                                                                                 <Modal.Body>
                                                                                                 <div>
                                                                                                         <HCQ />
                                                                                                 </div>
-                                                                                                <div className='row'>
+                                                                                                <div className='row pt-3'>
                                                 <div className='col'>
                                                     <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
                                             <Button variant="secondary" onClick={handleCCClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
-                                            Show Plot Data
+                                            Plot Data
                                                                         </Button>
                                                                         </div></div>
                                                                         <div className='col'>

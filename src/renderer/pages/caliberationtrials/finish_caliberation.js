@@ -25,7 +25,7 @@ const Fini = () => {
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton style={{"borderColor":"white"}} >
-                <Modal.Title>Saved Successfully</Modal.Title>
+                <Modal.Title><h6>Saved Successfully</h6></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit}>
@@ -47,7 +47,7 @@ const Fini = () => {
                                                             <div className="form-outline text-start mb-4" style={{ 'padding-left': '6%' }}>
                                                                     
                                                                             <Button variant="secondary" onClick={handleRMPShow} style={{ 'width': '100%', 'background-color': '#FFFFFF', 'color': '#006666', 'border-color': '#006666' }}>
-                                                                                Restart Calibration
+                                                                                Re-Calibrate
                                                                             </Button>
                                                                   
                                                             </div></div>

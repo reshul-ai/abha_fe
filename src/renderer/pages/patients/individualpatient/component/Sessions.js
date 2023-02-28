@@ -1,4 +1,4 @@
-import react from 'react';
+import react,{useState} from 'react';
 
 import { FaBars, FaHome, FaUserFriends, FaRegCalendarAlt } from "react-icons/fa";
 import { Outlet, Link } from "react-router-dom";
@@ -11,9 +11,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Upcomingsession from './Upcomingsession';
+import Pastsessions from './Pastsessions';
+import { BsChevronDown,BsChevronUp } from "react-icons/bs";
 
 
 const Patientsession = () => {
+
+  const [isUpcomingActive, setIsUpcomingActive] = useState(true);
+  const [isPastActive, setIsPastActive] = useState(true);
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -53,82 +59,35 @@ const Patientsession = () => {
         <>
 
                <div className='container-fluid'>
-                        {/* <div className='row'>
-                                <div className='col'>
-                                        <h1>Welcome to Sessions Page</h1>
-                                </div>
-                        </div> */}
                         <div className='row pb-3'>
-                                <div className='col'>
-                                    <TableContainer component={Paper}>
-                                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                                                <TableHead>
-                                                <TableRow>
-                                                    <StyledTableCell align="left">Patient ID</StyledTableCell>
-                                                    <StyledTableCell align="left">Patient Name</StyledTableCell>
-                                                    <StyledTableCell align="left">Date Started</StyledTableCell>
-                                                    <StyledTableCell align="left">Age</StyledTableCell>
-                                                    <StyledTableCell align="left">Sessions</StyledTableCell>
-                                                    <StyledTableCell align="left">MI Accuracy</StyledTableCell>
-                                                    <StyledTableCell align="left">Contact Number</StyledTableCell>
-                                                </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                {rows.map((row) => (
-                                                    <StyledTableRow key={row.name}>
-                                                            {/* <StyledTableCell component="th" scope="row">
-                                                                {row.name}
-                                                            </StyledTableCell> */}
-                                                            <StyledTableCell align="left">{row.patient_id}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.patient_name}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.date_started}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.age}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.sessions}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.mi_accuracy}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.contact_number}</StyledTableCell>
-                                                    </StyledTableRow>
-                                                ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-
-                                </div>
+                                        <div className="accordion">
+                                                <div className="accordion-item">
+                                                <div
+                                                        className="accordion-title"
+                                                        onClick={() => setIsUpcomingActive(!isUpcomingActive)}
+                                                >
+                                                <div className='row'>
+                                                        <div className='col'>Upcoming Sessions</div>
+                                                <div className='col text-end'>{isUpcomingActive ? <BsChevronDown/> :<BsChevronUp/>}</div></div>
+                                                </div>
+                                                        {isUpcomingActive && <div className="accordion-content"><Upcomingsession /></div>}
+                                                </div>
+                                        </div>
                         </div>
-                        <div className='row pt-3'>
-                                <div className='col'>
-                                    <TableContainer component={Paper}>
-                                            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                                                <TableHead>
-                                                <TableRow>
-                                                    <StyledTableCell align="left">Patient ID</StyledTableCell>
-                                                    <StyledTableCell align="left">Patient Name</StyledTableCell>
-                                                    <StyledTableCell align="left">Date Started</StyledTableCell>
-                                                    <StyledTableCell align="left">Age</StyledTableCell>
-                                                    <StyledTableCell align="left">Sessions</StyledTableCell>
-                                                    <StyledTableCell align="left">MI Accuracy</StyledTableCell>
-                                                    <StyledTableCell align="left">Contact Number</StyledTableCell>
-                                                </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-                                                {rows.map((row) => (
-                                                    <StyledTableRow key={row.name}>
-                                                            {/* <StyledTableCell component="th" scope="row">
-                                                                {row.name}
-                                                            </StyledTableCell> */}
-                                                            <StyledTableCell align="left">{row.patient_id}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.patient_name}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.date_started}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.age}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.sessions}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.mi_accuracy}</StyledTableCell>
-                                                            <StyledTableCell align="left">{row.contact_number}</StyledTableCell>
-                                                    </StyledTableRow>
-                                                ))}
-                                                </TableBody>
-                                            </Table>
-                                        </TableContainer>
-
-                                </div>
+                        <div className='row pb-3'>
+                                        <div className="accordion">
+                                                <div className="accordion-item">
+                                                <div
+                                                        className="accordion-title"
+                                                        onClick={() => setIsPastActive(!isPastActive)}
+                                                >
+                                                <div className='row'>
+                                                        <div className='col'>Past Sessions</div>
+                                                <div className='col text-end'>{isPastActive ? <BsChevronDown/> :<BsChevronUp/>}</div></div>
+                                                </div>
+                                                        {isPastActive && <div className="accordion-content"><Pastsessions /></div>}
+                                                </div>
+                                        </div>
                         </div>
                </div>
         

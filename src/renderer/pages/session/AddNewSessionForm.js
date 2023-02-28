@@ -35,6 +35,8 @@ const AddNewSessionForm = () => {
                                                                 id="sessionId"
                                                                 className="form-control form-control-sm"
                                                                 value={sessionId}
+                                                                placeholder="SESS112"
+                                                                readOnly
                                                                 onChange={(e) => setSessionId(e.target.value)}
                                                             />
                                                     </div>

@@ -39,10 +39,10 @@ const SessionBci = () => {
         }
  
         const rows = [
-            createData('Motor Imagery for left',2,2, 'No', 1),
-            createData('Motor Imagery for right',2, 2, 'Yes', 2),
-            createData('Motor Imagery for both',2,2, 'No', 3),
-            createData('Repetitive exerceises',2,2, 'Yes', 3),
+            createData('Motor Imagery for Left Hand',2,2, 'No', 1),
+            createData('Motor Imagery for Right Hand',2, 2, 'Yes', 2),
+            createData('Motor Imagery for Both Hands',2,2, 'No', 3),
+            createData('Repetitive Exercises',2,2, 'Yes', 3),
         ];
 
         const [showCC, setShowCC] = useState(false);
@@ -80,7 +80,7 @@ const SessionBci = () => {
                                                 <StyledTableCell align="Left">{row.duration}</StyledTableCell>
                                                 <StyledTableCell align="Left">{row.randomize}</StyledTableCell>
                                                 <StyledTableCell align="Left">{row.activities}</StyledTableCell>
-                                                <StyledTableCell align="Left"><button className='btn btn-primary' onClick={handleCCShow}>Start</button></StyledTableCell>
+                                                <StyledTableCell align="Left"><button className='btn' style={{"backgroundColor":"#265b97","color":"white"}} onClick={handleCCShow}>Start</button></StyledTableCell>
                                         </StyledTableRow>
                                     ))}
                         </TableBody>
@@ -91,17 +91,17 @@ const SessionBci = () => {
                                                         <div>
                                                                 <Modal show={showCC} onHide={handleCCClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title>Headset Contact Quality</Modal.Title>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>Headset Contact Quality</h5></Modal.Title>
                                                                         </Modal.Header>
                                                                                 <Modal.Body>
                                                                                                 <div>
                                                                                                         <SessionHCQ />
                                                                                                 </div>
-                                                                                                <div className='row'>
+                                                                                                <div className='row pt-3'>
                                                 <div className='col'>
                                                     <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
                                             <Button variant="secondary" onClick={handleCCClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
-                                            Show Plot Data
+                                            Plot Data
                                                                         </Button>
                                                                         </div></div>
                                                                         <div className='col'>

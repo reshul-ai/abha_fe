@@ -45,11 +45,11 @@ const Patienttable = () =>{
       }
       
       const rows = [
-        createData(1241,'Patient 01', '19 Jan, 2023', 2, 1, 24, '+91-963258741'),
-        createData(1242,'Patient 02', '19 Jan, 2023', 2, 1, 37, '+91-963258741'),
-        createData(1243,'Patient 03', '19 Jan, 2023', 2, 8, 24, '+91-963258741'),
-        createData(1244,'Patient 04', '19 Jan, 2023', 2, 3, 67, '+91-963258741'),
-        createData(1245,'Patient 05', '19 Jan, 2023', 2, 4, 49, '+91-963258741'),
+        createData(1241,'Patient 01', '19 Jan, 2023', 2, 1, 24, '+91 963258741'),
+        createData(1242,'Patient 02', '19 Jan, 2023', 2, 1, 37, '+91 963258741'),
+        createData(1243,'Patient 03', '19 Jan, 2023', 2, 8, 24, '+91 963258741'),
+        createData(1244,'Patient 04', '19 Jan, 2023', 2, 3, 67, '+91 963258741'),
+        createData(1245,'Patient 05', '19 Jan, 2023', 2, 4, 49, '+91 963258741'),
       ];
 
 

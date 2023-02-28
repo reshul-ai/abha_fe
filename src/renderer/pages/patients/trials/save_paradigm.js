@@ -32,7 +32,7 @@ const Saveparadigm = () => {
                 </Link>
                 <Link to="/endparadigm">
                         <Button variant="primary" onClick={handleClose}>
-                            End paradigm and Save Data
+                            End paradigm & Save Data
                         </Button>
                 </Link>
                 </Modal.Footer>

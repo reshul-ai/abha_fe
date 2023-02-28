@@ -1,5 +1,6 @@
 import react, {useRef, useEffect, useState} from 'react';
-import brianImg from "../patients/QDIC/brainalive_contact_8.png";
+import brianImg from "../../assets/brainalive_contact_8.png"
+
  
 const SessionHcq = () => {
 
@@ -102,8 +103,6 @@ const SessionHcq = () => {
         draw32(context3)
         draw33(context3)
       }, [draw11, draw12, draw21, draw22, draw23, draw31, draw32, draw33])
-
-
 
     return (
         <>

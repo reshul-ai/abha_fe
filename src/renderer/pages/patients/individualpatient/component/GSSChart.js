@@ -5,7 +5,8 @@ import {
   Area,
   YAxis,
   XAxis,
-  Tooltip
+  Tooltip,
+  ResponsiveContainer
   } from "recharts";
 
   const data = [
@@ -49,8 +50,9 @@ import {
 
 const GSSChart=()=> {
   return (
+    <ResponsiveContainer width="100%" height={300}>
     <AreaChart
-               width={1000}
+               width={1100}
                height={300}
                data={data}
                margin={{ top: 10, right: 50, left: 0, bottom: 0 }}>
@@ -61,8 +63,8 @@ const GSSChart=()=> {
                </linearGradient>
                
             </defs>
-            <XAxis dataKey="name" />
-            <YAxis label={{ value: 'ARAT SCORE', angle: -90, position: 'center' }}/>
+            <XAxis dataKey="name" fontSize={10}/>
+            <YAxis label={{ value: 'ARAT SCORE', angle: -90, position: 'center', fontSize:"8px"}} fontSize={10} />
             <YAxis />
            {/*  <CartesianGrid strokeDasharray="3 3" /> */}
             <Tooltip />
@@ -74,6 +76,7 @@ const GSSChart=()=> {
                fill="url(#colorUv2)"/>
             
             </AreaChart>
+            </ResponsiveContainer>
   );
 };
 export default GSSChart;

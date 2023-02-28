@@ -54,7 +54,7 @@ const SessionBci = () => {
         <>
 
 <div className='container-fluid'>
-  <div className='row'>
+  <div className='row '>
 <div className='col'>
             <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -88,7 +88,7 @@ const SessionBci = () => {
             </TableContainer>
             </div>
                                     </div>  
-                                                <div className='row' >
+                                    <div className='row'>
                                                         <div>
                                                                 <Modal show={showCC} onHide={handleCCClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>

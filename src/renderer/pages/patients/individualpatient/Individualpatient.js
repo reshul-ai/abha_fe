@@ -19,6 +19,8 @@ import TakeAssessmentForm from '../../session/TakeAssessmentForm';
 // get patient data
 import {Pdata} from './Pdata';
 import { useLocation } from 'react-router-dom'
+import { RiMapPinLine } from "react-icons/ri";
+
 
 const Individualpatient = () => {
 
@@ -95,7 +97,7 @@ const Individualpatient = () => {
 
             <div style={{ display: 'flex', height: '100vh' }}>
 
-            <Sidebar backgroundColor="black">
+            <Sidebar backgroundColor="black" width='200px'>
           <Menu>
             <MenuItem
               icon={<FaBars />}
@@ -104,11 +106,11 @@ const Individualpatient = () => {
               }}
               onMouseEnter={handleMouseEnterLogo}
               onMouseLeave={handleMouseLeaveLogo}
-              style={{ color: isHoverLogo ? 'black' : 'white' }}
+              style={{ color: 'white', backgroundColor:'black'}}
             >
               <div style={{ color: isHoverLogo ? 'black' : 'white' }}>
                 {' '}
-                <img width={25} src={ba_logo}></img>
+                <img width={35} src={ba_logo}></img>
               </div>
             </MenuItem>
             <MenuItem
@@ -161,20 +163,20 @@ const Individualpatient = () => {
                                                                         <p style={{"padding":"0","margin":"0"}}><span><b>{patientData.name}</b></span> ({patientData.id})</p> 
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
-                                                                        <div className='col-1'> {patientData.age}</div>
-                                                                        <div className='col-2'> &omicron; {patientData.gender}</div>
-                                                                        <div className='col'> &omicron; {patientData.marital}</div>
+                                                                        <span>
+                                                                        {patientData.age} &nbsp; &#x2022; &nbsp;{patientData.gender} &nbsp; &#x2022;&nbsp; {patientData.marital}
+                                                                        </span>
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
-                                                                        <div className='col-1'><BsTelephone /></div>
+                                                                        <div className='col-1' style={{"width":"12px"}}><BsTelephone /></div>
                                                                         <div className='col'>{patientData.contact}</div>
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
-                                                                        <div className='col-1'><FaRegEnvelope /></div>
+                                                                        <div className='col-1' style={{"width":"12px"}}><FaRegEnvelope /></div>
                                                                         <div className='col'>{patientData.email}</div>
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
-                                                                        <div className='col-1'><FaRegEnvelope /></div>
+                                                                        <div className='col-1' style={{"width":"12px"}}><RiMapPinLine /></div>
                                                                         <div className='col'>{patientData.address}</div>
                                                                 </div>
 
@@ -193,45 +195,48 @@ const Individualpatient = () => {
                                                 </div>
                                                 <div className='row pt-3 pb-2'>
                                                         <div className='col' style={{"borderRight": "2px solid grey"}}>
-                                                                <div className='row'><div className='col'>BCI Caliberation</div></div>
-                                                                <div className='row'><div className='col'>{patientData.BCI}</div></div>
+                                                                <div className='row' style={{"color":"#8A8A93"}}><div className='col'>Last calibration on</div></div>
+                                                                <div className='row'><div className='col'><b style={{"padding":"0"}}>{patientData.BCI}</b></div></div>
                                                         </div>
                                                         <div className='col' style={{"borderRight": "2px solid grey"}}>
-                                                                <div className='row ps-3'>Sessions Attended</div>
-                                                                <div className='row ps-3'>{patientData.sessionsAttended}</div>
+                                                                <div className='row ps-3' style={{"color":"#8A8A93"}}>Sessions Attended</div>
+                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.sessionsAttended}</b></div>
                                                         </div>
                                                         <div className='col' style={{"borderRight": "2px solid grey"}}>
-                                                                <div className='row ps-3'>MI Accuracy</div>
-                                                                <div className='row ps-3'>{patientData.MIAccuracy}</div>
+                                                                <div className='row ps-3' style={{"color":"#8A8A93"}}>MI Accuracy</div>
+                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.MIAccuracy}</b></div>
                                                         </div>
                                                         <div className='col border-left' style={{"borderRight": "2px solid grey"}}>
-                                                                <div className='row ps-3'>MIA vs ARAT</div>
-                                                                <div className='row ps-3'>{patientData.MIVSARAT}</div>
+                                                                <div className='row ps-3' style={{"color":"#8A8A93"}}>MIA vs ARAT</div>
+                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.MIVSARAT}</b></div>
                                                         </div>
                                                         <div className='col border-left'>
-                                                                <div className='row ps-3'>MIA vs GS</div>
-                                                                <div className='row ps-3'>{patientData.MIAVSGS}</div>
+                                                                <div className='row ps-3' style={{"color":"#8A8A93"}}>MIA vs GS</div>
+                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.MIAVSGS}</b></div>
                                                         </div>
                                                 </div>
                                                 <div className='row pt-2 pb-3'>
                                                         <div className='col'>
-                                                                <div className='row pt-2'><div className='col'>Medical Condition Description</div></div>
+                                                                <div className='row pt-2'><div className='col' style={{"color":"#8A8A93"}}>Medical Condition Description</div></div>
                                                                 <div className='row'><div className='col'><b>{patientData.medicaldescription}</b></div></div>
                                                         </div>
                                                 </div> 
 
-                                                <div className='row pt-3 pb-3'>
+                                                <div className='row pt-3'>
                                                         <div className='col-md-6' style={{ "cursor": "pointer" }}>
-                                                                <span className='d-inline-block p-2 mr-3 text-bold' onClick={() => { setIsDashboard(true) }} 
-                                                                style={{ 'border-bottom': isDashboard ? "4px solid black" : "none" }}>
-                                                                        <b>Dashboard</b></span>
+                                                                <span className='d-inline-block mr-3 text-bold' onClick={() => { setIsDashboard(true) }} 
+                                                                style={{ 'border-bottom': isDashboard ? "2px solid black" : "none" }}>
+                                                                                <p style={{"fontWeight":isDashboard ? "bold":"normal"}}>Dashboard</p>
+                                                                </span>
 
-                                                                <span className='d-inline-block p-2 text-bold' onClick={() => { setIsDashboard(false) }} 
-                                                                style={{ 'border-bottom': isDashboard ? "none" : "4px solid black" }}><b>Sessions</b></span>
+                                                                <span className='d-inline-block text-bold' onClick={() => { setIsDashboard(false) }} 
+                                                                style={{ 'border-bottom': isDashboard ? "none" : "2px solid black" }}>
+                                                                                <p style={{"fontWeight":isDashboard ? "normal":"bold","marginLeft":"10px"}}>Sessions</p>
+                                                                        </span>
                                                         </div>
-                                                        
                                                 </div>
-                                                <div className='row'>
+                                                 
+                                                <div className='row mt-5'>
                                                         {
                                                         isDashboard ? <Patientdashboard />: <Patientsession />
                                                         }
@@ -240,7 +245,7 @@ const Individualpatient = () => {
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title>BCI Caliberation</Modal.Title>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>BCI Calibration</h5></Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body>
                                                                                         <div>
@@ -262,7 +267,7 @@ const Individualpatient = () => {
                                                 <div>
                                                         <Modal show={show} onHide={handleClose}>
                                                                 <Modal.Header closeButton style={{ 'border-color': '#FFFFFF' }}>
-                                                                        <Modal.Title>Add New Session</Modal.Title>
+                                                                        <Modal.Title><h5 className='pt-3 ps-2'>Add New Session</h5></Modal.Title>
                                                                 </Modal.Header>
                                                                 <Modal.Body>
                                                                         <div>
@@ -289,9 +294,9 @@ const Individualpatient = () => {
                                         </div>
                                         <div className='row'>
                         <div>
-                            <Modal show={showAssess} onHide={handleAssessClose} >
+                            <Modal size='lg' show={showAssess} onHide={handleAssessClose} >
                                 <Modal.Header closeButton style={{'border-color':'#FFFFFF'}} >
-                                    <Modal.Title>Assessments</Modal.Title>
+                                    <Modal.Title><h5 className='pt-3 ps-2'>Assessments</h5></Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <div>

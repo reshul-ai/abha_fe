@@ -21,39 +21,51 @@ const TakeAssessmentForm = () => {
         <>
                         <div className='container-fluid p-0 m-0'>
                                     <form onSubmit={handleSubmit}>
-                                                <div className='row  pb-2 px-1'>
-                                                        <div className='col Assessments-label' style={{"borderRight": "2px solid #8A8A93"}}>
-                                                                <div className='row pb-2'><div className='col'>Assessment ID</div></div>
-                                                                <div className='row Assessments-labelValue pb-2'><div className='col'>SES112</div></div>
+                                                <div className='row pb-2 px-1'>
+                                                        <div className='col Assessments-label' style={{"borderRight": "1px solid #8A8A93"}}>
+                                                                <div className='row pb-2'><div className='col text-center'>Assessment ID</div></div>
+                                                                <div className='row Assessments-labelValue pb-2'><div className='text-center'>SES112</div></div>
                                                         </div>
-                                                        <div className='col Assessments-label' style={{"borderRight": "2px solid #8A8A93"}}>
-                                                                <div className='row pb-2 ps-3'>Patient</div>
-                                                                <div className='row Assessments-labelValue pb-2 ps-3'>John Doe</div>
+                                                        <div className='col Assessments-label' style={{"borderRight": "1px solid #8A8A93"}}>
+                                                                <div className='row pb-2 ps-3 '><div className='text-center'>Patient</div></div>
+                                                                <div className='row Assessments-labelValue pb-2 ps-3'><div className='text-center'>John Doe</div></div>
                                                         </div>
-                                                        <div className='col Assessments-label' style={{"borderRight": "0px solid #8A8A93"}}>
-                                                                <div className='row pb-2 ps-3'>Start Time</div>
-                                                                <div className='row Assessments-labelValue pb-2 ps-3'>4:00 PM</div>
+                                                        <div className='col Assessments-label' style={{"borderRight": "1px solid #8A8A93"}}>
+                                                                <div className='row pb-2 ps-3'><div className='text-center'>Date</div></div>
+                                                                <div className='row Assessments-labelValue pb-2 ps-3'><div className='text-center'>12 Jan 2023</div></div>
+                                                        </div>
+                                                        <div className='col Assessments-label'>
+                                                                <div className='row pb-2 ps-3'><div className='text-center'>Start Time</div></div>
+                                                                <div className='row Assessments-labelValue pb-2 ps-3'><div className='text-center'>4:00 PM</div></div>
                                                         </div>
                                                        
                                                 </div>
                                             
-                                            <div className='row px-1'>
+                                            <div className='row pt-4'>
 
-                                                    <div className='col' style={{ "cursor": "pointer","font-size":"110%" }}>
+                                                    <div className='col text-center' style={{ "cursor": "pointer","borderRight":"1px solid black" }}>
                                                         <span className={show==='1' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('1') }} 
                                                         style={{ 'border-bottom': show==='1' ? "2px solid black" : "none" }}>
                                                             GS</span>
-                                                    |<span className={show==='2' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('2')}} 
-                                                        style={{ 'border-bottom': show==='2' ? "2px solid black" : "none"  }}>ARAT</span>
-                                                        |<span className={show==='3' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('3')}} 
-                                                        style={{  'border-bottom': show==='3' ? "2px solid black" : "none" }}>Fugl-Meyer</span>
-                                                        |<span className={show==='4' ? "Assess-labelValue" : "Assess-label"} onClick={() => {setShow('4') }} 
-                                                        style={{  'border-bottom': show==='4' ? "2px solid black" : "none"  }}>9-Hole Peg</span>
-                                                        |<span className={show==='5' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('5') }} 
-                                                        style={{  'border-bottom': show==='5' ? "2px solid black" : "none" }}>MAS</span>
-                                                        |<span className={show==='6' ? "Assess-labelValue" : "Assess-label"} onClick={() => {setShow('6')}} 
-                                                        style={{ 'border-bottom': show==='6' ? "2px solid black" : "none"  }}>VAS</span>
-                                                    </div>
+                                                            </div>
+                                                            <div className='col text-center' style={{ "cursor": "pointer","borderRight":"1px solid black"  }}>
+                                                    <span className={show==='2' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('2')}} 
+                                                        style={{ 'border-bottom': show==='2' ? "2px solid black" : "none"  }}>ARAT</span></div>
+                                                        <div className='col text-center' style={{ "cursor": "pointer","borderRight":"1px solid black" }}>
+                                                        <span className={show==='3' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('3')}} 
+                                                        style={{  'border-bottom': show==='3' ? "2px solid black" : "none"  }}>Fugl-Meyer</span></div>
+                                                        <div className='col text-center' style={{ "cursor": "pointer","borderRight":"1px solid black"  }}>
+                                                        <span className={show==='4' ? "Assess-labelValue" : "Assess-label"} onClick={() => {setShow('4') }} 
+                                                        style={{  'border-bottom': show==='4' ? "2px solid black" : "none"  }}>9-Hole Peg</span></div>
+                                                        <div className='col text-center' style={{ "cursor": "pointer","borderRight":"1px solid black"  }}>
+                                                        <span className={show==='5' ? "Assess-labelValue" : "Assess-label"} onClick={() => { setShow('5') }} 
+                                                        style={{  'border-bottom': show==='5' ? "2px solid black" : "none" }}>MAS</span></div>
+                                                        <div className='col text-center' style={{ "cursor": "pointer" }}>
+                                                        <span className={show==='6' ? "Assess-labelValue" : "Assess-label"} onClick={() => {setShow('6')}} 
+                                                        style={{ 'border-bottom': show==='6' ? "2px solid black" : "none"  }}>VAS</span></div>
+                                                    
+                                                    
+                                                    <hr style={{"marginTop":"2px"}} />
                                                     </div><div className='row px-1 Assessments-label pt-3'>
                                                 <div className='col'>
                                                     <div className="form-outline text-start mb-2">

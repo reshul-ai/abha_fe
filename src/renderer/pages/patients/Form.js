@@ -32,7 +32,7 @@ const Form = () => {
                                     <form onSubmit={handleSubmit}>
                                             <div className='row'>
                                                 <div className='col'>
-                                                    <div className="form-outline text-start mb-4">
+                                                    <div className="form-outline text-start">
                                                             <label className="form-label" htmlFor="patientId">
                                                                 Patient ID
                                                             </label>
@@ -41,12 +41,14 @@ const Form = () => {
                                                                 id="patientId"
                                                                 className="form-control form-control-sm"
                                                                 value={patientId}
+                                                                placeholder="PAT122"
+                                                                readOnly
                                                                 onChange={(e) => setPatientId(e.target.value)}
                                                             />
                                                     </div>
                                                 </div>
                                                 <div className='col'>
-                                                <div className="form-outline text-start mb-4">
+                                                <div className="form-outline text-start mb-3">
                                                             <label className="form-label" htmlFor="patientName">
                                                                 Patient Name
                                                             </label>
@@ -62,7 +64,7 @@ const Form = () => {
                                             </div>
                                             <div className='row'>
                                                     <div className='col'>
-                                                        <div className="form-inputs text-start mb-2">
+                                                        <div className="form-inputs text-start mb-3">
                                                                 <label className="form-label" htmlFor="marital_status">
                                                                     Marital Status
                                                                 </label>
@@ -84,7 +86,7 @@ const Form = () => {
                                                         </div>
                                                     </div>
                                                 <div className='col'>
-                                                        <div className="form-inputs text-start mb-2">
+                                                        <div className="form-inputs text-start mb-3">
                                                                 <label className="form-label" htmlFor="gender">
                                                                     Gender
                                                                 </label>
@@ -107,7 +109,7 @@ const Form = () => {
                                             </div>
                                             <div className='row'>
                                                 <div className='col'>
-                                                    <div className="form-outline text-start mb-4">
+                                                    <div className="form-outline text-start mb-3">
                                                             <label className="form-label" htmlFor="email">
                                                                 Email
                                                             </label>
@@ -122,9 +124,9 @@ const Form = () => {
                                                     </div>
                                                 </div>
                                                 <div className='col'>
-                                                <div className="form-outline text-start mb-4">
+                                                <div className="form-outline text-start mb-3">
                                                             <label className="form-label" htmlFor="mobile">
-                                                                Contact Number
+                                                                Contact No.
                                                             </label>
                                                             <input
                                                             type="tel"
@@ -139,7 +141,7 @@ const Form = () => {
                                             </div>
                                             <div className='row'>
                                                 <div className='col'>
-                                                    <div className="form-outline text-start mb-4">
+                                                    <div className="form-outline text-start mb-3">
                                                             <label className="form-label" htmlFor="dob">
                                                                 Date of Birth
                                                             </label>
@@ -154,7 +156,7 @@ const Form = () => {
                                                     </div>
                                                 </div>
                                                 <div className='col'>
-                                                <div className="form-outline text-start mb-4">
+                                                <div className="form-outline text-start mb-3">
                                                             <label className="form-label" htmlFor="age">
                                                                 Age
                                                             </label>
@@ -170,7 +172,7 @@ const Form = () => {
                                             </div>
                                             <div className='row'>
                                                 <div className='col'>
-                                                        <div className="form-outline text-start mb-4">
+                                                        <div className="form-outline text-start mb-3">
                                                                 <label className="form-label" htmlFor="address">
                                                                     Address
                                                                 </label>
@@ -197,6 +199,7 @@ const Form = () => {
                                                                     className="form-control form-control-sm"
                                                                     value={medicalConditionDesp}
                                                                     onChange={(e) => setMedicalConditionDesp(e.target.value)}
+                                                                    style={{"height":"64px"}}
                                                                 />
                                                         </div>
                                                     </div>

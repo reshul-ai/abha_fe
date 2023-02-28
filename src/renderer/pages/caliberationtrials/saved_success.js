@@ -2,7 +2,7 @@ import react from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
-const Saveparadigm = () => {
+const Savedsuccess = () => {
 
     const [show, setShow] = useState(false);
 
@@ -14,25 +14,26 @@ const Saveparadigm = () => {
         <>
         
             <Button variant="primary" onClick={handleShow}>
-                Save Paradigm
+                Save
             </Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Saved Successfully</Modal.Title>
+                <Modal.Title><h6>Saved Successfully</h6></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    <h1>Using Modal Body</h1>
                 </Modal.Body>
                 <Modal.Footer>
-                <Link to="/tp01">
+                <Link to="/patient/dashboard">
                 
                         <Button variant="secondary" onClick={handleClose}>
-                            Re-run paradigm
+                            Patient Dashboard
                         </Button>
 
                 </Link>
-                <Link to="/endparadigm">
+                <Link to="/">
                         <Button variant="primary" onClick={handleClose}>
-                            End paradigm and Save Data
+                            Home
                         </Button>
                 </Link>
                 </Modal.Footer>
@@ -43,4 +44,4 @@ const Saveparadigm = () => {
 }
 
 
-export default Saveparadigm;
+export default Savedsuccess;

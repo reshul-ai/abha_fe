@@ -65,7 +65,7 @@ const Session = () => {
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
 
-<Sidebar backgroundColor="black">
+<Sidebar backgroundColor="black" width='200px'>
         <Menu>
           <MenuItem
             icon={<FaBars />}
@@ -74,11 +74,11 @@ const Session = () => {
             }}
             onMouseEnter={handleMouseEnterLogo}
             onMouseLeave={handleMouseLeaveLogo}
-            style={{ color: isHoverLogo ? 'black' : 'white' }}
+            style={{ color: 'white', backgroundColor:'black'}}
           >
             <div style={{ color: isHoverLogo ? 'black' : 'white' }}>
               {' '}
-              <img width={25} src={ba_logo}></img>
+              <img width={35} src={ba_logo}></img>
             </div>
           </MenuItem>
           <MenuItem
@@ -122,22 +122,31 @@ const Session = () => {
                                                         < Navbarcommon />
                                         </div>
                     <div className='row pt-3 pb-3'>
+                                                      <div className='col-md-6' style={{ "cursor": "pointer" }}>
+                                                                <span className='d-inline-block mr-3 text-bold' onClick={() => { setUpcomingSession(true) }} 
+                                                                style={{ 'border-bottom': upcomingSession ?  "3px solid black" : "none" }}>
+                                                                        <p style={{"fontWeight": upcomingSession ? "bold" : "normal","margin":0,"padding":4 }}>Upcoming Sessions</p></span>
 
-                        <div className='col-md-6' style={{ "cursor": "pointer" }}>
-                            <span className='d-inline-block p-2 mr-3' onClick={() => { setUpcomingSession(true) }} 
-                            style={{ 'border-bottom': upcomingSession ? "2px solid black" : "none" }}>
-                                <b>Upcoming Sessions</b></span>
+                                                                <span className='d-inline-block text-bold ms-2' onClick={() => { setUpcomingSession(false) }} 
+                                                                style={{ 'border-bottom': upcomingSession ? "none" :  "3px solid black" }}><p style={{"fontWeight": upcomingSession ? "normal" : "bold", "margin":0,"padding":4 }}>Past Sessions</p></span>
+                                                        </div>
 
-                            <span className='d-inline-block p-2 ' onClick={() => { setUpcomingSession(false) }} 
-                            style={{ 'border-bottom': upcomingSession ? "none" : "2px solid black" }}><b>Past Sessions</b></span>
-                        </div>
+                                            {/* <div className='col-md-6' style={{ "cursor": "pointer" }}>
+                                                <span className='d-inline-block p-2 mr-3' onClick={() => { setUpcomingSession(true) }} 
+                                                style={{ 'border-bottom': upcomingSession ? "2px solid black" : "none" }}>
+                                                    <p style={{"fontWeight": upcomingSession ? "bold" : "normal","margin":0,"padding":4 }}>Upcoming Sessions</p></span>
+
+                                                <span className='d-inline-block ms-2 ' onClick={() => { setUpcomingSession(false) }} 
+                                                style={{ 'border-bottom': upcomingSession ? "none" : "2px solid black" }}><p style={{"fontWeight": upcomingSession ? "normal" : "bold" ,"margin":0,"padding":4}}></p></span>
+                                            </div> */}
                         <div className='col-md-6 text-end'>
-                            <button className='btn btn-success' onClick={handleShow} style={{ 'margin-inline': '5px' }}>Add New Session</button>
+                            <button className='btn btn-success' onClick={handleShow} style={{ 'margin-inline': '5px', "backgroundColor":"#006666","color":"white" }}>Add New Session</button>
                             {/*  <span   className='border border-success  text-center p-2 rounded-2' onClick={handleSetShowAssess} style={{ "cursor": "pointer" }}>Take Assessment</span> */} 
                         </div>
+                        
                     </div>
                     <div className='row'>
-                        <div className='col'>
+                        <div className='col ps-4 pe-4'>
                             <div>
                                 {upcomingSession ? <Upcomingsession /> : <Pastsession />}
                             </div>
@@ -147,7 +156,7 @@ const Session = () => {
                         <div>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                    <Modal.Title>Add New Session</Modal.Title>
+                                    <Modal.Title><h5 className='pt-3 ps-2'>Add New Session</h5></Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <div>
