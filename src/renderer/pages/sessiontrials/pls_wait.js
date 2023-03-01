@@ -9,7 +9,7 @@ const Pls_wait = () => {
                             <div className='row align-items-center'>
                                     <div className='col'></div>
                                     <div className='col text-center'>
-                                        <h1>Please wait, next trial will start shortly...</h1>
+                                        <h1 style={{"color":"white"}}>Please wait, next trial will start shortly...</h1>
                                     </div>
                                     <div className='col'></div>
                             </div>

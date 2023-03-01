@@ -18,7 +18,7 @@ const TrialPage01 = () => {
                     <div className='row align-items-center'>
                             <div className='col'></div>
                             <div className='col text-center'>
-                                    <FaPlus style={{"width":"40vh", "height":"40vh","cursor":"pointer"}} />
+                                    <FaPlus style={{"width":"40vh", "height":"40vh","cursor":"pointer","color":"white"}} />
                             </div>
                             <div className='col'></div>
                     </div>

@@ -29,9 +29,11 @@ const Trailmain = () => {
         <>
 
             <div className='container-fluid'>
+
                     {
                         trialNumber == 1 ? <TrialPage01 /> : (trialNumber == 2 ? <TrialPage02 /> : <h1>Exceeded Trial Limit</h1>)
                     }
+
             </div>
         
         </>

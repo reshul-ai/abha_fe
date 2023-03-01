@@ -33,7 +33,7 @@ const Trailmain = () => {
     return (
         <>
 
-            <div className='container-fluid'>
+            <div className='container-fluid' style={{"height":"100vh","backgroundColor":"#181818"}}>
                     {
                         trialNumber == 1 ? <TrialPage01 /> : (trialNumber == 2 ? <TrialPage02 /> : (trialNumber == 3 ? <Pls_wait />: (trialNumber == 4 ? <TrialPage03 />: (trialNumber == 5 ? <TrialPage04 />:<h1>Exceeded Trial Limit</h1>))))
                     }
