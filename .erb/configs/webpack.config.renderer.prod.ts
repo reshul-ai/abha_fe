@@ -69,6 +69,19 @@ const configuration: webpack.Configuration = {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      // Videos
+      {
+        test: /\.(mp4|webm|ogg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+              publicPath: '../',
+            },
+          },
+        ],
+      },
       // SVG
       {
         test: /\.svg$/,

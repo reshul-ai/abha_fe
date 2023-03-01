@@ -93,6 +93,11 @@ const configuration: webpack.Configuration = {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      // Videos
+      {
+        test: /\.(mp4|webm|ogg)$/,
+        use: 'file-loader',
+      },
       // SVG
       {
         test: /\.svg$/,

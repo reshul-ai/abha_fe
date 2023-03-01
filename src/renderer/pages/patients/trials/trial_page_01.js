@@ -1,6 +1,6 @@
 import react from 'react';
 import { FaPlus } from "react-icons/fa";
-import brainAlive from "../QDIC/brainalive_contact_8.png"
+import brainAlive from "../QDIC/brainalive_contact_8.png";
 
 const TrialPage01 = () => {
     return (

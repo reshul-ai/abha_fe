@@ -9,7 +9,7 @@ const SessionHcq = () => {
     // {"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}}
 
     useEffect(()=>{
-                setTimeout(() => {
+               setTimeout(() => {
                     setDataset({"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}})
                 },2000)
     },[])
