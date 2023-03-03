@@ -17,9 +17,13 @@ import Trialmancalib from './pages/caliberationtrials/Trialmain';
 import Resetpassword from './pages/forgotpassword/ResetPassword';
 import Brianimg from './pages/brianimg/brainimg';
 import Brianimgchild from './pages/brianimg/brainimgchild';
-
+import LineCharts from './pages/sessiontrials/LineChart';
 import { ProSidebarProvider } from 'react-pro-sidebar';
-
+import PlotData from './pages/plotData/plotData';
+import TrialPage01 from './pages/caliberationtrials/trial_page_01';
+import VideoPlay from './pages/sessiontrials/videoPlay';
+import Pls_wait from './pages/sessiontrials/pls_wait';
+import MyComponent from './pages/sample/myComponent';
 
 export default function App() {
   return (
@@ -39,11 +43,15 @@ export default function App() {
               <Route path="/patients" element={<Patients />} />
               <Route path="/session" element={<Session />} />
               <Route path="/individualpatients/:id" element={<Individualpatient />} />
-              <Route path="/trialmain" element={<Trailmain />} />
-              <Route path="/calibration" element={<Trialmancalib />} />
+              <Route path="/trialmain/:id/:loop" element={<Trailmain />} />
+              <Route path="/calibration/:id/:loop" element={<Trialmancalib />} />
               <Route path="/brainimg" element={<Brianimg />} />
               <Route path="/brainimgchild" element={<Brianimgchild />} />
                
+              <Route path="/plot_data" element={<PlotData />} />
+              <Route path="/trial01" element={<TrialPage01 />} />
+
+              
             </Routes>
 
           </Router>

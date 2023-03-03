@@ -64,7 +64,7 @@ const GSSChart=()=> {
                
             </defs>
             <XAxis dataKey="name" fontSize={10}/>
-            <YAxis label={{ value: 'ARAT SCORE', angle: -90, position: 'center', fontSize:"8px"}} fontSize={10} />
+            <YAxis label={{ value: 'GS Score', angle: -90, position: 'center', fontSize:"8px"}} fontSize={10} />
             <YAxis />
            {/*  <CartesianGrid strokeDasharray="3 3" /> */}
             <Tooltip />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal } from "react-bootstrap";
 import Upcomingsession from './Upcomingsession';
 import Pastsession from './PastSession';
@@ -59,7 +59,21 @@ const Session = () => {
     };
 
 
+    const [paradigms, setParadigms] = useState({});
 
+    const getParadigms = (() => {
+            window.require("electron").ipcRenderer.send("getParadigms",{});
+
+            window.require("electron").ipcRenderer.on("getParadigms", (e,data) => {
+                console.log(data);
+                setParadigms(data);
+            });
+    });
+
+    useEffect(() => {
+      if (window.require && window.require("electron"))
+        getParadigms();
+    },[]);
 
 
     return (
@@ -148,7 +162,7 @@ const Session = () => {
                     <div className='row'>
                         <div className='col ps-4 pe-4'>
                             <div>
-                                {upcomingSession ? <Upcomingsession /> : <Pastsession />}
+                                {upcomingSession ? <Upcomingsession /> : <Pastsession paradigms={paradigms} />}
                             </div>
                         </div>
                     </div>
@@ -160,21 +174,8 @@ const Session = () => {
                                 </Modal.Header>
                                 <Modal.Body>
                                     <div>
-                                        <AddNewSessionForm />
+                                        <AddNewSessionForm handleClose={handleClose} />
                                     </div>
-                                    <div className='row'>
-                                                <div className='col'>
-                                                    <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
-                                            <Button variant="secondary" onClick={handleClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
-                                                                                Cancel
-                                                                        </Button>
-                                                                        </div></div>
-                                                                        <div className='col'>
-                                                    <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
-                                                                        <Button variant="primary" onClick={handleClose} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
-                                                                                Add Session
-                                                                        </Button>
-                                           </div></div></div>
                                 </Modal.Body>
                                
                             </Modal>
@@ -193,15 +194,15 @@ const Session = () => {
                                     <div className='row'>
                                                 <div className='col'>
                                                     <div className="form-outline text-start mb-4">
-                                            <Button variant="secondary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
+                                            <Button variant="secondary" onClick={handleAssessClose} style={{'width':'100%','backgroundColor':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
                                                                                 Cancel
                                                                         </Button>
                                                                         </div></div>
                                                                         <div className='col'>
                                                     <div className="form-outline text-start mb-4" >
-                                                                        <Button variant="primary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
+                                                                        <Button variant="primary" onClick={handleAssessClose} style={{'width':'100%','backgroundColor':'#006666','color':'#FFFFFF',}}>
                                                                         Save
-                                                                        </Button>
+                                                                         </Button>
                                            </div></div></div>
                                 </Modal.Body>
                                

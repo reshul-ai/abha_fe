@@ -1,0 +1,4 @@
+{"items":[
+    {"id":"ASSES1","patientId":"PID101","date":"2023-03-01","time":"1:08 AM","GS":"22","ARAT":"22","FuglMeyer":"24","NineHolePeg":"12","MAS":3,"VAS":"44", "MIA":90},
+    {"id":"ASSES2","patientId":"PID101","date":"2023-03-01","time":"1:17 AM","GS":"","ARAT":"","FuglMeyer":"","NineHolePeg":"","MAS":0,"VAS":"","MIA":57}
+]}

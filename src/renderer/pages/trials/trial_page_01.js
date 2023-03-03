@@ -7,13 +7,13 @@ const TrialPage01 = () => {
         <>
 
             <div classname="container" style={{"height":"100vh"}}>
-                <div className='row h-25'>
+                {/* <div className='row h-25'>
                     <div className='col'></div>
                     <div className='col'></div>
                     <div className='col text-end'>
                             <img src={brainAlive} width="252px" />
                     </div>
-                </div>
+                </div> */}
                     <div className='row align-items-center'>
                             <div className='col'></div>
                             <div className='col text-center'>

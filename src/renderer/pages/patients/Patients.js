@@ -1,5 +1,5 @@
-import react, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import react, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // page component imports
 import Patienttable from './Ptable';
@@ -40,6 +40,7 @@ const customStyles = {
 };
 
 const Patient = () => {
+  const navigate = useNavigate();
   // Pop up
   const { collapseSidebar } = useProSidebar();
 
@@ -48,11 +49,15 @@ const Patient = () => {
 
   // Modal Add New Patient
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+      setShow(false)
+  };
   const handleShow = () => setShow(true);
 
   const [showBci, setShowBci] = useState(false);
-  const handleBciClose = () => setShowBci(false);
+  const handleBciClose = () => {
+    setShowBci(false)
+  };
   const handleBciShow = () => { setShow(false);setShowBci(true);}
 
   const [showCC, setShowCC] = useState(false);
@@ -92,6 +97,13 @@ const Patient = () => {
   const handleMouseLeaveSessions = () => {
     setIsHoverSession(false);
   };
+
+  const [patientId, setPatientId] = useState('')
+
+  const handlePatient = ((id) => {
+    setPatientId(id);
+  })
+  
 
   return (
     <>
@@ -184,23 +196,8 @@ const Patient = () => {
                                                                         </Modal.Header>
                                                                         <Modal.Body>
                                                                                     <div>
-                                                                                            <Form />
+                                                                                            <Form handlePatient={handlePatient} handleBciShow={handleBciShow} handleCloseP={handleClose}/>
                                                                                     </div>
-                                                                                    <div className='row'>
-                                                                                    <div className='col'>
-                                                                                        <div className="form-outline text-start mb-4" style={{'padding-left':'6%'}}>
-                                                                                                            <Button variant="secondary" onClick={handleClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
-                                                                                                                    Cancel
-                                                                                                            </Button>
-                                                                                                            </div></div>
-                                                                                                            <div className='col'>
-                                                                                        <div className="form-outline text-start mb-4" style={{'padding-right':'6%'}}>
-                                                                                                            <Button variant="primary" onClick={handleBciShow} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
-                                                                                                            Add Patient
-                                                                                                            </Button>
-                                                                                        </div>
-                                                                                      </div>
-                                                                                      </div>
                                                                         </Modal.Body>
                                                                        
                                                                 </Modal>
@@ -214,7 +211,7 @@ const Patient = () => {
                                                                         </Modal.Header>
                                                                         <Modal.Body>
                                                                                         <div>
-                                                                                                <Bci />
+                                                                                                <Bci patientId={patientId}/>
                                                                                         </div>
                                                                         </Modal.Body>
                                                                         {/* <Modal.Footer>

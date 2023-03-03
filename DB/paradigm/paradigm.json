@@ -1,0 +1,94 @@
+{
+    "items": [
+        {
+            "id":"P1", 
+            "name":"Motor Imagery for Left Hand",
+            "Randomize":"No",
+            "trials":[
+                {
+                "type": "image",
+                "url": "plusArrow",
+                "duration": 2000
+                },
+                {
+                "type": "video",
+                "url": "leftHand",
+                "duration": 4000
+                },
+                {
+                "type": "text",
+                "content": "Rest for a few seconds...",
+                "duration": 2000
+                }
+            ],
+            "description":"This is paradigm from left hand",
+            "activities":1  
+        },
+        {
+            "id":"P2", 
+            "name":"Motor Imagery for Right  Hand",
+            "Randomize":"No",
+            "trials":[
+                {
+                "type": "image",
+                "url": "plusArrow",
+                "duration": 2000
+                },
+                {
+                "type": "video",
+                "url": "rightHand",
+                "duration": 4000
+                },
+                {
+                "type": "text",
+                "content": "Rest for a few seconds...",
+                "duration": 2000
+                }
+            ],
+            "description":"This is paradigm from right hand",
+            "activities":1
+        },
+        {
+            "id":"P3", 
+            "name":"Motor Imagery for Both Hands",
+            "Randomize":"No",
+            "trials":[
+                {
+                "type": "image",
+                "url": "plusArrow",
+                "duration": 2000
+                },
+                {
+                "type": "video",
+                "url": "leftHand",
+                "duration": 4000
+                },
+                {
+                "type": "text",
+                "content": "Rest for a few seconds...",
+                "duration":2000
+                },
+                {
+                "type": "video",
+                "url": "rightHand",
+                "duration": 4000
+                },
+                {
+                "type": "text",
+                "content": "Rest for a few seconds...",
+                "duration":2000
+                }
+            ],
+            "description":"This is paradigm from both hands",
+            "activities":2
+        },
+        {
+            "id":"P4", 
+            "name":"Repetitive Exercises",
+            "Randomize":"Yes",
+            "trials":[],
+            "description":"This is paradigm from repetitive excercises",
+            "activities":1
+        }
+]
+}

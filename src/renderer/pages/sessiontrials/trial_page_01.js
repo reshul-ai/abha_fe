@@ -7,7 +7,7 @@ const TrialPage01 = () => {
     return (
         <>
 
-            <div classname="container" style={{"height":"100vh"}}>
+            <div classname="container-fluid" style={{"height":"100vh"}}>
                 <div className='row h-25'>
                     <div className='col'></div>
                     <div className='col'></div>
@@ -15,13 +15,13 @@ const TrialPage01 = () => {
                             <Brianimg />
                     </div>
                 </div>
-                    <div className='row align-items-center'>
+                <div className='row align-items-center'>
                             <div className='col'></div>
                             <div className='col text-center'>
-                                    <FaPlus style={{"width":"40vh", "height":"40vh","cursor":"pointer","color":"white"}} />
+                                    <FaPlus style={{"width":"40vh", "height":"40vh","cursor":"pointer"}} />
                             </div>
                             <div className='col'></div>
-                    </div>
+                </div>
             </div>
 
         </>

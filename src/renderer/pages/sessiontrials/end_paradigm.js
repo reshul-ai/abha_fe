@@ -16,7 +16,6 @@ const Endparadigm = () => {
         alert('Feedback submitted');
     }
 
-
     return (
         <>
         

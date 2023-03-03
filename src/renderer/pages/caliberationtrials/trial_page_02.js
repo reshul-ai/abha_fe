@@ -36,6 +36,7 @@ const TrialPage02 = () => {
                                 <div className='col text-end'> <Brianimg /> </div>
                         </div>
                         <div className='row'>
+
                                     <Modal show={show} onHide={handleClose} centered>
                                             <Modal.Header closeButton style={{"borderColor":"white"}} >
                                                 <Modal.Title><h5 className='pt-3 ps-2'>Finish Calibration?</h5></Modal.Title>
@@ -52,13 +53,16 @@ const TrialPage02 = () => {
                                                                     </div></div>
                                                             <div className='col'>
                                                                     <div className="form-outline text-start mb-4" style={{ 'padding-right': '6%' }}>
+                                                                        
                                                                                     <Button variant="primary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#006666', 'color': '#FFFFFF', }}>
                                                                                         Save Calibration Data
                                                                                     </Button>
+                                                                            
                                                                     </div></div>
                                                 </div>
                                             </Modal.Body>
                                     </Modal>
+
                         </div>
                         <div className='row'>  
 

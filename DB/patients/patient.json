@@ -1,0 +1,88 @@
+{
+  "items": [
+    {
+      "id": "PID101",
+      "name": "Patient 01",
+      "dob": "8 February, 2023",
+      "email": "patient1@gmail.com",
+      "phoneNumber": "+91-827363627",
+      "age": 34,
+      "gender": "M",
+      "maritalStatus": "Married",
+      "address": "Address of patient 01",
+      "description": "Description for patient id PID101",
+      "bci_calib_status": "YES",
+      "status": "RECOVERED"
+    },
+    {
+      "id": "PID102",
+      "name": "Patient 02",
+      "dob": "9 February, 2023",
+      "email": "patient2@gmail.com",
+      "phoneNumber": "+91-827363627",
+      "age": 34,
+      "gender": "M",
+      "maritalStatus": "Married",
+      "address": "Address of patient 02",
+      "description": "Description for patient id PID102",
+      "bci_calib_status": "YES",
+      "status": "NOT RECOVERED"
+    },
+    {
+      "id": "PID103",
+      "name": "Patient 03",
+      "age": "22",
+      "dob": "2023-02-21",
+      "gender": "1",
+      "email": "asdas@afF.CVBXBV",
+      "phoneNumber": "+91-827363627",
+      "address": "fasfasdfas",
+      "maritalStatus": "1",
+      "desc": "dfasdfasdfasdfasdf",
+      "bci_calib_status": "YES",
+      "status": "NOT RECOVERED"
+    },
+    {
+      "id": "PID104",
+      "name": "Patient 04",
+      "age": "30",
+      "dob": "1992-07-16",
+      "gender": "1",
+      "email": "patient4@gmail.com",
+      "phoneNumber": "+91-827363627",
+      "address": "HNo. 235, Abc colony, UP",
+      "maritalStatus": "1",
+      "desc": "sdgkjhagkbsgdklv",
+      "bci_calib_status": "YES",
+      "status": "NOT RECOVERED"
+    },
+    {
+      "id": "PID105",
+      "name": "Patient 05",
+      "age": "12",
+      "dob": "2012-02-04",
+      "gender": "1",
+      "email": "patient5@gmail.com",
+      "phoneNumber": "+91-1212323413",
+      "address": "sdfasdfa",
+      "maritalStatus": "1",
+      "desc": "fasdfasdfsafa",
+      "bci_calib_status": "NO",
+      "status": "NOT RECOVERED"
+    },
+    {
+      "id": "PID106",
+      "name": "fsdfsd",
+      "age": 1,
+      "dob": "2022-03-02",
+      "gender": "Male",
+      "email": "sdfs@asfa.cc",
+      "phoneNumber": "+91-1234567894",
+      "address": "kpo",
+      "maritalStatus": "Single",
+      "desc": "gsdhsfghdfghdfghfd",
+      "bci_calib_status": "NO",
+      "status": "NOT RECOVERED"
+    }
+  ]
+}

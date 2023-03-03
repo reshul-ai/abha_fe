@@ -43,7 +43,11 @@ const ForgotPassword=()=>{
                 <div className="formField">
                   <button type="submit" className="formFieldButton btn btn-primary">Get OTP</button>
                 </div>
-              
+                <div className="formField p-0 m-0">
+                  <label>Already have an account? &nbsp; 
+                    <Link to="/" className="text-white ml-1">Log In</Link>
+                  </label>
+                </div>
               </form>
 
             </div>

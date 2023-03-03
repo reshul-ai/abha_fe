@@ -1,0 +1,12 @@
+[
+    {
+        "id":"slide101", 
+        "name":"Trial 01",
+        "slide":1,
+        "slide_width":30,
+        "slide_height":20,
+        "background_color":"black",
+        "type":"IMG",
+        "duration":20
+    }
+]

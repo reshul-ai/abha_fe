@@ -1,0 +1,14 @@
+[
+    {
+        "id": "ABC123",
+        "uid":"afasdf12sdfq2e",
+        "name":"Device 001",
+        "type":"BLE"
+    },
+    {
+        "id": "ABA123",
+        "uid":"afasdfasdf@",
+        "name":"Device 002",
+        "type":"USB"
+    }
+]

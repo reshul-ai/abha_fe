@@ -1,5 +1,5 @@
 
-import React from "react";
+import React,{useEffect, useState} from "react";
 import {
   AreaChart,
   Area,
@@ -8,6 +8,8 @@ import {
   Tooltip,
   ResponsiveContainer
   } from "recharts";
+
+const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
 
 const data = [
   {
@@ -60,7 +62,34 @@ const data = [
   }
 ];
 
-const LowerChart=()=> { 
+const LowerChart=({graph})=> { 
+
+  // const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   const data = [];
+  //   console.log(graph);
+  //   let i=0;
+  //   for( const year in graph){
+  //     // console.log(year);
+  //       for( const month in graph[year]){
+  //         // console.log(graph[year][month].patients.size);
+  //         for(let i=0;i<month;i++)
+  //           if(m==month){
+  //             data.push({"name":months[month-1], "Patients":graph[year][month].patients.size});
+  //           } else {
+  //             data.push({"name":months[i],"Patient":0})
+  //           }
+  //         i+=1;
+  //       }
+  //   }
+
+  //     console.log(data);
+
+  //     setData(data);
+  //   // console.log(data);
+  // },[]);
+
   return (
             <ResponsiveContainer width="100%" height={250}>
           

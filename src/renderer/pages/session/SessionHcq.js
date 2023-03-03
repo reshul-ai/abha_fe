@@ -9,9 +9,24 @@ const SessionHcq = () => {
     // {"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}}
 
     useEffect(()=>{
-                setTimeout(() => {
-                    setDataset({"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}})
-                },2000)
+        if(window && window.require("electron")){
+            // window.require("electron").ipcRenderer.send('contact_quality_check',`{"contact_quality_check":"start"}`);
+            
+            window.require("electron").ipcRenderer.on("contact_quality", (e,data) => {
+                let contactQuality = JSON.parse(data);
+                // console.log(JSON.parse(data));
+                for (const key in contactQuality.contact_quality) {
+                    // console.log(key);
+                    const value = contactQuality.contact_quality[key];
+                    contactQuality.contact_quality[key] = value > 80 ? "red" : (value >= 50 ? "orange" : "green");
+                }
+                console.log(contactQuality);
+                setDataset(contactQuality);
+            });
+        }
+        // setTimeout(() => {
+        //     setDataset({"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}})
+        // },1000)
     },[])
 
     const brainImgStyle = {

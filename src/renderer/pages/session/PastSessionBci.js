@@ -19,7 +19,8 @@ import SessionHCQ from './SessionHcq';
 import { Button, Modal } from 'react-bootstrap';
 import { width } from '@mui/system';
 import { TableFooter } from '@mui/material';
-const PastSessionBci = () => {
+
+const PastSessionBci = ({onChildClick,paradigms, currSessionResult}) => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -40,6 +41,7 @@ const PastSessionBci = () => {
     },
   }));
 
+  console.log(currSessionResult);
   function createData(
     paradigm_name,
     loops,
@@ -81,13 +83,14 @@ const PastSessionBci = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row, index) => (
+                  {currSessionResult?.paradigms.map((row, index) => (
                     <>
                       <StyledTableRow
                         style={{ cursor: 'pointer' }}
-                        key={row.name}
+                        key={row.id}
                         onClick={() => {
                           setOpen(!open);
+                          onChildClick(row.id, index);
                           setOpenIndex(index);
                         }}
                       >
@@ -96,29 +99,28 @@ const PastSessionBci = () => {
                                                 </StyledTableCell> */}
 
                         <StyledTableCell align="Left">
-                          {row.paradigm_name}
+                          {paradigms.items.find((item) => item.id === row.id)?.name}
                         </StyledTableCell>
                         <StyledTableCell align="Left">
-                          {row.loops}
+                          {row.loop}
                         </StyledTableCell>
 
                         <StyledTableCell align="Left">
-                          {row.randomize}
+                          {paradigms.items.find((item) => item.id === row.id)?.Randomize}
                         </StyledTableCell>
                         <StyledTableCell align="Left">
-                          {row.activities}
+                          {paradigms.items.find((item) => item.id === row.id)?.activities}
                         </StyledTableCell>
                         <StyledTableCell align="Left">
-                          {row.mi_accuracy}
+                          {"85%"}
                         </StyledTableCell>
                         
                       </StyledTableRow>
-                      
                         <div>
                             {open && (
                               <>
                                 {openIndex === index && (
-                                  <div className="feedback-div p-2 px-3">
+                                  <div className="feedback-div p-2 px-3" style={{backgroudColor:'grey'}}>
                                     <p>Feedback</p>
                                     <p>
                                       Feedback ny Therapist or Patients latest conditions update or some other components.
@@ -127,9 +129,7 @@ const PastSessionBci = () => {
                                 )}
                               </>
                             )}
-                        </div>
-                   
-                      
+                        </div>   
                     </>
                   ))}
                 </TableBody>

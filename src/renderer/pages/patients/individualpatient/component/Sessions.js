@@ -1,4 +1,4 @@
-import react,{useState} from 'react';
+import react,{useState,useEffect} from 'react';
 
 import { FaBars, FaHome, FaUserFriends, FaRegCalendarAlt } from "react-icons/fa";
 import { Outlet, Link } from "react-router-dom";
@@ -16,7 +16,7 @@ import Pastsessions from './Pastsessions';
 import { BsChevronDown,BsChevronUp } from "react-icons/bs";
 
 
-const Patientsession = () => {
+const Patientsession = ({patientData}) => {
 
   const [isUpcomingActive, setIsUpcomingActive] = useState(true);
   const [isPastActive, setIsPastActive] = useState(true);
@@ -53,8 +53,23 @@ const Patientsession = () => {
         createData(2462,'Patient 05', '19 Jan, 2023', 2, 4, 49, '+91-963258741'),
       ];
 
+    const [sessionData, setSessionData] = useState({items:[]});
+        const getPatientSessions = (() => {
+                window.require("electron").ipcRenderer.send("getSessionByPatientId",patientData.id);
+    
+                window.require("electron").ipcRenderer.on("getSessionByPatientId", (e,data) => {
+                        console.log(data);
+                        setSessionData(data);
+                })
+        });
+    const [isElectron,setIsElectron] = useState(false);
 
-
+    useEffect(() => {
+      if (window.require && window.require("electron")){
+          setIsElectron(isElectron => !isElectron);
+          getPatientSessions();
+      }   
+  },[]);
     return (
         <>
 
@@ -70,7 +85,7 @@ const Patientsession = () => {
                                                         <div className='col'>Upcoming Sessions</div>
                                                 <div className='col text-end'>{isUpcomingActive ? <BsChevronDown/> :<BsChevronUp/>}</div></div>
                                                 </div>
-                                                        {isUpcomingActive && <div className="accordion-content"><Upcomingsession /></div>}
+                                                        {sessionData.items.length>0 && isUpcomingActive && <div className="accordion-content"><Upcomingsession patientData={patientData} sessionData={sessionData} /></div>}
                                                 </div>
                                         </div>
                         </div>
@@ -85,7 +100,7 @@ const Patientsession = () => {
                                                         <div className='col'>Past Sessions</div>
                                                 <div className='col text-end'>{isPastActive ? <BsChevronDown/> :<BsChevronUp/>}</div></div>
                                                 </div>
-                                                        {isPastActive && <div className="accordion-content"><Pastsessions /></div>}
+                                                        {sessionData.items.length>0 && isPastActive && <div className="accordion-content"><Pastsessions patientData={patientData} sessionData={sessionData} /></div>}
                                                 </div>
                                         </div>
                         </div>

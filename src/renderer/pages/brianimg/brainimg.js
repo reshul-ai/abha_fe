@@ -4,19 +4,34 @@ import brianImg from '../patients/QDIC/brainalive_contact_8.png';
 
 const Brianimg = () => {
 
-    const handleClick = () => {
-        window.electron.ipcRenderer.sendMessage('brian-image', ['www.google.com']);
-    }
+  //   const handleClick = () => {
+  //       window.electron.ipcRenderer.sendMessage('brian-image', ['www.google.com']);
+  //   }
 
     const [dataset, setDataset] = useState({"contact_quality":{CH1:"grey",CH2:"grey",CH3:"grey",CH4:"grey",CH5:"grey",CH6:"grey",CH7:"grey",CH8:"grey"}})
 
-    // {"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}}
+  //   // {"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}}
 
-    useEffect(()=>{
-                setTimeout(() => {
-                    setDataset({"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}})
-                },1000)
-    },[])
+  //   useEffect(()=>{
+  //     if(window && window.require("electron")){
+  //         // window.require("electron").ipcRenderer.send('contact_quality_check',`{"contact_quality_check":"start"}`);
+          
+  //         window.require("electron").ipcRenderer.on("contact_quality", (e,data) => {
+  //             let contactQuality = JSON.parse(data);
+  //             // console.log(JSON.parse(data));
+  //             for (const key in contactQuality.contact_quality) {
+  //                 // console.log(key);
+  //                 const value = contactQuality.contact_quality[key];
+  //                 contactQuality.contact_quality[key] = value > 80 ? "red" : (value >= 50 ? "orange" : "green");
+  //             }
+  //             console.log(contactQuality);
+  //             setDataset(contactQuality);
+  //         });
+  //     }
+      setTimeout(() => {
+          setDataset({"contact_quality":{CH1:"red",CH2:"green",CH3:"orange",CH4:"green",CH5:"orange",CH6:"red",CH7:"green",CH8:"green"}})
+      },1000)
+  // },[])
 
 
     const brainImgStyle = {
@@ -112,9 +127,9 @@ const Brianimg = () => {
     return (
         <>
 
-                    <div className='container-fluid' onClick={handleClick}>
+                    <div className='container-fluid' >
                         <div className='row'>
-                                    <div className='col text-center' style={brainImgStyle}>
+                                    <div className='col text-start' style={brainImgStyle}>
                                             <div className='row' style={{"height":"33%"}}>
                                                     <div className='col'>
                                                             <div className='row'>
@@ -137,6 +152,7 @@ const Brianimg = () => {
                                                     <div className='col'></div>
                                                     <div className='col'><canvas ref={canvasRef3} /></div>
                                             </div>
+                                  
                                     </div>
                         </div>
                     </div>

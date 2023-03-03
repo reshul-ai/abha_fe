@@ -1,6 +1,7 @@
 import react,{useState, useEffect} from 'react';
 import { BsTelephone } from "react-icons/bs";
 import { FaRegEnvelope } from "react-icons/fa";
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 // import { IoLocationOutline } from "react-icons/io";
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
 import { FaBars, FaHome, FaUserFriends, FaRegCalendarAlt } from "react-icons/fa";
@@ -20,30 +21,43 @@ import TakeAssessmentForm from '../../session/TakeAssessmentForm';
 import {Pdata} from './Pdata';
 import { useLocation } from 'react-router-dom'
 import { RiMapPinLine } from "react-icons/ri";
-
+import { setMaxListeners } from 'events';
 
 const Individualpatient = () => {
 
-        const location = useLocation();
+    const location = useLocation();
 
-        // console.log(urlPath)
+//     console.log(location)
 
     const { collapseSidebar } = useProSidebar();
 
-    let patientData = null;
+    let patientId = null;
 
-    let current_page_url =location.pathname.split("/")[2];
+    patientId = location.pathname.split("/")[2];
         
-    // console.log(current_page_url)
+    console.log(patientId)
         
-    Pdata.map(i => {
-        if( i.id ==  current_page_url){
-                patientData = i;
-        }
-    })     
+//     Pdata.map(i => {
+//         if( i.id ==  current_page_url){
+//                 patientData = i;
+//         }
+//     })
 
 
-    console.log(`patientData : ${patientData}`)
+      const [isHovering, setIsHovering] = useState(false);
+        const handleMouseOver = () => {
+        setIsHovering(true);
+        };
+
+        const handleMouseOut = () => {
+        setIsHovering(false);
+        };
+        // i buttons
+        const [iButtonMIA, setIButtonMIA] = useState(false);
+        const [iButtonMIAvsARAT, setIButtonMIAvsARAT] = useState(false);
+        const [iButtonMIAvsGS, setIButtonMIAvsGS] = useState(false);
+
+        const [isShown, setIsShown] = useState(false);
 
     const [showBci, setShowBci] = useState(false);
     const handleBciClose = () => setShowBci(false);
@@ -91,6 +105,110 @@ const Individualpatient = () => {
              setIsHoverSession(false);
      };
 
+     const [isElectron,setIsElectron] = useState(false);
+    const [patientData, setPatientData] = useState({});
+    const [sessionData, setSessionData] = useState({items:[]});
+
+    const getPatientData = () => {
+        window.require("electron").ipcRenderer.send("getPatientDetailsById",patientId);
+
+        window.require("electron").ipcRenderer.on("getPatientDetailsById", (e,data) => {
+            console.log(data);
+            setPatientData(data);
+        });
+    }
+    const [patientsessions, setPatientSessions] = useState({});
+
+    const getSessionByPatientId = () => {
+        window.require("electron").ipcRenderer.send("getSessionByPatientId",patientId);
+
+        window.require("electron").ipcRenderer.on("getSessionByPatientId", (e,data) => {
+            console.log(data);
+            setPatientSessions(data);
+        });
+    }
+        function calculateAverageResults(records) {
+        return records.items.map(record => {
+                const { paradigms } = record;
+                const totalResults = paradigms.reduce((acc, curr) => acc.concat(curr.results), []);
+                const averageResult = totalResults.reduce((acc, curr) => acc + curr, 0) / totalResults.length;
+                return { sessionId: record.sessionId, patientId: record.patientId, averageResult };
+        });
+        }
+        function overallAverageResults(records){
+        const totalResults = records.reduce((acc, curr) => acc + curr.averageResult, 0);
+        return Math.floor((totalResults / records.length)*100);
+        }
+
+    const [patientResults, setPatientResults] = useState({});
+    const [MIA, setMIA] = useState(0);
+
+    const getSessionResultByPatientId = () => {
+        window.require("electron").ipcRenderer.send("getSessionResultByPatientId",patientId);
+
+        window.require("electron").ipcRenderer.on("getSessionResultByPatientId", (e,data) => {
+            console.log(data);
+            let individualSessionProcessedResults = calculateAverageResults(data);
+        //     console.log(individualSessionProcessedResults);
+            let allSessionProcessedResults = overallAverageResults(individualSessionProcessedResults);
+            
+            if(allSessionProcessedResults){
+                // console.log(allSessionProcessedResults);
+                setMIA(allSessionProcessedResults);
+            }
+                
+            setPatientResults(data);
+        });
+    }
+    
+    const [firstSession, setFirstSession] = useState({});
+
+    function getFirstSessionOfPatient() {
+        window.require("electron").ipcRenderer.send("getSessionData",{});
+
+        window.require("electron").ipcRenderer.on("getSessionData", (e,data) => {
+                // console.log(data);
+                const patientSessions = data.items.filter((session) => session.patientId === patientId);
+                // console.log(`${patientId}: `,patientSessions);
+                const sortedSessions = patientSessions.sort((a, b) => new Date(a.date) - new Date(b.date));
+                console.log(sortedSessions.length);
+                sortedSessions.length > 0 ? setFirstSession(sortedSessions[0]) : null;
+        }); 
+      }
+
+    useEffect(() => {
+        // console.log(patientId);
+        if (window.require && window.require("electron")){
+            setIsElectron(isElectron => !isElectron);
+            getPatientData();
+            getSessionByPatientId();
+            getSessionResultByPatientId();
+            getFirstSessionOfPatient();
+        }   
+    },[]);
+
+    
+
+    const handleChildClick = (() => {
+        setShowAssess(false);
+    })
+
+    const [showRecoveryModal, setShowRecoveryModal] = useState(false);
+
+    const handleRecoveryOpen = () => setShowRecoveryModal(true);
+    const handleRecoveryClose = (() => {
+        setShowRecoveryModal(false);
+    })
+
+    const handleRecoveryclick = (() => {
+        
+        window.require("electron").ipcRenderer.send("updatePatientStatus",patientId);
+
+        window.require("electron").ipcRenderer.on("updatePatientStatus", (e,data) => {
+                console.log(data);
+                setPatientData(data);   
+        })
+    })
 
     return(
         <> 
@@ -160,65 +278,86 @@ const Individualpatient = () => {
                                                         <div className='col-9'>
 
                                                                 <div className='row pt-1 pb-1'>
-                                                                        <p style={{"padding":"0","margin":"0"}}><span><b>{patientData.name}</b></span> ({patientData.id})</p> 
+                                                                <p style={{"padding":"0","margin":"0"}}>
+                                                                        <span><b>{patientData?.name}</b></span> ({patientData?.id})
+                                                                        {
+                                                                        (patientData?.status === "NOT RECOVERED") ? 
+                                                                        <button className='btn btn-outline-success btn-sm mx-3' onClick={handleRecoveryOpen}>Mark as Recovered</button> :
+                                                                        <button className='btn btn-outline-info btn-sm mx-3'>Recovered</button>
+                                                                        }
+                                                                </p>       
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
                                                                         <span>
-                                                                        {patientData.age} &nbsp; &#x2022; &nbsp;{patientData.gender} &nbsp; &#x2022;&nbsp; {patientData.marital}
+                                                                        {patientData?.age} &nbsp; &#x2022; &nbsp;{patientData?.gender} &nbsp; &#x2022;&nbsp; {patientData?.maritalStatus}
                                                                         </span>
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
                                                                         <div className='col-1' style={{"width":"12px"}}><BsTelephone /></div>
-                                                                        <div className='col'>{patientData.contact}</div>
+                                                                        <div className='col'>{patientData?.phoneNumber}</div>
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
                                                                         <div className='col-1' style={{"width":"12px"}}><FaRegEnvelope /></div>
-                                                                        <div className='col'>{patientData.email}</div>
+                                                                        <div className='col'>{patientData?.email}</div>
                                                                 </div>
                                                                 <div className='row pt-1 pb-1'>
                                                                         <div className='col-1' style={{"width":"12px"}}><RiMapPinLine /></div>
-                                                                        <div className='col'>{patientData.address}</div>
+                                                                        <div className='col'>{patientData?.address}</div>
                                                                 </div>
 
                                                         </div>
-                                                        <div className='col'>
-                                                                <div className='row pb-2'>
-                                                                <button className='btn btn-success' onClick={handleShow}>Add New Session</button>
-                                                                </div>
-                                                                <div className='row pb-2'>
-                                                                <button className='btn btn-outline-success' onClick={handleSetShowAssess}>Take Assessment</button>
-                                                                </div>
-                                                                <div className='row pb-2'>
-                                                                <button className='btn btn-outline-success' onClick={() => {handleBciShow()}}>Re-Caliberate BCI</button>
-                                                                </div>
-                                                        </div>
+                                                        {
+                                                                patientData?.status === "NOT RECOVERED" && (
+                                                                        <div className='col'>
+                                                                                <div className='row pb-2'>
+                                                                                        <button className='btn btn-success' onClick={handleShow}>Add New Session</button>
+                                                                                        </div>
+                                                                                        <div className='row pb-2'>
+                                                                                        <button className='btn btn-outline-success' onClick={handleSetShowAssess}>Take Assessment</button>
+                                                                                        </div>
+                                                                                        <div className='row pb-2'>
+                                                                                        <button className='btn btn-outline-success' onClick={() => {handleBciShow()}}>Re-Calibrate BCI</button>
+                                                                                </div>
+                                                                        </div>
+                                                                )
+                                                        }
+                                                        
                                                 </div>
                                                 <div className='row pt-3 pb-2'>
                                                         <div className='col' style={{"borderRight": "2px solid grey"}}>
-                                                                <div className='row' style={{"color":"#8A8A93"}}><div className='col'>Last calibration on</div></div>
-                                                                <div className='row'><div className='col'><b style={{"padding":"0"}}>{patientData.BCI}</b></div></div>
+                                                                <div className='row' style={{"color":"#8A8A93"}}><div className='col'>Calibrated</div></div>
+                                                                <div className='row'><div className='col'><b style={{"padding":"0"}}>{patientData?.bci_calib_status}</b></div></div>
                                                         </div>
                                                         <div className='col' style={{"borderRight": "2px solid grey"}}>
                                                                 <div className='row ps-3' style={{"color":"#8A8A93"}}>Sessions Attended</div>
-                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.sessionsAttended}</b></div>
+                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientsessions?.items?.length}</b></div>
                                                         </div>
                                                         <div className='col' style={{"borderRight": "2px solid grey"}}>
-                                                                <div className='row ps-3' style={{"color":"#8A8A93"}}>MI Accuracy</div>
-                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.MIAccuracy}</b></div>
+                                                                <div className='row ps-3' style={{'display':'flex'}}>
+                                                                        <div style={{"color":"#8A8A93",'padding':'0'}}>MIA
+                                                                        <sup><AiOutlineInfoCircle title="Motor Imaginary Accuracy"/></sup></div>
+                                                                </div>
+                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{MIA==0 ? 'N/A' : `${MIA}%`}</b></div>
                                                         </div>
                                                         <div className='col border-left' style={{"borderRight": "2px solid grey"}}>
-                                                                <div className='row ps-3' style={{"color":"#8A8A93"}}>MIA vs ARAT</div>
-                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.MIVSARAT}</b></div>
+                                                                <div className='row ps-3' style={{'display':'flex'}}>
+                                                                        <div style={{"color":"#8A8A93",'padding':'0'}}>MIA vs ARAT
+                                                                        <sup><AiOutlineInfoCircle title="Motor Imaginary Accuracy"/></sup></div>
+                                                                </div>
+                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{"N/A"}</b></div>
                                                         </div>
                                                         <div className='col border-left'>
-                                                                <div className='row ps-3' style={{"color":"#8A8A93"}}>MIA vs GS</div>
-                                                                <div className='row ps-3'><b style={{"padding":"0"}}>{patientData.MIAVSGS}</b></div>
+                                                                <div className='row ps-3' style={{'display':'flex'}}>
+                                                                        <div style={{"color":"#8A8A93",'padding':'0'}}>MIA vs GS
+                                                                        <sup><AiOutlineInfoCircle title="Motor Imaginary Accuracy"/></sup></div>
+                                                                </div>
+                                                        <div className='row ps-3'><b style={{"padding":"0"}}>{"N/A"}</b></div>
                                                         </div>
-                                                </div>
+                                                        </div>
                                                 <div className='row pt-2 pb-3'>
                                                         <div className='col'>
-                                                                <div className='row pt-2'><div className='col' style={{"color":"#8A8A93"}}>Medical Condition Description</div></div>
-                                                                <div className='row'><div className='col'><b>{patientData.medicaldescription}</b></div></div>
+                                                                <div className='row pt-2'><div className='col' style={{"color":"#8A8A93"}}>Description</div></div>
+                                                                <div className='row'><div className='col'><b>{patientData?.description}</b></div></div>
                                                         </div>
                                                 </div> 
 
@@ -238,7 +377,7 @@ const Individualpatient = () => {
                                                  
                                                 <div className='row mt-5'>
                                                         {
-                                                        isDashboard ? <Patientdashboard />: <Patientsession />
+                                                        isDashboard ? <Patientdashboard />: <Patientsession patientData={patientData}/>
                                                         }
                                                 </div>
                                                 <div className='row'>
@@ -249,7 +388,7 @@ const Individualpatient = () => {
                                                                         </Modal.Header>
                                                                         <Modal.Body>
                                                                                         <div>
-                                                                                                <Bci />
+                                                                                                <Bci handleBciClose={handleBciClose} patientId={patientId}/>
                                                                                         </div>
                                                                         </Modal.Body>
                                                                        {/*  <Modal.Footer>
@@ -264,65 +403,85 @@ const Individualpatient = () => {
                                                         </div>
                                                 </div>
                                                 <div className='row'>
-                                                <div>
-                                                        <Modal show={show} onHide={handleClose}>
-                                                                <Modal.Header closeButton style={{ 'border-color': '#FFFFFF' }}>
-                                                                        <Modal.Title><h5 className='pt-3 ps-2'>Add New Session</h5></Modal.Title>
+                                                        <div>
+                                                                <Modal show={show} onHide={handleClose}>
+                                                                        <Modal.Header closeButton style={{ 'border-color': '#FFFFFF' }}>
+                                                                                <Modal.Title><h5 className='pt-3 ps-2'>Add New Session</h5></Modal.Title>
+                                                                        </Modal.Header>
+                                                                        <Modal.Body>
+                                                                                <div>
+                                                                                        <AddNewSessionForm handleClose={handleClose}/>
+                                                                                </div>
+                                                                        </Modal.Body>
+
+                                                                </Modal>
+                                                        </div>
+                                                </div>
+                                        <div className='row'>
+                                                        <div>
+                                                        <Modal size='lg' show={showAssess} onHide={handleAssessClose} >
+                                                                <Modal.Header closeButton style={{'border-color':'#FFFFFF'}} >
+                                                                <Modal.Title><h5 className='pt-3 ps-2'>Assessments</h5></Modal.Title>
                                                                 </Modal.Header>
                                                                 <Modal.Body>
-                                                                        <div>
-                                                                                <AddNewSessionForm />
-                                                                        </div>
-                                                                        <div className='row'>
-                                                                                <div className='col'>
-                                                                                        <div className="form-outline text-start mb-4" style={{ 'padding-left': '6%' }}>
-                                                                                                <Button variant="secondary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#FFFFFF', 'color': '#006666', 'border-color': '#006666' }}>
-                                                                                                        Cancel
-                                                                                                </Button>
-                                                                                        </div></div>
-                                                                                <div className='col'>
-                                                                                        <div className="form-outline text-start mb-4" style={{ 'padding-right': '6%' }}>
-                                                                                                <Button variant="primary" onClick={handleClose} style={{ 'width': '100%', 'background-color': '#006666', 'color': '#FFFFFF', }}>
-                                                                                                        Add Session
-                                                                                                </Button>
-                                                                                        </div></div></div>
-
+                                                                <div>
+                                                                        <TakeAssessmentForm MIA={MIA} onChildClick={handleChildClick} patientData={patientData}/>
+                                                                </div>
                                                                 </Modal.Body>
-
+                                                        
                                                         </Modal>
+                                                        </div>
                                                 </div>
                                         </div>
+
                                         <div className='row'>
-                        <div>
-                            <Modal size='lg' show={showAssess} onHide={handleAssessClose} >
-                                <Modal.Header closeButton style={{'border-color':'#FFFFFF'}} >
-                                    <Modal.Title><h5 className='pt-3 ps-2'>Assessments</h5></Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <div>
-                                        <TakeAssessmentForm />
-                                    </div>
-                                    <div className='row'>
-                                                <div className='col'>
-                                                    <div className="form-outline text-start mb-4">
-                                            <Button variant="secondary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#FFFFFF','color':'#006666','border-color':'#006666'}}>
-                                                                                Cancel
-                                                                        </Button>
-                                                                        </div></div>
-                                                                        <div className='col'>
-                                                    <div className="form-outline text-start mb-4" >
-                                                                        <Button variant="primary" onClick={handleAssessClose} style={{'width':'100%','background-color':'#006666','color':'#FFFFFF',}}>
-                                                                        Save
-                                                                        </Button>
-                                           </div></div></div>
-                                </Modal.Body>
-                               
-                            </Modal>
-                        </div>
-                    </div>
+                                                        <div>
+                                                                <Modal show={showRecoveryModal} onHide={handleRecoveryClose} centered>
+                                                                        <Modal.Header closeButton style={{ 'border-color': '#FFFFFF' }}>
+                                                                                <Modal.Title><h5 className='pt-3 ps-2'>Patient Recovered?</h5></Modal.Title>
+                                                                        </Modal.Header>
+                                                                        <Modal.Body>
+                                                                        <div className='row px-6 py-0 pb-2'>
+                                                                                <div className='col-2' style={{"borderRight": "2px solid grey"}}>
+                                                                                        <div className='row ps-3' style={{"color":"#8A8A93"}}><h5 style={{"padding":"0"}}>MIA</h5></div>
+                                                                                        <div className='row ps-3'><b style={{"padding":"0"}}>{MIA==0 ? 'N/A' : `${MIA}%`}</b></div>
+                                                                                </div>
+                                                                                <div className='col-4 borderLeft' style={{"borderRight": "2px solid grey"}}>
+                                                                                        <div className='row ps-3' style={{"color":"#8A8A93"}}><h5 style={{"padding":"0"}}>Date Started</h5></div>
+                                                                                        <div className='row ps-3'><b style={{"padding":"0"}}>{firstSession?.date || '--'}</b></div>
+                                                                                </div>
+                                                                                <div className='col-6 borderLeft'>
+                                                                                        <div className='row ps-3' style={{"color":"#8A8A93"}}><h5 style={{"padding":"0"}}>Sessions Attended</h5></div>
+                                                                                        <div className='row ps-3'><b style={{"padding":"0"}}>{patientsessions?.items?.length}</b></div>
+                                                                                </div>
+                                                                        </div>
+                                                                        <div className='row pt-2' style={{"paddingLeft":"16px"}}>Are you sure, you want to mark this patient as recovered?</div>
+
+                                                                        <div className='row pt-3'>
+                                                                                <div className='col'>
+                                                                                <div className="form-outline text-start mb-2" style={{'paddingLeft':'6%'}}>
+                                                                                        <Button variant="secondary" onClick={handleRecoveryClose} style={{'width':'100%','backgroundColor':'#FFFFFF','color':'#006666','borderColor':'#006666'}}>
+                                                                                        Cancle
+                                                                                        </Button>
+                                                                                </div>
+                                                                                </div>
+                                                                                <div className='col'>
+                                                                                <div className="form-outline text-start mb-2" style={{'paddingRight':'6%'}}>
+                                                                                {/* <Link to={`/trialmain/${numberOfLoop}`}>
+                                                                                        <Button variant="primary" style={{'width':'100%','backgroundColor':'#006666','color':'#FFFFFF',}}>
+                                                                                        Continue
+                                                                                        </Button>
+                                                                                </Link> */}
+                                                                                <Button variant="primary" onClick={handleRecoveryclick} style={{'width':'100%','backgroundColor':'#006666','color':'#FFFFFF',}}>
+                                                                                        Mark as Recovered
+                                                                                </Button>
+                                                                                </div>
+                                                                                </div>
+                                                                        </div>
+                                                                        </Modal.Body>
+                                                                </Modal>
+                                                        </div>
                                         </div>
-
-
                         </main>
             </div>
         </>

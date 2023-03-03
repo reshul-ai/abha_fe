@@ -11,27 +11,11 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
-  "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
-  },
   "license": "MIT",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "BrainAive Research Pvt. Ltd.",
+    "url": "https://braina.live/"
   },
-  "contributors": [
-    {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
-    }
-  ],
   "main": "./src/main/main.ts",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
@@ -91,7 +75,7 @@
       "json"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/.erb/mocks/fileMock.js",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|mp4|m4a|aac|oga)$": "<rootDir>/.erb/mocks/fileMock.js",
       "\\.(css|less|sass|scss)$": "identity-obj-proxy"
     },
     "setupFiles": [
@@ -116,6 +100,8 @@
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.2.3",
+    "moment": "^2.29.4",
+    "net": "^1.0.2",
     "plotly.js": "^2.18.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
@@ -127,7 +113,8 @@
     "react-plotly.js": "^2.6.0",
     "react-pro-sidebar": "^1.0.0",
     "react-router-dom": "^6.4.0",
-    "recharts": "^2.3.2"
+    "recharts": "^2.3.2",
+    "tree-kill": "^1.2.2"
   },
   "devDependencies": {
     "@electron/notarize": "^1.2.3",
@@ -199,14 +186,15 @@
     "webpack-merge": "^5.8.0"
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "ABHA",
+    "appId": "live.BrainAive.ABHA",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
       "dist",
       "node_modules",
-      "package.json"
+      "package.json",
+      "renderer/assets"
     ],
     "afterSign": ".erb/scripts/notarize.js",
     "mac": {
@@ -238,9 +226,8 @@
       ]
     },
     "win": {
-      "target": [
-        "nsis"
-      ]
+      "target": "nsis",
+      "icon": "assets\\Ba_logo.png"
     },
     "linux": {
       "target": [
@@ -254,16 +241,10 @@
       "output": "release/build"
     },
     "extraResources": [
-      "./assets/**"
-    ],
-    "publish": {
-      "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
-    }
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
+      "./assets/**",
+      "QDIC-Server/**",
+      "./DB/**"
+    ]
   },
   "devEngines": {
     "node": ">=14.x",
@@ -274,6 +255,9 @@
       "!**/**",
       "src/main/**"
     ],
+    "watchOptions": {
+      "poll": false
+    },
     "logLevel": "quiet"
   }
 }

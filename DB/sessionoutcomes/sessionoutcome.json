@@ -1,0 +1,9 @@
+[
+    {
+        "id":"sess101",
+        "paradigm":{"id":"p11"},
+        "mi_accuracy":20,
+        "patient_id":"pat101",
+        "feedback":"Feedback for session outcome with id sess101"
+    }
+]

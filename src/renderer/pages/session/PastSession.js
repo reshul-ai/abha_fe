@@ -1,4 +1,4 @@
-import react,{useState} from 'react';
+import react,{useState, useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,7 +11,8 @@ import SessionBci from './PastSessionBci';
 import PastSessionGraph from './PastSessionGraph';
 import { Button, Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-const Pastsession=()=>{
+
+const Pastsession=({paradigms})=>{
         const StyledTableCell = styled(TableCell)(({ theme }) => ({
                 [`&.${tableCellClasses.head}`]: {
                   backgroundColor: '#eaeaeb',
@@ -21,18 +22,52 @@ const Pastsession=()=>{
                 [`&.${tableCellClasses.body}`]: {
                   fontSize: 14,
                 },
-              }));
-              
-              const StyledTableRow = styled(TableRow)(({ theme }) => ({
-                '&:nth-of-type(odd)': {
-                  
-                },
-                // hide last border
-                '&:last-child td, &:last-child th': {
-                  border: 0,
-                },
-              }));
-      
+        }));
+        
+        const StyledTableRow = styled(TableRow)(({ theme }) => ({
+        '&:nth-of-type(odd)': {
+                
+        },
+        // hide last border
+        '&:last-child td, &:last-child th': {
+                border: 0,
+        },
+        }));
+        
+        const [pastSessionList, setPastSessionList] = useState({items:[]});
+        const [patientData, setPatientData] =  useState({items:[]});
+        const [sessionResult, setSessionResult] =  useState({items:[]});
+        
+        const getPastSessions = (() => {
+                window.require("electron").ipcRenderer.send("getPastSessions",{});
+    
+                window.require("electron").ipcRenderer.on("getPastSessions", (e,data) => {
+                        //console.log(data.items);
+                        setPastSessionList(data);
+                });
+                window.require("electron").ipcRenderer.send("getAllPatient",{});
+    
+                window.require("electron").ipcRenderer.on("getAllPatient", (e,data) => {
+                        //console.log(data.items);
+                        setPatientData(data);
+                });
+        });
+
+        const getSessionResultData = (() => {
+                window.require("electron").ipcRenderer.send("getSessionResultData",{});
+                window.require("electron").ipcRenderer.on("getSessionResultData", (e,data) => {
+                        console.log(data);
+                        setSessionResult(data);
+                });
+        })
+
+        useEffect(() => {
+                if (window.require && window.require("electron")){
+                        getPastSessions();
+                        getSessionResultData();
+                }
+        }, [])
+
       function createData(session_id, patient_name,mi_accuracy, date, paradigm_ran,start_time, duration) {
         return { session_id, patient_name, mi_accuracy,date,paradigm_ran, start_time, duration };
       }
@@ -43,9 +78,54 @@ const Pastsession=()=>{
         createData('SES096','Patient 03', '70%','12 Jan, 2023','5', '5:00 PM',  '60 Mins'),
        
       ];
+//       getSessionResultData
+      const [currSessionResult, setCurrSessionResult] = useState({});
+      const [currSession, setCurrSession] = useState({});
+      const [currSessionparadigms, setCurrSessionparadigms] = useState({});
+      const [paradigmNumberId, setParadigmNumberId] = useState('P1');
+      const [curSessionparadigmResult, setCurSessionparadigmResult] = useState([]);
+//       curSessionparadigmResult
+      const filterparadigms = ((paradigmsList) => {
+        console.log(paradigmsList);
+        // console.log(paradigms);
+        const results = paradigms?.items?.filter(item => paradigmsList?.includes(item.id));
+        console.log(results);
+        setCurrSessionparadigms(results);
+      });
+
       const [showBci, setShowBci] = useState(false);
       const handleBciClose = () => setShowBci(false);
-      const handleBciShow = () => setShowBci(true);
+      const handleBciShow = (row) => {
+        setCurrSession(row);
+        // 
+        if (window.require && window.require("electron")){
+                window.require("electron").ipcRenderer.send("getSessionResultById",row.id);
+                window.require("electron").ipcRenderer.on("getSessionResultById", (e,data) => {
+                        console.log(data);
+                        setCurrSessionResult(data);
+                        setCurSessionparadigmResult(data?.paradigms[0]['results']);
+                        setParadigmNumberId(data?.paradigms[0].id);
+                        const paradigmsList = data?.paradigms?.map(paradigm => paradigm.id); //list the paradigms from result
+                        // console.log(paradigmsList.length);
+                        if (typeof paradigmsList !== undefined)
+                                filterparadigms(paradigmsList);
+                });
+        }
+        // setCurrSession(pastSessionList.items.find((session) => session.id === row.id));
+        setTimeout(() => {
+                
+                setShowBci(true);
+        }, 500);
+        };
+  
+
+  function handleChildClick(id,index) {
+        setParadigmNumberId(id);
+        // setIndex(index);
+        console.log(id, index,currSessionResult['paradigms'][index]['results']);
+        setCurSessionparadigmResult(currSessionResult['paradigms'][index]['results']);
+  }
+
 return(
   <div className='container-fluid'>
   <div className='row '>
@@ -59,25 +139,25 @@ return(
                                                     <StyledTableCell align="left">Patient</StyledTableCell>
                                                     <StyledTableCell align="left">MI Accuracy</StyledTableCell>
                                                     <StyledTableCell align="left">Date</StyledTableCell>
-                                                    <StyledTableCell align="left">Paradigm Ran</StyledTableCell>
+                                                    {/* <StyledTableCell align="left">Paradigm Ran</StyledTableCell> */}
                                                     <StyledTableCell align="left">Start Time</StyledTableCell>
                                                     <StyledTableCell align="left">Duration</StyledTableCell>
                                                     
                                                 </TableRow>
                                                 </TableHead>
                                                 <TableBody>
-                                                {rows.map((row) => (
-                                                    <StyledTableRow key={row.name}>
+                                                {pastSessionList.items.map((row) => (
+                                                    <StyledTableRow key={row.id}>
                                                             {/* <StyledTableCell component="th" scope="row">
                                                                 {row.name}
                                                             </StyledTableCell> */}
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.session_id}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.patient_name}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.mi_accuracy}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.date}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.paradigm_ran}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.start_time}</StyledTableCell>
-                                                            <StyledTableCell align="left" onClick={handleBciShow} style={{ "cursor": "pointer" }}>{row.duration}</StyledTableCell>
+                                                            <StyledTableCell align="left" onClick={() => handleBciShow(row)} style={{ "cursor": "pointer" }}>{row.id}</StyledTableCell>
+                                                            <StyledTableCell align="left" onClick={() => handleBciShow(row)} style={{ "cursor": "pointer" }}>{patientData.items.find((item) => item.id === row.patientId)?.name}</StyledTableCell>
+                                                            <StyledTableCell align="left" onClick={() => handleBciShow(row)} style={{ "cursor": "pointer" }}>{sessionResult.items.find((item) => item.sessionId === row.id)?.MIA ? `${sessionResult.items.find((item) => item.sessionId === row.id)?.MIA}%` : '--'}</StyledTableCell>
+                                                            <StyledTableCell align="left" onClick={() => handleBciShow(row)} style={{ "cursor": "pointer" }}>{row.date}</StyledTableCell>
+                                                            {/* <StyledTableCell align="left" onClick={() => handleBciShow(row.id)}} style={{ "cursor": "pointer" }}>{row.paradigm_ran}</StyledTableCell> */}
+                                                            <StyledTableCell align="left" onClick={() => handleBciShow(row)} style={{ "cursor": "pointer" }}>{row.startTime}</StyledTableCell>
+                                                            <StyledTableCell align="left" onClick={() => handleBciShow(row)} style={{ "cursor": "pointer" }}>{row.duration}</StyledTableCell>
                                                            
                                                     </StyledTableRow>
                                                 ))}
@@ -88,34 +168,35 @@ return(
                                                         <div>
                                                                 <Modal size="lg" show={showBci} onHide={handleBciClose}>
                                                                         <Modal.Header closeButton style={{'border-color':'#FFFFFF'}}>
-                                                                        <Modal.Title><h5 className='ps-3 pt-3'>Session - <span style={{"color":"grey"}}>SES112</span></h5></Modal.Title>
+                                                                        <Modal.Title><h5 className='ps-3 pt-3'>Session - <span style={{"color":"grey"}}>{currSession.id}</span></h5></Modal.Title>
                                                                         </Modal.Header>
                                                                         <Modal.Body><div >
                                                                         <div className='row pb-2 px-3'>
+                                                        
                                                         <div className='col Assessments-label' style={{"borderRight": "1px solid #CACACE"}}>
-                                                                <div className='row'><div className='col text-center'>Session ID</div></div>
-                                                                <div className='row Assessments-labelValue'><div className='col text-center'>SES112</div></div>
-                                                        </div>
-                                                        <div className='col Assessments-label' style={{"borderRight": "1px solid #CACACE"}}>
-                                                                <div className='row'><div className='text-center'>Patient</div></div>
-                                                                <div className='row Assessments-labelValue'><Link to={`/individualpatients/1241`}><div className='text-center'>Patient 01</div></Link></div>
+                                                                <div className='row'><div className='col text-center'>Patient</div></div>
+                                                                <div className='row Assessments-labelValue'><Link to={`/individualpatients/${currSession.patientId}`}><div className='text-center'>{patientData.items.find((item) => item.id === currSession.patientId)?.name}</div></Link></div>
                                                         </div>
                                                         <div className='col Assessments-label' style={{"borderRight": "1px solid #CACACE"}}>
                                                                 <div className='row'><div className='text-center'>Date</div></div>
-                                                                <div className='row Assessments-labelValue'><div className='text-center'>12 Jan 2023</div></div>
+                                                                <div className='row Assessments-labelValue'><div className='text-center'>{currSession.date}</div></div>
                                                         </div>
                                                         
                                                         <div className='col Assessments-label' style={{"borderRight": "1px solid #CACACE"}}>
                                                                 <div className='row'><div className='text-center'>Start Time</div></div>
-                                                                <div className='row Assessments-labelValue'><div className='text-center'>4:00 PM</div></div>
+                                                                <div className='row Assessments-labelValue'><div className='text-center'>{currSession.startTime}</div></div>
+                                                        </div>
+                                                        <div className='col Assessments-label' style={{"borderRight": "1px solid #CACACE"}}>
+                                                                <div className='row'><div className='text-center'>End Time</div></div>
+                                                                <div className='row Assessments-labelValue'><div className='text-center'>{currSession.endTime}</div></div>
                                                         </div>
                                                         <div className='col Assessments-label' style={{"borderRight": "1px solid #CACACE"}}>
                                                                 <div className='row'><div className='text-center'>Duration</div></div>
-                                                                <div className='row Assessments-labelValue'><div className='text-center'>60 mins</div></div>
+                                                                <div className='row Assessments-labelValue'><div className='col text-center'>{currSession.duration}</div></div>
                                                         </div>
                                                         <div className='col Assessments-label border-left'>
                                                                 <div className='row'><div className='text-center'>Session MIA</div></div>
-                                                                <div className='row Assessments-labelValue'><div className='text-center'>50%</div></div>
+                                                                <div className='row Assessments-labelValue'><div className='text-center'>{currSessionResult?.MIA ? `${currSessionResult?.MIA}%` : "N/A"}</div></div>
                                                         </div>
                                                 </div>  
                                                 <div className='row pt-4 pb-2 m-2' style={{"backgroundColor":"#FAFAFA", "borderRadius":"16px"}}>
@@ -125,12 +206,13 @@ return(
                                                                                         <h6>MI Accuracy vs Trials</h6>        
                                                                                 </div>
                                                                                 <div className='col-1'></div>
-                                                                                <div className='col'></div>
-                                                                                        <div className='col text-center' style={{"border":"1px solid grey","borderRadius":"8px","backgroundColor":"white"}}>
-                                                                                                Paradigm 1  
-                                                                                </div>
+                                                                                {/* <div className='col'></div> */}
+                                                                                        {/* <div className='col text-center' style={{"border":"1px solid grey","borderRadius":"8px","backgroundColor":"white"}}> */}
+                                                                                        <div className='col text-end'>
+                                                                                                {paradigmNumberId && paradigms.items.find((item) => item.id === paradigmNumberId)?.name}
+                                                                                        </div>
                                                                         </div>              
-                                                                <PastSessionGraph />
+                                                                <PastSessionGraph curSessionparadigmResult={curSessionparadigmResult}/>
                                                         </div>
                                                 </div>
                                                  <div className='row pt-3 pb-2 px-3'>
@@ -140,7 +222,7 @@ return(
                                                         </div></div>
                                                                         </div>
                                                                                         <div>
-                                                                                                <SessionBci />
+                                                                                                <SessionBci onChildClick={handleChildClick} paradigms={paradigms} currSessionResult={currSessionResult}/>
                                                                                         </div>
                                                                         </Modal.Body>
                                                                         <Modal.Footer>
